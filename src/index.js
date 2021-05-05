@@ -1,12 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import ReactDOM from 'react-dom'
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import "react-toastify/dist/ReactToastify.css";
+import { createBrowserHistory } from "history";
+import { BrowserRouter as Router } from "react-router-dom";
+// core styles
+import "./scss/volt.scss";
+
+// vendor styles
+import "@fortawesome/fontawesome-free/css/all.css";
+import "react-datetime/css/react-datetime.css";
+
+
+var history = createBrowserHistory();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Router history={history}>
+      <App />
+    </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );
