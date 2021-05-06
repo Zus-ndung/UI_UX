@@ -5,7 +5,7 @@ import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 import { faUserCircle } from "@fortawesome/free-regular-svg-icons";
 import { Nav, Image, Navbar, Dropdown, Container } from '@themesberg/react-bootstrap';
 
-import Profile3 from "../../assets/img/team/profile-picture-3.jpg";
+import Profile3 from "../../assets/img/team/meme.jpeg";
 
 export default function Header (props={}) {
 
