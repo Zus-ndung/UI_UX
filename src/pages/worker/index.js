@@ -1,4 +1,4 @@
-import { Col, Container, Row } from "@themesberg/react-bootstrap";
+import { Card, Col, Container, Row } from "@themesberg/react-bootstrap";
 import React from "react";
 import DashBoard from "./components/DashBoard";
 import SideBar from "./components/Sidebar";
@@ -13,7 +13,11 @@ export default function WorkerDashBorad(props = {}) {
           </Container>
         </Col>
         <Col xs={4} xl={4}>
-          <SideBar />
+          <Card>
+            <Card.Body>
+              <SideBar />
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
     </Container>
