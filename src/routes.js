@@ -7,6 +7,7 @@ import WorkerLayout from "./layouts/worker";
 
 // page
 import SignInPage from "./pages/auth/Signin";
+import ListTask from "./pages/manager/ListTask";
 import WorkerDashBorad from "./pages/worker";
 
 const routes = [
@@ -33,6 +34,10 @@ const routes = [
         element: <WorkerDashBorad />
       }
     ]
+  },
+  {
+    path: "/manager/list-task",
+    element: <ListTask/>,
   },
 ];
 
