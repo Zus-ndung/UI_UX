@@ -106,30 +106,18 @@ export const DetailTask = (props) => {
             <Col xs={12} xl={6}>
               <h5 className="mb-4">Phân định trách nhiệm</h5>
               <Row>
-                <Col md={6} className="mb-3">
+                <Col className="mb-3">
                   <Form.Group id="firstName">
                     <Form.Label>Người thực hiện</Form.Label>
                     <Form.Control required type="text" placeholder="Nhập tên người thực hiện" />
                   </Form.Group>
                 </Col>
-                <Col md={6} className="mb-3">
-                  <Form.Group id="lastName">
-                    <Form.Label>Người phê duyệt</Form.Label>
-                    <Form.Control required type="text" placeholder="Nhập tên nguời phê duyệt" />
-                  </Form.Group>
-                </Col>
               </Row>
               <Row>
-                {/* <Col md={6} className="mb-3">
-              <Form.Group id="emal">
-                <Form.Label>Email</Form.Label>
-                <Form.Control required type="email" placeholder="name@company.com" />
-              </Form.Group>
-            </Col> */}
                 <Col md={6} className="mb-3">
-                  <Form.Group id="phone">
-                    <Form.Label>Phone</Form.Label>
-                    <Form.Control required type="" placeholder="Nhập số điện thoại của bạn" />
+                  <Form.Group id="lastName">
+                    <Form.Label>Người kiểm duyệt</Form.Label>
+                    <Form.Control required type="text" placeholder="Nhập tên nguời phê duyệt" />
                   </Form.Group>
                 </Col>
               </Row>

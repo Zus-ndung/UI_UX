@@ -391,7 +391,6 @@ export const ListTaskTable = () => {
           <Button variant="close" aria-label="Close" onClick={handleClose} />
         </Modal.Header>
         <Modal.Body>
-          {/* <GeneralInfoForm></GeneralInfoForm> */}
           <DetailTask transactions={transactions}></DetailTask>
         </Modal.Body>
         <Modal.Footer>

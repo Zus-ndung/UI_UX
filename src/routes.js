@@ -3,12 +3,14 @@ import { Navigate } from "react-router-dom";
 // layout
 import AuthLayout from "./layouts/auth";
 import WorkerLayout from "./layouts/worker";
-
+import ManagerLayout from "./layouts/manager";
 
 // page
 import SignInPage from "./pages/auth/Signin";
+import ManagerDashboard from "./pages/manager/ManagerDashBoard";
 import ListTask from "./pages/manager/ListTask";
 import WorkerDashBorad from "./pages/worker";
+import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 
 const routes = [
   {
@@ -30,14 +32,24 @@ const routes = [
     element: <WorkerLayout />,
     children:[
       {
-        path: "/",
+        path: "/trung",
         element: <WorkerDashBorad />
       }
     ]
   },
   {
-    path: "/manager/list-task",
-    element: <ListTask/>,
+    path: "/manager/*",
+    element: <ManagerLayout/>,
+    children: [
+      {
+        path: "/",
+        element: <ManagerDashboard />
+      },
+      {
+        path: "/tasklist",
+        element: <ListTask/>
+      },
+    ]
   },
 ];
 
