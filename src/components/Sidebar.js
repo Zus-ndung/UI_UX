@@ -182,7 +182,7 @@ export default (props = {}) => {
               />
               <CollapsableNavItem
                 eventKey="Employee"
-                title="Employee"
+                title="Quản lý nhân viên"
                 icon={faTable}>
                 <NavItem title="Day chuyen 1" link="#"/>
                 <NavItem title="Day chuyen 2" link="#"/>

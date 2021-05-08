@@ -1,11 +1,16 @@
-import React from "react";
+import { React, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown } from '@themesberg/react-bootstrap';
-
+import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal } from '@themesberg/react-bootstrap';
 import { ListTaskTable } from "../../components/Tables";
+import {AddTask} from "../../components/AddTask";
 
 export default () => {
+  const [showDefault, setShowDefault] = useState(false);
+  const handleClose = () => setShowDefault(false);
+  const showModelAddTask = () => {
+    setShowDefault(true);
+  }
   return (
     <>
       <Row>
@@ -13,16 +18,9 @@ export default () => {
         <Col xs={12} md={9}>
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
             <div className="d-block mb-4 mb-md-0">
-              {/* <Breadcrumb className="d-none d-md-inline-block" listProps={{ className: "breadcrumb-dark breadcrumb-transparent" }}>
-            <Breadcrumb.Item><FontAwesomeIcon icon={faHome} /></Breadcrumb.Item>
-            <Breadcrumb.Item>Volt</Breadcrumb.Item>
-            <Breadcrumb.Item active>Transactions</Breadcrumb.Item>
-          </Breadcrumb> */}
               <h3>Quản lý danh sách công việc</h3>
             </div>
-
           </div>
-
           <div className="table-settings mb-4">
             <Row className="justify-content-between align-items-center">
               <Col md={6}>
@@ -52,8 +50,7 @@ export default () => {
                     </Dropdown.Menu>
                   </Dropdown>
                   <ButtonGroup style={{ marginLeft: 10 }}>
-                    {/* <Button variant="outline-primary" size="sm">Share</Button> */}
-                    <Button variant="outline-primary" size="sm">Thêm Mới</Button>
+                    <Button variant="outline-primary" size="sm" onClick={showModelAddTask}>Thêm Mới</Button>
                   </ButtonGroup>
                 </div>
               </Col>
@@ -63,7 +60,23 @@ export default () => {
           <ListTaskTable />
         </Col>
       </Row>
-
+      <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
+        <Modal.Header>
+          <Modal.Title className="h6">Thêm mới công việc</Modal.Title>
+          <Button variant="close" aria-label="Close" onClick={handleClose} />
+        </Modal.Header>
+        <Modal.Body>
+          <AddTask/>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Lưu
+      </Button>
+          <Button variant="link" className="text-gray ms-auto" onClick={handleClose}>
+            Hủy
+      </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
 };

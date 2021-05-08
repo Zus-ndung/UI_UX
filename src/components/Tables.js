@@ -262,9 +262,6 @@ export const ListTaskTable = () => {
   const [showDefault2, setShowDefault2] = useState(false);
   const handleClose = () => setShowDefault(false);
   const handleClose2 = () => setShowDefault2(false);
-  // const notify = () => {
-  //   toast.success('Da xoa thanh cong');
-  // }
 
   const totalTransactions = transactions.length;
 
