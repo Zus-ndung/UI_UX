@@ -4,7 +4,7 @@ import moment from "moment-timezone";
 import Datetime from "react-datetime";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
-import { Col, Row, Card, Form, Button, InputGroup } from '@themesberg/react-bootstrap';
+import { Col, Row, Card, Form, Button, InputGroup, ProgressBar } from '@themesberg/react-bootstrap';
 
 export const DetailTask = (props) => {
   const [deadline, setDeadline] = useState("");
@@ -77,6 +77,17 @@ export const DetailTask = (props) => {
                 </Col>
               </Row>
               <Row>
+                <Col md={12} className="mb-3">
+                  <Form.Group id="gender" style={{marginBottom: "10px"}}>
+                    <Form.Label>Trạng thái</Form.Label>
+                    <Form.Select defaultValue="1">
+                      <option value="1">Đang thực hiện</option>
+                      <option value="0">Đã hoàn thành</option>
+                      <option value="2">Quá hạn</option>
+                    </Form.Select>
+                  </Form.Group>
+                  <ProgressBar now={60} variant='success' label={`${60}%`} style={{height:"10px"}}></ProgressBar>
+                </Col>
                 <Col md={6} className="mb-3">
                   <Form.Group id="gender">
                     <Form.Label>Độ ưu tiên</Form.Label>
@@ -86,16 +97,6 @@ export const DetailTask = (props) => {
                       <option value="2">Thấp</option>
                       <option value="2">Trung bình</option>
                       <option value="2">Khẩn cấp</option>
-                    </Form.Select>
-                  </Form.Group>
-                </Col>
-                <Col md={6} className="mb-3">
-                  <Form.Group id="gender">
-                    <Form.Label>Trạng thái</Form.Label>
-                    <Form.Select defaultValue="0">
-                      <option value="2">Đang thực hiện</option>
-                      <option value="0">Đã hoàn thành</option>
-                      <option value="2">Quá hạn</option>
                     </Form.Select>
                   </Form.Group>
                 </Col>
