@@ -32,7 +32,7 @@ const routes = [
     element: <WorkerLayout />,
     children:[
       {
-        path: "/trung",
+        path: "/",
         element: <WorkerDashBorad />
       }
     ]
