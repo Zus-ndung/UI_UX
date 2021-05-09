@@ -23,6 +23,8 @@ import {
   Dropdown,
   Accordion,
   Navbar,
+  Col,
+  Row
 } from "@themesberg/react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -169,27 +171,43 @@ export default (props = {}) => {
               </Nav.Link>
             </div>
             <Nav className="flex-column pt-3 pt-md-0">
-              <NavItem
-                title="DashBoard"
-                link="#"
-                icon={faChartPie}
-              />
-              
-              <NavItem
-                title="Danh sách công việc"
-                link="tasklist"
-                icon={faFileAlt}
-              />
+              <CollapsableNavItem
+                title="Quản lý công việc"
+                icon={faChalkboard}>
+                <NavItem
+                  title="DashBoard"
+                  link="#"
+                  icon={faChartPie}
+                />
+                
+                <NavItem
+                  title="Danh sách công việc"
+                  link="tasklist"
+                  icon={faFileAlt}
+                />
+              </CollapsableNavItem>
+              <CollapsableNavItem
+                title="Quản lý KPI"
+                icon={faHandHoldingUsd}>
+                <NavItem
+                  title="DashBoard"
+                  link="#"
+                  icon={faChartPie}
+                />
+                
+                <NavItem
+                  title="Danh sách công việc"
+                  link="tasklist"
+                  icon={faFileAlt}
+                />
+              </CollapsableNavItem>
               <CollapsableNavItem
                 eventKey="Employee"
                 title="Quản lý nhân viên"
                 icon={faTable}>
-                <NavItem title="Day chuyen 1" link="#"/>
-                <NavItem title="Day chuyen 2" link="#"/>
-                <NavItem title="Day chuyen 3" link="#"/>
-                <NavItem title="Day chuyen 4" link="#"/>
-                <NavItem title="Day chuyen 5" link="#"/>
-              </CollapsableNavItem>    
+                <NavItem title="Danh sách nhân viên" link="#"/>
+                {/* <NavItem title="" link="#"/> */}
+              </CollapsableNavItem>
             </Nav>
           </div>
         </SimpleBar>
