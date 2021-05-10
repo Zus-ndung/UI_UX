@@ -62,7 +62,7 @@ export default () => {
       </Row>
       <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
         <Modal.Header>
-          <Modal.Title className="h6">Thêm mới công việc</Modal.Title>
+          <Modal.Title className="h4">Thêm mới quy trình</Modal.Title>
           <Button variant="close" aria-label="Close" onClick={handleClose} />
         </Modal.Header>
         <Modal.Body>

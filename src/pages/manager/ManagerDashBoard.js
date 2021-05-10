@@ -135,7 +135,7 @@ const ChartProcess = () => {
         </Card.Body>
       </Card>
       <Card style={{marginTop: "30px"}}>
-        <Card.Header><h4>Thống kê số sản phẩm quan từng tháng</h4></Card.Header>
+        <Card.Header><h4>Thống kê số sản phẩm qua từng tháng</h4></Card.Header>
         <Card.Body>
           <Row>
             <Col md={1}></Col>
