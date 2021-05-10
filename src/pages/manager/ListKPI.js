@@ -2,10 +2,10 @@ import { React, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal } from '@themesberg/react-bootstrap';
-import { ListTaskTable } from "../../components/Tables";
+import { ListKPITable } from "../../components/Tables";
 import {AddTask} from "../../components/AddTask";
 
-export default () => {
+const ListKPI = () => {
   const [showDefault, setShowDefault] = useState(false);
   const handleClose = () => setShowDefault(false);
   const showModelAddTask = () => {
@@ -18,7 +18,7 @@ export default () => {
         <Col xs={12} md={9}>
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
             <div className="d-block mb-4 mb-md-0">
-              <h3>Quản lý danh sách công việc</h3>
+              <h3>Danh sách KPI</h3>
             </div>
           </div>
           <div className="table-settings mb-4">
@@ -56,13 +56,12 @@ export default () => {
               </Col>
             </Row>
           </div>
-
-          <ListTaskTable />
+          <ListKPITable />
         </Col>
       </Row>
       <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
         <Modal.Header>
-          <Modal.Title className="h4">Thêm mới quy trình</Modal.Title>
+          <Modal.Title className="h4">Thêm mới</Modal.Title>
           <Button variant="close" aria-label="Close" onClick={handleClose} />
         </Modal.Header>
         <Modal.Body>
@@ -80,3 +79,4 @@ export default () => {
     </>
   );
 };
+export default ListKPI;
