@@ -9,45 +9,142 @@ import {
   Col,
   ListGroup,
   Button,
+  Table,
 } from "@themesberg/react-bootstrap";
+import Chartist from "chartist";
 import React from "react";
 import Profile3 from "../../../assets/img/team/download.jpeg";
+import Picker from "react-month-picker";
+import SideBar from "./Sidebar";
 
+const TableComponent = () => {
+  return (
+    <Table striped bordered hover size="xl">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Tên Công Việc</th>
+          <th>Thời gian bắt đầu</th>
+          <th>Thời gian kết thúc</th>
+          <th>Số lượng đã làm</th>
+          <th>Số lượng yêu cầu</th>
+          <th>Trạng thái</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>May cổ áo</td>
+          <td>21/3/1999 07:00:00</td>
+          <td>21/3/1999 17:00:00</td>
+          <td>200</td>
+          <td>200</td>
+          <td>Hoàn thành</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>May cổ áo</td>
+          <td>21/3/1999 07:00:00</td>
+          <td>21/3/1999 17:00:00</td>
+          <td>200</td>
+          <td>200</td>
+          <td>Hoàn thành</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>May cổ áo</td>
+          <td>21/3/1999 07:00:00</td>
+          <td>21/3/1999 17:00:00</td>
+          <td>200</td>
+          <td>200</td>
+          <td>Hoàn thành</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>May cổ áo</td>
+          <td>21/3/1999 07:00:00</td>
+          <td>21/3/1999 17:00:00</td>
+          <td>200</td>
+          <td>200</td>
+          <td>Hoàn thành</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>May cổ áo</td>
+          <td>21/3/1999 07:00:00</td>
+          <td>21/3/1999 17:00:00</td>
+          <td>200</td>
+          <td>200</td>
+          <td>Hoàn thành</td>
+        </tr>
+      </tbody>
+    </Table>
+  );
+};
+const MonthBox = ({ values, onClick }) => {
+  return <span onClick={() => onClick}>{values}</span>;
+};
 const DashBoardComponent = (props = {}) => {
+  const pickAMonth2 = React.createRef();
+  const [singleValue2, setSingValues] = React.useState({
+    year: 2016,
+    month: 7,
+  });
+  const pickerLang = {
+    months: [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+    from: "From",
+    to: "To",
+  };
+
+  const makeText = (m) => {
+    if (m && m.year && m.month)
+      return pickerLang.months[m.month - 1] + ". " + m.year;
+    return "?";
+  };
   return (
     <Container>
-      <Card>
-        <Card.Body>
-          <Row>
-            <Form.Group controlId="exampleForm.SelectCustomSizeLg">
-              <Form.Label>Line</Form.Label>
-              <Form.Control as="select" size="lg" custom>
-                <option>Line 1</option>
-                <option>Line 2</option>
-              </Form.Control>
-            </Form.Group>
-          </Row>
+      <Row>
+        <Col xs={12}>
+          <h4>Thống kê công việc theo tháng</h4>
+        </Col>
+        <Col xs={12}>
           <br />
           <Row>
-            <Col xs={12}>
-              <h4>Cong Viec Hom Nay</h4>
-            </Col>
-            <Col xs={12}>
-              <Row>
-                <Col xs={8}>{"San Pham: Co Ao"}</Col>
-                <Col xs={4}>{"So Luong: 1000"}</Col>
-              </Row>
+            <Col xs={2}>Tháng</Col>
+            <Col xs={4}>
+              {/* <Picker
+                ref={pickAMonth2}
+                years={{
+                  min: { year: 2016, month: 2 },
+                  max: { year: 2016, month: 9 },
+                }}
+                lang={pickerLang.months}
+                value={{ year: 2016, month: 7 }}
+                theme="dark">
+                <MonthBox value={makeText(singleValue2)} />
+              </Picker> */}
             </Col>
           </Row>
-        </Card.Body>
-        <Card.Footer>
-          <Row className="d-flex justify-content-center align-items-center">
-            <Button variant="primary" size="lg" style={{maxWidth: "20%"}}>
-              Start
-            </Button>
-          </Row>
-        </Card.Footer>
-      </Card>
+        </Col>
+        <Col xs={12}>
+          <br />
+          <TableComponent />
+        </Col>
+      </Row>
+      <br />
     </Container>
   );
 };
@@ -83,6 +180,69 @@ const UserInfo = (props = {}) => {
   );
 };
 
+const WorkList = ({ onClick }) => {
+  return (
+    <Row>
+      <Table striped bordered hover size="xl">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tên Công Việc</th>
+            <th>Thời gian bắt đầu</th>
+            <th>Thời gian kết thúc</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>May cổ áo</td>
+            <td>21/3/1999 07:00:00</td>
+            <td>21/3/1999 17:00:00</td>
+            <td>Hoàn thành</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>May cổ áo</td>
+            <td>--/--/---- --:--:--</td>
+            <td>--/--/---- --:--:--</td>
+            <td>
+              <Button onClick={onClick}>Thực hiện</Button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>May cổ áo</td>
+            <td>--/--/---- --:--:--</td>
+            <td>--/--/---- --:--:--</td>
+            <td>
+              <Button onClick={onClick}>Thực hiện</Button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>May cổ áo</td>
+            <td>--/--/---- --:--:--</td>
+            <td>--/--/---- --:--:--</td>
+            <td>
+              <Button onClick={onClick}>Thực hiện</Button>
+            </td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>May cổ áo</td>
+            <td>--/--/---- --:--:--</td>
+            <td>--/--/---- --:--:--</td>
+            <td>
+              <Button onClick={onClick}>Thực hiện</Button>
+            </td>
+          </tr>
+        </tbody>
+      </Table>
+    </Row>
+  );
+};
+
 export default function DashBoard(props = {}) {
   const [key, setKey] = React.useState("contact");
   return (
@@ -91,18 +251,21 @@ export default function DashBoard(props = {}) {
         <Tabs
           id="controlled-tab-example"
           defaultActiveKey={key}
-          onSelect={(k) => setKey(k)}
-        >
-          <Tab eventKey="contact" title="Dashboard">
+          onSelect={(k) => {
+            setKey(k);
+            props.onClose();
+          }}>
+          <Tab eventKey="contact" title="Tổng quan">
             <br />
             <br />
             <DashBoardComponent />
           </Tab>
-          {/* <Tab eventKey="product" title="Products">
+          <Tab eventKey="workerList" title="Công việc tháng này">
             <br />
-            <br />2
-          </Tab> */}
-          <Tab eventKey="worker" title="Worker">
+            <br />
+            <WorkList onClick={props.onShow} />
+          </Tab>
+          <Tab eventKey="worker" title="Thông tin công nhân">
             <br />
             <br />
             <UserInfo />
