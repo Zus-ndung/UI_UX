@@ -27,7 +27,7 @@ export default function SignInPage(props = {}) {
     if (isLogin) {
       toastify.toastifySuccess("Login is success");
       if (role === ROLE.ADMIN) {
-        navigate("/admin/dashborad");
+        navigate("/manager");
       } else {
         navigate("/worker/dashborad");
       }
