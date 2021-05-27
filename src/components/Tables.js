@@ -273,15 +273,13 @@ export const ListTaskTable = () => {
   const showModel = () => {
     setShowDefault(true);
   }
-  console.log(transactions);
   const TableRow = (props) => {
     const { invoiceNumber, subscription, price, issueDate, dueDate, status } = props;
     const statusVariant = status === "Đã hoàn thành" ? "success"
       : status === "Đang thực hiện" ? "warning"
         : status === "Quá hạn" ? "danger" : "primary";
-    console.log(invoiceNumber);
     return (
-      <tr>
+      <tr key="table-task-list">
         <td>
           <span className="fw-normal">
             {invoiceNumber}

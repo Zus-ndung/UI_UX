@@ -1,7 +1,7 @@
-import { Container, Form, Row, Col } from "@themesberg/react-bootstrap";
+import { Container, Form, Row, Col, Button } from "@themesberg/react-bootstrap";
 import React from "react";
 import "./styles/sidebar.css";
-import Countdown, {zeroPad} from "react-countdown";
+import Countdown, { zeroPad } from "react-countdown";
 
 const Completionist = () => <span>You are good to go!</span>;
 
@@ -23,25 +23,17 @@ const renderer = ({ hours, minutes, seconds, completed }) => {
 export default function SideBar(props = {}) {
   return (
     <Container>
-      <Container className="d-flex justify-content-center align-items-center">
-        <Row>
-          <Form.Label>Start</Form.Label>
-          <Form.Control type="time" defaultValue="07:00" />
-        </Row>
-        <Row>
-          <Form.Label>End</Form.Label>
-          <Form.Control type="time" defaultValue="17:00" />
-        </Row>
-      </Container>
-      <hr />
-      <Row className="d-flex justify-content-center align-items-center mt-4">
-        <Countdown
-          date={Date.now() + 7 * 60 * 60 * 1000}
-          renderer={renderer}
-          autoStart={true}
-        />
+      {/* <Container className="d-flex justify-content-center align-items-center"> */}
+      <Row className="d-flex justify-content-center align-items-center">
+        <Form.Label>Start</Form.Label>
+        <Form.Control type="time" defaultValue="07:00" />
       </Row>
-      <br />
+      <hr />
+      <Row className="d-flex justify-content-center align-items-center">
+        <Form.Label>End</Form.Label>
+        <Form.Control type="time" defaultValue="17:00" />
+      </Row>
+      {/* </Container> */}
       <br />
       <Row>
         <Col xs={6}>
@@ -112,12 +104,17 @@ export default function SideBar(props = {}) {
           <Row>
             <Col sm={8}>
               <Form.Group controlId="formBasicPassword">
-                <Form.Label>Error Product Quantity</Form.Label>
+                <Form.Label>Error Product</Form.Label>
                 <Form.Control type="text" disabled defaultValue={0} />
               </Form.Group>
             </Col>
           </Row>
         </Col>
+      </Row>
+      <Row className="d-flex justify-content-center align-items-center mt-2">
+        <Button onClick={() => {}} style={{ maxWidth: "50%" }}>
+          {"Bắt đầu công việc"}
+        </Button>
       </Row>
     </Container>
   );

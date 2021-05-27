@@ -5,10 +5,12 @@ import Datetime from "react-datetime";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Card, Form, Button, InputGroup, ProgressBar } from '@themesberg/react-bootstrap';
+import Select from 'react-select';
+import {Employees} from "../data/listEmployee";
+import "../pages/manager/Styles/selectComponent.css";
 
 export const DetailKPI = (props) => {
   const [deadline, setDeadline] = useState("");
-  console.log(props);
   const { invoiceNumber, subscription, price, issueDate, dueDate, status } = props;
   return (
     <Card border="light" className="bg-white shadow-sm mb-4">
@@ -115,11 +117,11 @@ export const DetailKPI = (props) => {
                 </Col>
               </Row>
               <Row>
-                <Col md={6} className="mb-3">
+                <Col md={12} className="mb-3">
                   <Form.Group id="lastName">
                     <Form.Label>Người kiểm duyệt</Form.Label>
-                    <Form.Control required type="text" placeholder="Nhập tên nguời phê duyệt" />
                   </Form.Group>
+                  <Select closeMenuOnSelect={true} options={Employees} isMulti placeholder="Nhập người kiểm duyệt"/>
                 </Col>
               </Row>
             </Col>
