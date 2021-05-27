@@ -1,19 +1,13 @@
 import { React, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
-<<<<<<< HEAD
-import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal } from '@themesberg/react-bootstrap';
-import { ListTaskTable } from "../../components/Tables";
-import {AddTask} from "../../components/AddTask";
-=======
 import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal, Card } from '@themesberg/react-bootstrap';
-import { ListTaskTable } from "../../components/Tables";
 import {AddTask} from "../../components/AddTask";
-import {ListTaskTable as ListTaskTable2} from "../../components/Tables2";
+// import {ListTaskTable as ListTaskTable2} from "../../components/Tables2";
+import {TasksTable} from "../../components/Tables2";
 
->>>>>>> 569bafe3d4e682f785f49e8e199f4ca15106bb68
 
-export default () => {
+export const ListTasks = () => {
   const [showDefault, setShowDefault] = useState(false);
   const handleClose = () => setShowDefault(false);
   const showModelAddTask = () => {
@@ -24,17 +18,11 @@ export default () => {
       <Row>
         <Col xs={12} md={3}></Col>
         <Col xs={12} md={9}>
-<<<<<<< HEAD
-          <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
-            <div className="d-block mb-4 mb-md-0">
-              <h3>Quản lý danh sách công việc</h3>
-=======
           <Card>
             <Card.Header>
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
             <div className="d-block mb-4 mb-md-0">
               <h3>Thông tin danh sách các quy trình </h3>
->>>>>>> 569bafe3d4e682f785f49e8e199f4ca15106bb68
             </div>
           </div>
           <div className="table-settings mb-4">
@@ -72,17 +60,13 @@ export default () => {
               </Col>
             </Row>
           </div>
-<<<<<<< HEAD
-
-          <ListTaskTable />
-=======
-          {/* <ListTaskTable /> */}
+          {/* <TasksTable /> */}
           </Card.Header>
           <Card.Body>
-          <ListTaskTable2/>
+            <TasksTable/>
+            {/* alalalla */}
           </Card.Body>
           </Card>
->>>>>>> 569bafe3d4e682f785f49e8e199f4ca15106bb68
         </Col>
       </Row>
       <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
@@ -105,3 +89,4 @@ export default () => {
     </>
   );
 };
+export default ListTasks;
