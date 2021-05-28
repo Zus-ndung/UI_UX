@@ -11,7 +11,7 @@ import ManagerDashboard from "./pages/manager/ManagerDashBoard";
 import ListTask from "./pages/manager/ListTask";
 import WorkerDashBorad from "./pages/worker";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
-import ListKPI from "./pages/manager/ListKPI";
+import ListWorker from "./pages/manager/ListWorker";
 
 const routes = [
   {
@@ -51,8 +51,12 @@ const routes = [
         element: <ListTask/>
       },
       {
-        path: "kpi-list",
+        path: "/kpi-list",
         element: <ListKPI/>
+      },
+      {
+        path: "/worker-list",
+        element: <ListWorker/>
       },
     ]
   },

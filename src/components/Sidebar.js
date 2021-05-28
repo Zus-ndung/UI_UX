@@ -204,7 +204,7 @@ export default (props = {}) => {
                 eventKey="Employee"
                 title="Quản lý nhân viên"
                 icon={faTable}>
-                <NavItem title="Danh sách nhân viên" link="#"/>
+                <NavItem title="Danh sách nhân viên" link="worker-list"/>
                 {/* <NavItem title="" link="#"/> */}
               </CollapsableNavItem>
             </Nav>
