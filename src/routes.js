@@ -13,6 +13,7 @@ import WorkerDashBorad from "./pages/worker";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import ListWorker from "./pages/manager/ListWorker";
 import ListKPI from "./pages/manager/ListKPI";
+import DetailProcess from "./pages/manager/DetailProcess";
 
 const routes = [
   {
@@ -58,6 +59,10 @@ const routes = [
       {
         path: "/worker-list",
         element: <ListWorker/>
+      },
+      {
+        path: "/detail-process",
+        element: <DetailProcess/>
       },
     ]
 
