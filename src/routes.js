@@ -3,12 +3,15 @@ import { Navigate } from "react-router-dom";
 // layout
 import AuthLayout from "./layouts/auth";
 import WorkerLayout from "./layouts/worker";
-
+import ManagerLayout from "./layouts/manager";
 
 // page
 import SignInPage from "./pages/auth/Signin";
+import ManagerDashboard from "./pages/manager/ManagerDashBoard";
+import ListTask from "./pages/manager/ListTask";
 import WorkerDashBorad from "./pages/worker";
-
+import { faExclamation } from "@fortawesome/free-solid-svg-icons";
+import ListKPI from "./pages/manager/ListKPI";
 
 const routes = [
   {
@@ -28,12 +31,30 @@ const routes = [
   {
     path: "/worker/dashborad",
     element: <WorkerLayout />,
-    children:[
+    children: [
       {
         path: "/",
-        element: <WorkerDashBorad />
-      }
-    ]
+        element: <WorkerDashBorad />,
+      },
+    ],
+  },
+  {
+    path: "/manager/*",
+    element: <ManagerLayout />,
+    children: [
+      {
+        path: "/",
+        element: <ManagerDashboard />,
+      },
+      {
+        path: "/tasklist",
+        element: <ListTask />,
+      },
+      {
+        path: "kpi-list",
+        element: <ListKPI />,
+      },
+    ],
   },
 ];
 

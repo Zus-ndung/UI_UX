@@ -8,20 +8,19 @@ export default function WorkerDashBorad(props = {}) {
   return (
     <Container>
       <Row>
-        <Col xs={show ? 8 : 12} xl={show ? 8 : 12}>
-          <Container>
-            <DashBoard
-              onShow={() => setShow(true)}
-              onClose={() => setShow(false)}
-            />
-          </Container>
-        </Col>
         {show ? (
-          <Col xs={4} xl={4}>
+          <Col xs={12} xl={12}>
             <SideBar />
           </Col>
         ) : (
-          ""
+          <Col xs={12} xl={12}>
+            <Container>
+              <DashBoard
+                onShow={() => setShow(true)}
+                onClose={() => setShow(false)}
+              />
+            </Container>
+          </Col>
         )}
       </Row>
     </Container>
