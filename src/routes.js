@@ -32,24 +32,24 @@ const routes = [
   {
     path: "/worker/dashborad",
     element: <WorkerLayout />,
-    children:[
-      {
-        path: "/",
-        element: <WorkerDashBorad />
-      }
-    ]
-  },
-  {
-    path: "/manager/*",
-    element: <ManagerLayout/>,
     children: [
       {
         path: "/",
-        element: <ManagerDashboard />
+        element: <WorkerDashBorad />,
+      },
+    ],
+  },
+  {
+    path: "/manager/*",
+    element: <ManagerLayout />,
+    children: [
+      {
+        path: "/",
+        element: <ManagerDashboard />,
       },
       {
         path: "/tasklist",
-        element: <ListTask/>
+        element: <ListTask />,
       },
       {
         path: "/kpi-list",
@@ -60,6 +60,7 @@ const routes = [
         element: <ListWorker/>
       },
     ]
+
   },
 ];
 

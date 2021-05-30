@@ -3,25 +3,24 @@ import React from "react";
 import DashBoard from "./components/DashBoard";
 import SideBar from "./components/Sidebar";
 
-export default function WorkerDashBorad(props = {}) {
+export default function WorkerDashBorad() {
   const [show, setShow] = React.useState(false);
   return (
     <Container>
       <Row>
-        <Col xs={show ? 8 : 12} xl={show ? 8 : 12}>
-          <Container>
-            <DashBoard
-              onShow={() => setShow(true)}
-              onClose={() => setShow(false)}
-            />
-          </Container>
-        </Col>
         {show ? (
-          <Col xs={4} xl={4}>
+          <Col xs={12} xl={12}>
             <SideBar />
           </Col>
         ) : (
-          ""
+          <Col xs={12} xl={12}>
+            <Container>
+              <DashBoard
+                onClose={() => setShow(false)}
+                onShow={() => setShow(true)}
+              />
+            </Container>
+          </Col>
         )}
       </Row>
     </Container>
