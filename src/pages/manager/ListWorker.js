@@ -1,12 +1,11 @@
 import { React, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal, Card } from '@themesberg/react-bootstrap';
-import {AddTask} from "../../components/AddTask";
-import {TasksTable} from "../../components/Tables2";
+import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal } from '@themesberg/react-bootstrap';
+import {ListWorkerTable} from "../../components/Tables";
+import { AddWorker } from "../../components/AddWorker";
 
-
-export const ListTasks = () => {
+const ListKPI = () => {
   const [showDefault, setShowDefault] = useState(false);
   const handleClose = () => setShowDefault(false);
   const showModelAddTask = () => {
@@ -17,11 +16,9 @@ export const ListTasks = () => {
       <Row>
         <Col xs={12} md={3}></Col>
         <Col xs={12} md={9}>
-          <Card>
-            <Card.Header>
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
             <div className="d-block mb-4 mb-md-0">
-              <h3>Thông tin danh sách các quy trình </h3>
+              <h3>Danh sách công nhân</h3>
             </div>
           </div>
           <div className="table-settings mb-4">
@@ -38,19 +35,6 @@ export const ListTasks = () => {
               <Col md={2} className="ps-md-0 text-end">
                 <div className="btn-toolbar mb-2 mb-md-0">
                   <Dropdown as={ButtonGroup}>
-                    <Dropdown.Toggle split as={Button} variant="link" className="text-dark m-0 p-0">
-                      <span className="icon icon-sm icon-gray">
-                        <FontAwesomeIcon icon={faCog} />
-                      </span>
-                    </Dropdown.Toggle>
-                    <Dropdown.Menu className="dropdown-menu-xs dropdown-menu-right">
-                      <Dropdown.Item className="fw-bold text-dark">Show</Dropdown.Item>
-                      <Dropdown.Item className="d-flex fw-bold">
-                        10 <span className="icon icon-small ms-auto"><FontAwesomeIcon icon={faCheck} /></span>
-                      </Dropdown.Item>
-                      <Dropdown.Item className="fw-bold">20</Dropdown.Item>
-                      <Dropdown.Item className="fw-bold">30</Dropdown.Item>
-                    </Dropdown.Menu>
                   </Dropdown>
                   <ButtonGroup style={{ marginLeft: 10 }}>
                     <Button variant="outline-primary" size="sm" onClick={showModelAddTask}>Thêm Mới</Button>
@@ -59,33 +43,27 @@ export const ListTasks = () => {
               </Col>
             </Row>
           </div>
-          {/* <TasksTable /> */}
-          </Card.Header>
-          <Card.Body>
-            <TasksTable/>
-            {/* alalalla */}
-          </Card.Body>
-          </Card>
+          <ListWorkerTable/>
         </Col>
       </Row>
       <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
         <Modal.Header>
-          <Modal.Title className="h4">Thêm mới quy trình</Modal.Title>
+          <Modal.Title className="h4">Thêm mới</Modal.Title>
           <Button variant="close" aria-label="Close" onClick={handleClose} />
         </Modal.Header>
         <Modal.Body>
-          <AddTask/>
+          <AddWorker/>
         </Modal.Body>
-        <Modal.Footer>
+        {/* <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Lưu
       </Button>
           <Button variant="link" className="text-gray ms-auto" onClick={handleClose}>
             Hủy
       </Button>
-        </Modal.Footer>
+        </Modal.Footer> */}
       </Modal>
     </>
   );
 };
-export default ListTasks;
+export default ListKPI;

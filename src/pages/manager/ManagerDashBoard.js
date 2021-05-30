@@ -20,6 +20,10 @@ import {
 import {Bar,Pie,Line} from "react-chartjs-2";
 import { CartDash } from "react-bootstrap-icons";
 import {DetailTask} from "../../components/DetailTask";
+import {trafficShares, trafficShares2} from "../../data/charts";
+import {CircleChartWidget} from "../../components/Widgets";
+import "./Styles/CircleChartWidget.css";
+import { useNavigate } from "react-router-dom";
 
 const OverSchedule = (prop={}) => {
   const [show,setShow] = React.useState(false);
@@ -59,83 +63,12 @@ const OverSchedule = (prop={}) => {
   );
 };
 const ChartProcess = () => {
-  let Linelabels = ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7'];
+  let Linelabels = ['Ngày 1','Ngày 2','Ngày 3','Ngày 4','Ngày 5','Ngày 6','Ngày 7'];
+  let Linelabels2 = ['Ngày 1','Ngày 2','Ngày 3','Ngày 4','Ngày 5','Ngày 6','Ngày 7'];
   return (
     <>
-      <Card>
-        <Card.Header><h4>Biểu đồ thống kê tình trạng công việc</h4></Card.Header>
-        <Card.Body>
-          <Row>
-            <Col md={5}>
-              <Pie
-                data={{
-                  labels: [
-                    'Quá hạn',
-                    'Đúng tiến độ',
-                    'Trễ tiến độ'
-                  ],
-                  datasets: [{
-                    label: 'My First Dataset',
-                    data: [300, 50, 100],
-                    backgroundColor: [
-                      'rgb(255, 99, 132)',
-                      'rgb(54, 162, 235)',
-                      'rgb(255, 205, 86)'
-                    ],
-                    hoverOffset: 4
-                  }]
-                }}
-              ></Pie>
-            </Col>
-            <Col md={2}></Col>
-            <Col md={5}>
-              <div style={{height: "180px"}}>
-              </div>
-              <Bar
-                data={{
-                  labels: ['Quá hạn','Trễ tiến độ','Đúng tiến độ'],
-                  datasets: [{
-                    label: 'Số lượng các công việc theo trạng thái',
-                    data: [65, 59, 40],
-                    backgroundColor: [
-                      'rgb(255, 99, 132)',
-                      'rgb(54, 162, 235)',
-                      'rgb(255, 205, 86)',
-                      // 'rgba(75, 192, 192, 0.2)',
-                      // 'rgba(54, 162, 235, 0.2)',
-                      // 'rgba(153, 102, 255, 0.2)',
-                      // 'rgba(201, 203, 207, 0.2)'
-                    ],
-                    borderColor: [
-                      'rgb(255, 99, 132)',
-                      'rgb(255, 159, 64)',
-                      'rgb(255, 205, 86)',
-                      // 'rgb(75, 192, 192)',
-                      // 'rgb(54, 162, 235)',
-                      // 'rgb(153, 102, 255)',
-                      // 'rgb(201, 203, 207)'
-                    ],
-                    borderWidth: 1,
-                    height: 500
-                  }]
-                }}
-                option={{
-                  // scales: {
-                  //   y: {
-                  //     beginAtZero: true
-                  //   }
-                  // }
-                }}
-              >
-
-              </Bar>
-            </Col>
-          </Row>
-          
-        </Card.Body>
-      </Card>
       <Card style={{marginTop: "30px"}}>
-        <Card.Header><h4>Thống kê số sản phẩm qua từng tháng</h4></Card.Header>
+        <Card.Header><h4>Thống kê số tổng số lượng sản phẩm từng ngày</h4></Card.Header>
         <Card.Body>
           <Row>
             <Col md={1}></Col>
@@ -143,13 +76,22 @@ const ChartProcess = () => {
               <Line
                 data={{
                   labels: Linelabels,
-                  datasets: [{
-                    label: 'Số lượng sản phẩm qua các tháng',
+                  datasets: [
+                    {
+                    label: 'May áo vest',
                     data: [65, 59, 80, 81, 56, 55, 40],
                     fill: false,
                     borderColor: 'rgb(75, 192, 192)',
                     tension: 0.1
-                  }],
+                    },
+                    {
+                      label: 'May áo sơ mi',
+                      data: [55, 90, 44, 33, 44, 66, 67],
+                      fill: false,
+                      borderColor: '#006666',
+                      tension: 0.1
+                    },
+                ],
                 }}
               ></Line>
             </Col>
@@ -160,40 +102,40 @@ const ChartProcess = () => {
     </>
   );
 };
+
 const ManagerDashboard = () => {
+  const navigate = useNavigate();
+  const routeTo = () => {
+    navigate("detail-process");
+  }
   const [key, setKey] = React.useState("onSchedule");
   return (
-    <React.Fragment>
+    <React.Fragment >
       <Row>
-        <Col md={3}></Col>
-        <Col md={9}>
-          <h2>DashBoard Công việc</h2>
-          {/* <i class="bi bi-exclamation-diamond-fill"></i> */}
+        <Col md={{span:9, offset:3}} style={{marginTop: "-45px"}}>
+          <h2 style={{marginBottom: "25px"}}>DashBoard Công việc</h2>
+          
           <Card border="light" className="bg-white shadow-sm mb-4">
+            <Card.Header><h4>Danh sách các quy trình đang thực hiện</h4></Card.Header>
             <Card.Body>
-              
-              <Tabs
-                id="controlled-tab-example"
-                defaultActiveKey={key}
-                onSelect={(k) => setKey(k)}
-                varient="pills"
-              >
-                <Tab eventKey="overSchedule" title="Quá Hạn">
-                  <br />
-                  <br />
-                  <OverSchedule/>
-                </Tab>
-                <Tab eventKey="delaySchedule" title="Trễ tiến độ">
-                  <br/><br/>
-                </Tab>
-                <Tab eventKey="onSchedule" title="Đúng tiến độ">
-                  <br />
-                  <br />
-                  {/* <UserInfo /> */}
-                </Tab>
-              </Tabs>
+              <Row>
+                <Col md={4} onClick={routeTo}>
+                    <CircleChartWidget 
+                      title="May áo vest"
+                      data={trafficShares}
+                    />
+                </Col>
+                <Col md={4}>
+                  <CircleChartWidget 
+                    title="May áo sơ mi"
+                    data={trafficShares2}
+                  />
+                </Col>
+              </Row>
             </Card.Body>
+            
           </Card>
+          {/* phần biểu đồ cho dashboard */}
           <ChartProcess/>
         </Col>
       </Row>
