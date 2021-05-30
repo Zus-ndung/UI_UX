@@ -11,72 +11,39 @@ import {
   Button,
   Table,
 } from "@themesberg/react-bootstrap";
-import Chartist from "chartist";
 import React from "react";
 import Profile3 from "../../../assets/img/team/download.jpeg";
-import Picker from "react-month-picker";
 import SideBar from "./Sidebar";
+import { workList, ListWorkMonth } from "../../../data/workList";
 
-const TableComponent = () => {
+const TableComponent = (props = {}) => {
   return (
     <Table striped bordered hover size="xl">
       <thead>
         <tr>
           <th>#</th>
           <th>Tên Công Việc</th>
-          <th>Thời gian bắt đầu</th>
-          <th>Thời gian kết thúc</th>
+          <th>Trọng số công việc</th>
+          <th>Số lương sản phẩm yêu cầu</th>
           <th>Số lượng đã làm</th>
-          <th>Số lượng yêu cầu</th>
-          <th>Trạng thái</th>
+          <th>Hiệu xuất quay đổi</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>May cổ áo</td>
-          <td>21/3/1999 07:00:00</td>
-          <td>21/3/1999 17:00:00</td>
-          <td>200</td>
-          <td>200</td>
-          <td>Hoàn thành</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>May cổ áo</td>
-          <td>21/3/1999 07:00:00</td>
-          <td>21/3/1999 17:00:00</td>
-          <td>200</td>
-          <td>200</td>
-          <td>Hoàn thành</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>May cổ áo</td>
-          <td>21/3/1999 07:00:00</td>
-          <td>21/3/1999 17:00:00</td>
-          <td>200</td>
-          <td>200</td>
-          <td>Hoàn thành</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>May cổ áo</td>
-          <td>21/3/1999 07:00:00</td>
-          <td>21/3/1999 17:00:00</td>
-          <td>200</td>
-          <td>200</td>
-          <td>Hoàn thành</td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>May cổ áo</td>
-          <td>21/3/1999 07:00:00</td>
-          <td>21/3/1999 17:00:00</td>
-          <td>200</td>
-          <td>200</td>
-          <td>Hoàn thành</td>
-        </tr>
+        {ListWorkMonth.map((item, index) => {
+          return (
+            <tr>
+              <td>{item.id}</td>
+              <td>{item.name}</td>
+              <td>{item.ts}</td>
+              <td>{item.target}</td>
+              <td>{item.dl}</td>
+              <td>
+                {Number.parseInt((item.dl / item.target) * item.ts * 100)} %
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </Table>
   );
@@ -84,36 +51,15 @@ const TableComponent = () => {
 const MonthBox = ({ values, onClick }) => {
   return <span onClick={() => onClick}>{values}</span>;
 };
-const DashBoardComponent = (props = {}) => {
-  const pickAMonth2 = React.createRef();
-  const [singleValue2, setSingValues] = React.useState({
-    year: 2016,
-    month: 7,
-  });
-  const pickerLang = {
-    months: [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "May",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Dec",
-    ],
-    from: "From",
-    to: "To",
-  };
 
-  const makeText = (m) => {
-    if (m && m.year && m.month)
-      return pickerLang.months[m.month - 1] + ". " + m.year;
-    return "?";
-  };
+const DashBoardComponent = (props = {}) => {
+  const [bonus, setBonus] = React.useState(() => {
+    return ListWorkMonth.reduce(
+      (total, item) =>
+        (total += Number.parseInt((item.dl / item.target) * item.ts * 100)),
+      0
+    );
+  });
   return (
     <Container>
       <Row>
@@ -123,25 +69,58 @@ const DashBoardComponent = (props = {}) => {
         <Col xs={12}>
           <br />
           <Row>
-            <Col xs={2}>Tháng</Col>
-            <Col xs={4}>
-              {/* <Picker
-                ref={pickAMonth2}
-                years={{
-                  min: { year: 2016, month: 2 },
-                  max: { year: 2016, month: 9 },
-                }}
-                lang={pickerLang.months}
-                value={{ year: 2016, month: 7 }}
-                theme="dark">
-                <MonthBox value={makeText(singleValue2)} />
-              </Picker> */}
+            <Col xs={2}>
+              <Form.Select aria-label="Default select example">
+                <option value="1">Tháng 1</option>
+                <option value="2">Tháng 2</option>
+                <option value="3">Tháng 3</option>
+                <option value="4" selected>
+                  Tháng 4
+                </option>
+                <option value="5">Tháng 5</option>
+                <option value="6">Tháng 6</option>
+                <option value="7">Tháng 7</option>
+                <option value="8">Tháng 8</option>
+                <option value="9">Tháng 9</option>
+                <option value="10">Tháng 10</option>
+                <option value="11">Tháng 11</option>
+                <option value="12">Tháng 12</option>
+              </Form.Select>
             </Col>
           </Row>
         </Col>
         <Col xs={12}>
           <br />
-          <TableComponent />
+          <TableComponent bonus={bonus} />
+          <br />
+          <Card>
+            <Card.Header>Lương</Card.Header>
+            <Card.Body>
+              <div>
+                <span>Lương cơ bản:{" "}</span>
+                <span>10.000.000 (VND) </span>
+              </div>
+              <div>
+                <span>Thưởng:{" "}</span>
+                <span>
+                  {new Intl.NumberFormat("VN", {
+                    maximumSignificantDigits: 3,
+                  }).format((bonus / 100) * 10000000)}{" "}
+                  (VND)
+                  </span>
+              </div>
+              <hr />
+              <div>
+                <span>Tổng nhận:{" "}</span>
+                <span>
+                  {new Intl.NumberFormat("VN", {
+                    maximumSignificantDigits: 3,
+                  }).format(10000000 * (bonus / 100 + 1))}{" "}
+                  (VND)
+                </span>
+              </div>
+            </Card.Body>
+          </Card>
         </Col>
       </Row>
       <br />
@@ -153,7 +132,7 @@ const UserInfo = (props = {}) => {
   return (
     <Container>
       <Card>
-        <Card.Header>Worker Info</Card.Header>
+        <Card.Header>Thông tin công nhân</Card.Header>
         <Card.Body>
           <Row>
             <Col xs={3}>
@@ -161,19 +140,19 @@ const UserInfo = (props = {}) => {
             </Col>
             <Col xs={9}>
               <ListGroup variant="flush">
-                <ListGroup.Item>Full Name: Nguyen Thi Minh Anh</ListGroup.Item>
-                <ListGroup.Item>Date of Birth: 31/01/1999</ListGroup.Item>
-                <ListGroup.Item>Phone Number: 0123456745</ListGroup.Item>
+                <ListGroup.Item>Họ và Tên: Nguyen Thi Minh Anh</ListGroup.Item>
+                <ListGroup.Item>Ngày Sinh: 31/01/1999</ListGroup.Item>
+                <ListGroup.Item>Số điện thoại: 0123456745</ListGroup.Item>
                 <ListGroup.Item>CCCD: 0987665433232</ListGroup.Item>
                 <ListGroup.Item>
-                  Address: Hoang Dat - Hoang Hoa - Thanh Hoa
+                  Địa chỉ thường trú: Hoằng Đạt - Hoằng Hóa - Thanh Hóa
                 </ListGroup.Item>
               </ListGroup>
             </Col>
           </Row>
         </Card.Body>
         <Card.Footer>
-          Contact the department manager when you want to change the information
+          Liên hệ quản lý khi công nhân muốn thay đổi thông tin
         </Card.Footer>
       </Card>
     </Container>
@@ -186,57 +165,34 @@ const WorkList = ({ onClick }) => {
       <Table striped bordered hover size="xl">
         <thead>
           <tr>
-            <th>#</th>
+            <th>ID</th>
             <th>Tên Công Việc</th>
-            <th>Thời gian bắt đầu</th>
-            <th>Thời gian kết thúc</th>
+            <th>Số lượng yêu cầu</th>
+            <th>Trọng số công việc</th>
+            <th>Thời gian làm 1 sản phẩm(s)</th>
             <th>Trạng thái</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>May cổ áo</td>
-            <td>21/3/1999 07:00:00</td>
-            <td>21/3/1999 17:00:00</td>
-            <td>Hoàn thành</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>May cổ áo</td>
-            <td>--/--/---- --:--:--</td>
-            <td>--/--/---- --:--:--</td>
-            <td>
-              <Button onClick={onClick}>Thực hiện</Button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>May cổ áo</td>
-            <td>--/--/---- --:--:--</td>
-            <td>--/--/---- --:--:--</td>
-            <td>
-              <Button onClick={onClick}>Thực hiện</Button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>May cổ áo</td>
-            <td>--/--/---- --:--:--</td>
-            <td>--/--/---- --:--:--</td>
-            <td>
-              <Button onClick={onClick}>Thực hiện</Button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>May cổ áo</td>
-            <td>--/--/---- --:--:--</td>
-            <td>--/--/---- --:--:--</td>
-            <td>
-              <Button onClick={onClick}>Thực hiện</Button>
-            </td>
-          </tr>
+          {workList.map((item, index) => {
+            return (
+              <tr>
+                <td>{item.id}</td>
+                <td>{item.name}</td>
+                <td>{item.target}</td>
+                <td>{item.ts}</td>
+                <td>{item.time}</td>
+                <td>
+                  {item.done ? (
+                    "Hoàn Thành"
+                  ) : (
+                    <Button onClick={onClick}>Thực hiện</Button>
+                  )}
+                </td>
+              </tr>
+            );
+          })}
+          ;
         </tbody>
       </Table>
     </Row>

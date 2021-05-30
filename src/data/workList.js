@@ -1,0 +1,80 @@
+export const workList = [
+  {
+    id: 1,
+    name: "Ủi gấp viền túi",
+    ts: 0.7,
+    target: 1000,
+    time: 4,
+    done: false,
+  },
+  {
+    id: 2,
+    name: "Xé miệng túi gấp nếp",
+    ts: 0.8,
+    target: 1000,
+    time: 4,
+    done: false,
+  },
+  {
+    id: 3,
+    name: "Ủi gấp xếp",
+    ts: 0.9,
+    target: 1000,
+    time: 4,
+    done: false,
+  },
+  {
+    id: 4,
+    name: "Quay đáy túi",
+    ts: 0.4,
+    target: 1000,
+    time: 4,
+    done: false,
+  },
+  {
+    id: 5,
+    name: "Cắt chỉ tổng hợp",
+    ts: 0.4,
+    target: 2000,
+    time: 4,
+    done: true,
+  },
+];
+
+export const ListWorkMonth = [
+  {
+    id: 1,
+    name: "Ủi gấp viền túi",
+    ts: 0.3,
+    target: 1000,
+    dl: 1100,
+  },
+  {
+    id: 2,
+    name: "Xé miệng túi gấp nếp",
+    ts: 0.2,
+    target: 1000,
+    dl: 1100,
+  },
+  {
+    id: 3,
+    name: "Ủi gấp xếp",
+    ts: 0.4,
+    target: 1000,
+    dl: 1100,
+  },
+  {
+    id: 4,
+    name: "Quay đáy túi",
+    ts: 0.2,
+    target: 1000,
+    dl: 500,
+  },
+  {
+    id: 5,
+    name: "Cắt chỉ tổng hợp",
+    ts: 0.2,
+    target: 2000,
+    dl: 1000,
+  },
+];
