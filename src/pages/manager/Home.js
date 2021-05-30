@@ -58,19 +58,6 @@ export default class DemoApp extends React.Component {
     calendarApi.gotoDate("2000-01-01"); // call a method on the Calendar object
   };
 
-  // handleDateClick = arg => {
-  //   if (confirm("Would you like to add an event to " + arg.dateStr + " ?")) {
-  //     this.setState({
-  //       // add new event data
-  //       calendarEvents: this.state.calendarEvents.concat({
-  //         // creates a new array
-  //         title: "New Event",
-  //         start: arg.date,
-  //         allDay: arg.allDay
-  //       })
-  //     });
-  //   }
-  // };
   handleDateClick = arg => {
       this.setState({
         // add new event data
