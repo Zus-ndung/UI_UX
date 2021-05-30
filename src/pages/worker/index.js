@@ -3,7 +3,7 @@ import React from "react";
 import DashBoard from "./components/DashBoard";
 import SideBar from "./components/Sidebar";
 
-export default function WorkerDashBorad(props = {}) {
+export default function WorkerDashBorad() {
   const [show, setShow] = React.useState(false);
   return (
     <Container>
