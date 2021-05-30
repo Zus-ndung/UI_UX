@@ -16,8 +16,8 @@ export default function WorkerDashBorad(props = {}) {
           <Col xs={12} xl={12}>
             <Container>
               <DashBoard
-                onShow={() => setShow(true)}
                 onClose={() => setShow(false)}
+                onShow={() => setShow(true)}
               />
             </Container>
           </Col>
