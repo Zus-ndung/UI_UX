@@ -245,7 +245,7 @@ export const CircleChartWidget = (props) => {
           <Col
             xs={12}
             xl={5}
-            className="text-xl-center d-flex align-items-center justify-content-xl-center mb-3 mb-xl-0">
+            className="">
             <CircleChart series={series} />
           </Col>
           <Col xs={12} xl={7} className="px-xl-0">

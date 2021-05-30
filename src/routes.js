@@ -12,6 +12,7 @@ import ListTask from "./pages/manager/ListTask";
 import WorkerDashBorad from "./pages/worker";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import ListWorker from "./pages/manager/ListWorker";
+import ListKPI from "./pages/manager/ListKPI";
 
 const routes = [
   {

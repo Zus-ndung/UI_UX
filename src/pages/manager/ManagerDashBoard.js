@@ -20,6 +20,8 @@ import {
 import {Bar,Pie,Line} from "react-chartjs-2";
 import { CartDash } from "react-bootstrap-icons";
 import {DetailTask} from "../../components/DetailTask";
+import {trafficShares, trafficShares2} from "../../data/charts";
+import {CircleChartWidget} from "../../components/Widgets";
 
 const OverSchedule = (prop={}) => {
   const [show,setShow] = React.useState(false);
@@ -160,6 +162,10 @@ const ChartProcess = () => {
     </>
   );
 };
+
+const ProcessCircleChart = () => {
+  return 
+}
 const ManagerDashboard = () => {
   const [key, setKey] = React.useState("onSchedule");
   return (
@@ -171,7 +177,22 @@ const ManagerDashboard = () => {
           {/* <i class="bi bi-exclamation-diamond-fill"></i> */}
           <Card border="light" className="bg-white shadow-sm mb-4">
             <Card.Body>
-              
+              <Row>
+                <Col md={4}>
+                  <CircleChartWidget 
+                    title="May áo vest"
+                    data={trafficShares}
+                  />
+                </Col>
+                <Col md={4}>
+                  <CircleChartWidget 
+                    title="May áo sơ mi"
+                    data={trafficShares2}
+                  />
+                </Col>
+              </Row>
+            </Card.Body>
+            <Card.Body>
               <Tabs
                 id="controlled-tab-example"
                 defaultActiveKey={key}

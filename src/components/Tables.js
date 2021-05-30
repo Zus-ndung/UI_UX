@@ -698,7 +698,7 @@ export const ListWorkerTable = () => {
       </div>
       <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
         <Modal.Header>
-          <Modal.Title className="h4">Chi tiết KPI</Modal.Title>
+          <Modal.Title className="h4">Thông tin chi tiết công nhân</Modal.Title>
           <Button variant="close" aria-label="Close" onClick={handleClose} />
         </Modal.Header>
         <Modal.Body>

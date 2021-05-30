@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal, Card } from '@themesberg/react-bootstrap';
 import {AddTask} from "../../components/AddTask";
-// import {ListTaskTable as ListTaskTable2} from "../../components/Tables2";
 import {TasksTable} from "../../components/Tables2";
 
 
