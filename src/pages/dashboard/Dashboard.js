@@ -83,7 +83,7 @@ export default () => {
         <Container className="position-relative justify-content-between px-3">
           <Navbar.Brand to="#home" className="me-lg-3 d-flex align-items-center">
             <Image src={Logo} style={{width:"15%", height:"15%"}}/>
-            <span className="ms-2 brand-text d-none d-md-inline">HCI02</span>
+            <span className="ms-2 brand-text d-none d-md-inline" style={{fontFamily:"cursive"}}>HCI02</span>
           </Navbar.Brand>
 
           <div className="d-flex align-items-center">
@@ -93,7 +93,7 @@ export default () => {
                 <a href="#pages" style={{color: "white"}}>Pages</a>
               </Nav>
             </Navbar.Collapse>
-            <Button as={Link} to={"worker-list"} variant="outline-white" className="ms-3">Đăng nhập</Button>
+            <Button as={Link} to={"signin"} variant="outline-white" className="ms-3">Đăng nhập</Button>
           </div>
         </Container>
       </Navbar>
@@ -102,7 +102,7 @@ export default () => {
           <Row>
             <Col xs={12} className="text-center">
               {/* <div className="react-big-icon d-none d-lg-block"><span className="fab fa-react"></span></div> */}
-              <h1 className="fw-bolder text-secondary">Quản lý công việc</h1>
+              <h1 className="fw-bolder text-secondary" style={{fontFamily:"cursive"}}>Quản lý công việc</h1>
               {/* <p className="text-muted fw-light mb-5 h5">HCI02</p> */}
               <marquee scrolldelay="10" style={{fontSize:"20px"}}>
               Quản lý công việc và đánh giá KPI là công cụ được sử dụng phổ biến trên thế giới,
