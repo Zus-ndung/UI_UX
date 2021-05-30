@@ -1,11 +1,13 @@
 import { React, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal } from '@themesberg/react-bootstrap';
-import { ListTaskTable } from "../../components/Tables";
+import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal, Card } from '@themesberg/react-bootstrap';
 import {AddTask} from "../../components/AddTask";
+// import {ListTaskTable as ListTaskTable2} from "../../components/Tables2";
+import {TasksTable} from "../../components/Tables2";
 
-export default () => {
+
+export const ListTasks = () => {
   const [showDefault, setShowDefault] = useState(false);
   const handleClose = () => setShowDefault(false);
   const showModelAddTask = () => {
@@ -16,9 +18,11 @@ export default () => {
       <Row>
         <Col xs={12} md={3}></Col>
         <Col xs={12} md={9}>
+          <Card>
+            <Card.Header>
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
             <div className="d-block mb-4 mb-md-0">
-              <h3>Quản lý danh sách công việc</h3>
+              <h3>Thông tin danh sách các quy trình </h3>
             </div>
           </div>
           <div className="table-settings mb-4">
@@ -56,8 +60,13 @@ export default () => {
               </Col>
             </Row>
           </div>
-
-          <ListTaskTable />
+          {/* <TasksTable /> */}
+          </Card.Header>
+          <Card.Body>
+            <TasksTable/>
+            {/* alalalla */}
+          </Card.Body>
+          </Card>
         </Col>
       </Row>
       <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
@@ -80,3 +89,4 @@ export default () => {
     </>
   );
 };
+export default ListTasks;

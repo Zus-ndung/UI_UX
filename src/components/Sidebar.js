@@ -35,7 +35,6 @@ import ProfilePicture from "../assets/img/team/profile-picture-3.jpg";
 export default (props = {}) => {
   const location = useLocation();
   const { pathname } = location;
-  console.log(pathname)
   const [show, setShow] = useState(false);
   const showClass = show ? "show" : "";
 
@@ -181,7 +180,7 @@ export default (props = {}) => {
                 />
                 
                 <NavItem
-                  title="Danh sách công việc"
+                  title="Danh sách các quy trình"
                   link="tasklist"
                   icon={faFileAlt}
                 />
