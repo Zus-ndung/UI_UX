@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDown,
@@ -43,6 +43,7 @@ import teamMembers from "../data/teamMembers";
 import moment from "moment-timezone";
 import Datetime from "react-datetime";
 import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import "../pages/manager/Styles/CircleChartWidget.css";
 
 export const CardInfor = () => {
   const [birthday, setBirthday] = React.useState("");
@@ -237,15 +238,24 @@ export const CounterWidget = (props) => {
 export const CircleChartWidget = (props) => {
   const { title, data = [] } = props;
   const series = data.map((d) => d.value);
+  const [stylecircle, setSytlecircle] = useState("high-light-chart");
+
+  const setStyle = (bgColor) => {
+    setSytlecircle(bgColor);
+  }
 
   return (
-    <Card border="light" className="shadow-sm">
-      <Card.Body>
-        <Row className="d-block d-xl-flex align-items-center">
+    <Card border="light" className="shadow-sm" 
+      >
+      <Card.Body className={stylecircle}>
+        <Row className="d-block d-xl-flex align-items-center"
+          onMouseEnter={() => setStyle("high-light-chart2")}
+          onMouseOut={() => setStyle("high-light-chart")}
+        >
           <Col
             xs={12}
             xl={5}
-            className="text-xl-center d-flex align-items-center justify-content-xl-center mb-3 mb-xl-0">
+            className="">
             <CircleChart series={series} />
           </Col>
           <Col xs={12} xl={7} className="px-xl-0">

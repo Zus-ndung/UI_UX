@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBook,
+  faHome,
   faBoxOpen,
   faChalkboard,
   faChartPie,
@@ -142,40 +142,42 @@ export default (props = {}) => {
         <SimpleBar
           className={`collapse ${showClass} sidebar d-md-block bg-primary text-white`}>
           <div className="sidebar-inner px-4 pt-3">
-            <div className="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
-              <div className="d-flex align-items-center">
-                <div className="user-avatar lg-avatar me-4">
-                  <Image
-                    src={ProfilePicture}
-                    className="card-img-top rounded-circle border-white"
-                  />
-                </div>
-                <div className="d-block">
-                  <h6>Hi, Jane</h6>
-                  <Button
-                    as={Link}
-                    to="#"
-                    variant="secondary"
-                    size="xs"
-                    className="text-dark">
-                    <FontAwesomeIcon icon={faSignOutAlt} className="me-2" />{" "}
-                    Sign Out
-                  </Button>
+            <Nav className="flex-column pt-3 pt-md-0">
+              <h3 className="text-center" style={{fontFamily:"cursive"}}>HCI02</h3>
+              <hr/>
+            </Nav>
+            <Nav className="flex-column pt-3 pt-md-0">
+              <div className="d-flex">
+                <Image src={ProfilePicture} className="user-avatar md-avatar rounded-circle" style={{height: '3.0rem', width: '3.2rem'}}/>
+                <div>
+                  <h5 className="mx-3">Bonnie Green</h5>
+                  <div className="d-flex">
+                    
+                    <small className="mx-3 mb-0">
+                    <i className="mx-1 fa fa-circle fa-xs text-success"></i>
+                    hoạt động
+                      </small>
+                    <small className="mx-3 mb-0">
+                    
+                    <i className="mx-1 fa fa-bell fa-xs" style={{color:"#f39c12"}}></i>
+                    thông báo</small>
+                  </div>
                 </div>
               </div>
-              <Nav.Link
-                className="collapse-close d-md-none"
-                onClick={onCollapse}>
-                <FontAwesomeIcon icon={faTimes} />
-              </Nav.Link>
-            </div>
+              <hr/>
+            </Nav>
             <Nav className="flex-column pt-3 pt-md-0">
+              <NavItem
+                title="Trang chủ"
+                link="#"
+                icon={faHome}>
+              </NavItem>
               <CollapsableNavItem
                 title="Quản lý công việc"
                 icon={faChalkboard}>
                 <NavItem
                   title="DashBoard"
-                  link="#"
+                  link="dashboard"
                   icon={faChartPie}
                 />
                 
@@ -204,8 +206,7 @@ export default (props = {}) => {
                 eventKey="Employee"
                 title="Quản lý nhân viên"
                 icon={faTable}>
-                <NavItem title="Danh sách nhân viên" link="#"/>
-                {/* <NavItem title="" link="#"/> */}
+                <NavItem title="Danh sách nhân viên" link="worker-list"/>
               </CollapsableNavItem>
             </Nav>
           </div>

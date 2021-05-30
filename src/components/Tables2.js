@@ -135,9 +135,9 @@ export const TasksTable = () => {
                             </Pagination.Next>
                         </Pagination>
                     </Nav>
-                    <small className="fw-bold">
+                    {/* <small className="fw-bold">
                         Hiển thị <b>{totalTransactions}</b> trong số <b>25</b> quy trình
-                    </small>
+                    </small> */}
                 </Card.Footer>
             </Card>
             <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
