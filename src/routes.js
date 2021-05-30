@@ -57,7 +57,7 @@ const routes = [
         element: <Home />
       },
       {
-        path: "/manager",
+        path: "/dashboard",
         element: <ManagerDashboard />
       },
       {
@@ -73,7 +73,7 @@ const routes = [
         element: <ListWorker/>
       },
       {
-        path: "/detail-process",
+        path: "/dashboard/detail-process",
         element: <DetailProcess/>
       },
     ]

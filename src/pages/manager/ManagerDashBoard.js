@@ -23,6 +23,7 @@ import {DetailTask} from "../../components/DetailTask";
 import {trafficShares, trafficShares2} from "../../data/charts";
 import {CircleChartWidget} from "../../components/Widgets";
 import "./Styles/CircleChartWidget.css";
+import { useNavigate } from "react-router-dom";
 
 const OverSchedule = (prop={}) => {
   const [show,setShow] = React.useState(false);
@@ -102,16 +103,17 @@ const ChartProcess = () => {
   );
 };
 
-const routeTo = () => {
-  window.open('localhost:3001');
-}
 const ManagerDashboard = () => {
+  const navigate = useNavigate();
+  const routeTo = () => {
+    navigate("detail-process");
+  }
   const [key, setKey] = React.useState("onSchedule");
   return (
-    <React.Fragment>
+    <React.Fragment >
       <Row>
-        <Col md={{span:9, offset:3}}>
-          <h2>DashBoard Công việc</h2>
+        <Col md={{span:9, offset:3}} style={{marginTop: "-45px"}}>
+          <h2 style={{marginBottom: "25px"}}>DashBoard Công việc</h2>
           
           <Card border="light" className="bg-white shadow-sm mb-4">
             <Card.Header><h4>Danh sách các quy trình đang thực hiện</h4></Card.Header>
