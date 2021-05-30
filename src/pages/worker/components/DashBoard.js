@@ -97,21 +97,21 @@ const DashBoardComponent = (props = {}) => {
             <Card.Header>Lương</Card.Header>
             <Card.Body>
               <div>
-                <span>Lương cơ bản:{" "}</span>
+                <span>Lương cơ bản: </span>
                 <span>10.000.000 (VND) </span>
               </div>
               <div>
-                <span>Thưởng:{" "}</span>
+                <span>Thưởng: </span>
                 <span>
                   {new Intl.NumberFormat("VN", {
                     maximumSignificantDigits: 3,
                   }).format((bonus / 100) * 10000000)}{" "}
                   (VND)
-                  </span>
+                </span>
               </div>
               <hr />
               <div>
-                <span>Tổng nhận:{" "}</span>
+                <span>Tổng nhận: </span>
                 <span>
                   {new Intl.NumberFormat("VN", {
                     maximumSignificantDigits: 3,
