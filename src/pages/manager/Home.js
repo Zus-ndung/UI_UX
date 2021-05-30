@@ -3,7 +3,7 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction"; // needed for dayClick
-
+import {Modal, InputGroup, Form } from '@themesberg/react-bootstrap';
 // import "./styles.css";
 
 // must manually import the stylesheets for each plugin
@@ -14,15 +14,20 @@ import "./Styles/selectComponent.css";
 
 export default class DemoApp extends React.Component {
   calendarComponentRef = React.createRef();
-
+  
   state = {
     calendarWeekends: true,
+    showDefault: false,
+    title:"",
+    arg:null,
     calendarEvents: [
       // initial event data
       { title: "Event Now", start: new Date() }
     ]
   };
-
+openModal = (arg)=>{
+  this.setState({showDefault: true, arg: arg});
+}
   render() {
     return (
       <div className="demo-app">
@@ -38,11 +43,20 @@ export default class DemoApp extends React.Component {
             ref={this.calendarComponentRef}
             weekends={this.state.calendarWeekends}
             events={this.state.calendarEvents}
-            dateClick={this.handleDateClick}
+            dateClick={this.openModal}
             style={{width: "1000px"}}
           />
         </div>
+        <Modal centered show={this.state.showDefault} onHide={()=>{this.setState({showDefault: false})}} size="xl">
+          <InputGroup>
+            <InputGroup.Text>
+            </InputGroup.Text>
+            <Form.Control onChange={(e)=>{this.setState({title: e.target.value})}} onKeyDown={(e)=>{
+               if(e.keyCode === 13){this.setState({showDefault:false}); this.handleDateClick();}}} type="text" placeholder="Nhap noi dung" />
+          </InputGroup>
+        </Modal>
       </div>
+      
     );
   }
 
@@ -58,12 +72,14 @@ export default class DemoApp extends React.Component {
     calendarApi.gotoDate("2000-01-01"); // call a method on the Calendar object
   };
 
-  handleDateClick = arg => {
+  handleDateClick = () => {
+    const arg = this.state.arg;
+    
       this.setState({
         // add new event data
         calendarEvents: this.state.calendarEvents.concat({
           // creates a new array
-          title: "New Event",
+          title: this.state.title,
           start: arg.date,
           allDay: arg.allDay
         })

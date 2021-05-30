@@ -123,8 +123,8 @@ export default () => {
           <Row className="justify-content-between align-items-center mb-5 mb-lg-7">
             <Col lg={5} className="order-lg-2 mb-5 mb-lg-0">
               <h2>Quản lý công việc</h2>
-              <p className="mb-3 lead fw-bold">The most popular front-end library in the world</p>
-              <p className="mb-4">Volt React is an admin dashboard template that is built using React.js components using react hooks and a data-driven structure that can kick-start your app in no time.</p>
+              {/* <p className="mb-3 lead fw-bold">The most popular front-end library in the world</p> */}
+              <p className="mb-4">Quản lý công việc và theo dõi tiến độ công việc của công nhân theo các quy trình</p>
             </Col>
             <Col lg={6} className="order-lg-1">
               <Image src={ReactMockupImg} alt="Calendar Preview" />
@@ -133,9 +133,8 @@ export default () => {
           <Row className="justify-content-between align-items-center mb-5 mb-lg-7">
             <Col lg={5}>
               <h2>Quản lý KPI</h2>
-              <p className="mb-3 lead fw-bold">100+ premium UI elements based on Bootstrap 5</p>
-              <p className="mb-4">We've built over 100 React.js powered components to be used throughout your application saving you time kickstarting your project.</p>
-              <p className="mb-4">Check out the components and use our live React.js component editor to try the code.</p>
+              {/* <p className="mb-3 lead fw-bold">100+ premium UI elements based on Bootstrap 5</p> */}
+              <p className="mb-4">Theo dõi KPI và tiến độ làm việc của mỗi công nhân cũng như dây chuyền</p>
             </Col>
             <Col lg={6} className="rounded shadow pt-3">
             <Image src={MapboxImg} alt="MapBox Leaflet.js Custom Integration Mockup" />
@@ -144,8 +143,8 @@ export default () => {
           <Row className="justify-content-between align-items-center mb-5 mb-lg-7">
             <Col lg={5} className="order-lg-2 mb-5 mb-lg-0">
               <h2 className="d-flex align-items-center">Quản lý công nhân</h2>
-              <p className="mb-3 lead fw-bold">Markers and cards integration with Leaflet.js</p>
-              <p className="mb-4">You can use this map to add markers with custom cards and show them on a map using our custom MapBox integration with Leaflet.js</p>
+              {/* <p className="mb-3 lead fw-bold">Markers and cards integration with Leaflet.js</p> */}
+              <p className="mb-4">Quản lý công nhân, theo dõi danh sách công nhân, thêm sửa xóa công nhân bằng nhiều hình thức, giúp người dùng dễ dàng thao tác</p>
         
             </Col>
             <Col lg={6} className="order-lg-1">
@@ -155,11 +154,11 @@ export default () => {
           <Row className="justify-content-between align-items-center mb-5 mb-lg-7">
             <Col lg={5}>
               <h2 className="d-flex align-items-center">Calendar</h2>
-              <p className="mb-3 lead fw-bold">
+              {/* <p className="mb-3 lead fw-bold">
                 Advanced FullCalendar.js integration
-              </p>
+              </p> */}
               <p className="mb-4">
-                We created a fully editable calendar where you can add, edit and delete events for your admin dashboard.
+              Quản lý có thể note lịch làm việc, các cuộc họp ngay tại trang dashboard của manager
               </p>
             
             </Col>
@@ -170,11 +169,11 @@ export default () => {
           <Row className="justify-content-between align-items-center">
             <Col lg={5} className="order-lg-2 mb-5 mb-lg-0">
               <h2>Trang công nhân</h2>
-              <p className="mb-3 lead fw-bold">
+              {/* <p className="mb-3 lead fw-bold">
               Trang công nhân
-              </p>
+              </p> */}
               <p className="mb-4">
-                Volt React is built using the latest version of Bootstrap 5 and we only used Vanilla Javascript for everything including the plugins
+              Màn hình công nhân đơn giản dễ dàng thao tác, dễ dàng sử dụng. Báo cáo được cập nhập từng phút từng giờ.
               </p>
             </Col>
             <Col lg={6} className="col-lg-6 order-lg-1">

@@ -16,11 +16,14 @@ import {
 import { Accordion, ListGroup } from "@themesberg/react-bootstrap";
 
 import transactions from "../data/transactions";
+import {ProcessInfo} from "../data/processinfo";
 import { DetailTask } from "./DetailTask";
-import { DetailProcess} from "./DetailProcess";
+import { DetailProcess } from "./DetailProcess";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-export const ListTaskTable = () => {
-
+export const TasksTable = () => {
+    var processList = ProcessInfo.getlist();
+    console.log(processList);
     const [showDefault, setShowDefault] = useState(false);
     const [showDefault2, setShowDefault2] = useState(false);
     const [showDefault3, setShowDefault3] = useState(false);
@@ -39,89 +42,104 @@ export const ListTaskTable = () => {
     const showModel = () => {
         setShowDefault(true);
     }
-    const AccordionRow = (props) => {
-        const { invoiceNumber, subscription, price, issueDate, dueDate, status } = props;
-        return (
-            <Row>
-                <Col md={9}>
-                    <b>{invoiceNumber}.  </b>
-                    <b>{subscription}</b>
-                </Col>
-            </Row>
-        );
-    };
     return (
         <>
-            <Accordion defaultActiveKey="0">
-                <Card border="light" className="table-wrapper table-responsive shadow-sm">
-                    <Card.Header>
-                        <Row>
-                            <Col md={11}>
-                                <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                                    <h5>Quy trình sản xuất áo sơ mi</h5>
-                                </Accordion.Toggle>
-                            </Col>
-                            <Col md={1}>
-                                <Dropdown as={ButtonGroup}>
-                                    <Dropdown.Toggle
-                                        as={Button}
-                                        split
-                                        variant="link"
-                                        className="text-dark m-0 p-0">
-                                        <span className="icon icon-sm">
-                                            <FontAwesomeIcon icon={faEllipsisH} className="icon-dark" />
-                                        </span>
-                                    </Dropdown.Toggle>
-                                    <Dropdown.Menu>
-                                        <Dropdown.Item onClick={showModel3} >
-                                            <FontAwesomeIcon icon={faEye} className="me-2" />Chi tiết
-                            </Dropdown.Item>
-                                        <Dropdown.Item className="text-danger" onClick={showModel2}>
-                                            <FontAwesomeIcon icon={faTrashAlt} className="me-2" /> Xóa
-                            </Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-                            </Col>
-                        </Row>
-                    </Card.Header>
-                    <Card.Body>
-                        <Row>
-                            <Col md={12}>
-                                <ListGroup defaultActiveKey="" variant="flush">
-                                    {transactions.map((task, index) => {
-                                        return (
-                                            <Accordion.Collapse eventKey="0">
-                                                <ListGroup.Item action href={"#link" + index} onClick={showModel}>
-                                                    <AccordionRow  {...task} />
-                                                </ListGroup.Item>
-                                            </Accordion.Collapse>
-                                        );
-                                    })}
-                                </ListGroup>
-                            </Col>
-                        </Row>
-                        
-                    </Card.Body>
-                    <Card.Footer className="px-3 border-0 d-lg-flex align-items-center justify-content-between">
-                        <Nav>
-                            <Pagination className="mb-2 mb-lg-0">
-                                <Pagination.Prev>
-                                    Trước
-                    </Pagination.Prev>
-                                <Pagination.Item active>1</Pagination.Item>
-                                <Pagination.Item>2</Pagination.Item>
-                                <Pagination.Next>
-                                    Tiếp
-                </Pagination.Next>
-
-                            </Pagination>
-                        </Nav>
-                        <small className="fw-bold">
-                            Hiển thị <b>{totalTransactions}</b> trong số <b>25</b> quy trình
-                </small>
-                    </Card.Footer>
-                </Card>
-            </Accordion>
+            <Card border="light" className="table-wrapper table-responsive shadow-sm">
+                {processList.map((process,i) => {
+                    return (
+                        <Card.Body>
+                            <Accordion>
+                                <Row>
+                                    <Col md={12}>
+                                        <Accordion.Button variant="link" eventKey="1">
+                                            <h5>{process.name}</h5>
+                                            <hr></hr>
+                                        </Accordion.Button>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col md={12}>
+                                        <DragDropContext
+                                            onDragEnd={(param) => {
+                                                const srcI = param.source.index;
+                                                const desI = param.destination?.index;
+                                                if (desI){
+                                                    var temp = process.steps[srcI];
+                                                    process.steps[srcI] = process.steps[desI];
+                                                    process.steps[desI] = temp;
+                                                    ProcessInfo.savelist(processList);
+                                                }
+                                                console.log(param);
+                                            }}
+                                        >
+                                            <Droppable droppableId="droppable-1"
+                                            >
+                                                {(provided) => (
+                                                    <div 
+                                                    ref={provided.innerRef}
+                                                    {...provided.droppableProps}
+                                                    >
+                                                        <ListGroup defaultActiveKey="" variant="flush">
+                                                            {process.steps.map((task, index) => {
+                                                                return (
+                                                                    <Accordion.Body eventKey="1">
+                                                                        <Draggable 
+                                                                        key={index}
+                                                                        draggableId={"dragaableID-"+index}
+                                                                        index={index}
+                                                                        >
+                                                                        {(provided,snapshot) => (
+                                                                            <ListGroup.Item action href={"#link" + index} onClick={showModel}
+                                                                            ref={provided.innerRef}
+                                                                            {...provided.draggableProps}
+                                                                            {...provided.dragHandleProps}
+                                                                            style={{
+                                                                                ...provided.draggableProps.style,
+                                                                                boxShadow: snapshot.isDragging ? "0 0 .4rem #666" : "none",
+                                                                            }}
+                                                                            >
+                                                                                <Row>
+                                                                                    <Col md={9}>
+                                                                                        <b>{index+1}.  </b>
+                                                                                        <b>{task}</b>
+                                                                                    </Col>
+                                                                                </Row>
+                                                                            </ListGroup.Item>
+                                                                        )}
+                                                                        </Draggable>
+                                                                    </Accordion.Body>
+                                                                );
+                                                            })}
+                                                        </ListGroup>
+                                                        {provided.placeholder}
+                                                    </div>
+                                                )}
+                                            </Droppable>
+                                    </DragDropContext>
+                                    </Col>
+                                </Row>
+                            </Accordion>
+                        </Card.Body>
+                    );
+                })}
+                <Card.Footer className="px-3 border-0 d-lg-flex align-items-center justify-content-between">
+                    <Nav>
+                        <Pagination className="mb-2 mb-lg-0">
+                            <Pagination.Prev>
+                                Trước
+                            </Pagination.Prev>
+                            <Pagination.Item active>1</Pagination.Item>
+                            <Pagination.Item>2</Pagination.Item>
+                            <Pagination.Next>
+                                Tiếp
+                            </Pagination.Next>
+                        </Pagination>
+                    </Nav>
+                    {/* <small className="fw-bold">
+                        Hiển thị <b>{totalTransactions}</b> trong số <b>25</b> quy trình
+                    </small> */}
+                </Card.Footer>
+            </Card>
             <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
                 <Modal.Header>
                     <Modal.Title className="h4">Chi tiết công việc</Modal.Title>
@@ -131,7 +149,7 @@ export const ListTaskTable = () => {
                     <DetailTask transactions={transactions}></DetailTask>
                 </Modal.Body>
                 <Modal.Footer>
-                    
+
                     <Button variant="secondary" onClick={handleClose}>
                         Lưu
                     </Button>
@@ -169,8 +187,7 @@ export const ListTaskTable = () => {
                     <Button variant="close" aria-label="Close" onClick={handleClose3} />
                 </Modal.Header>
                 <Modal.Body>
-                    {/* <DetailTask transactions={transactions}></DetailTask> */}
-                    <DetailProcess/>
+                    <DetailProcess />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose3}>
@@ -183,4 +200,5 @@ export const ListTaskTable = () => {
             </Modal>
         </>
     );
-};
+}
+export default TasksTable;

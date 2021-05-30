@@ -2,12 +2,11 @@ import { React, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal, Card } from '@themesberg/react-bootstrap';
-import { ListTaskTable } from "../../components/Tables";
 import {AddTask} from "../../components/AddTask";
-import {ListTaskTable as ListTaskTable2} from "../../components/Tables2";
+import {TasksTable} from "../../components/Tables2";
 
 
-export default () => {
+export const ListTasks = () => {
   const [showDefault, setShowDefault] = useState(false);
   const handleClose = () => setShowDefault(false);
   const showModelAddTask = () => {
@@ -60,10 +59,11 @@ export default () => {
               </Col>
             </Row>
           </div>
-          {/* <ListTaskTable /> */}
+          {/* <TasksTable /> */}
           </Card.Header>
           <Card.Body>
-          <ListTaskTable2/>
+            <TasksTable/>
+            {/* alalalla */}
           </Card.Body>
           </Card>
         </Col>
@@ -88,3 +88,4 @@ export default () => {
     </>
   );
 };
+export default ListTasks;

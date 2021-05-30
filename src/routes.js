@@ -11,10 +11,12 @@ import ManagerDashboard from "./pages/manager/ManagerDashBoard";
 import ListTask from "./pages/manager/ListTask";
 import WorkerDashBorad from "./pages/worker";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
-import ListKPI from "./pages/manager/ListKPI";
 import ListWorker from "./pages/manager/ListWorker";
+import ListKPI from "./pages/manager/ListKPI";
+import DetailProcess from "./pages/manager/DetailProcess";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Home from "./pages/manager/Home";
+
 
 const routes = [
   {
@@ -38,28 +40,29 @@ const routes = [
   {
     path: "/worker/dashborad",
     element: <WorkerLayout />,
-    children:[
-      {
-        path: "/",
-        element: <WorkerDashBorad />
-      }
-    ]
-  },
-  {
-    path: "/manager/*",
-    element: <ManagerLayout/>,
     children: [
       {
         path: "/",
+        element: <WorkerDashBorad />,
+      },
+    ],
+  },
+  {
+    path: "/manager/*",
+    element: <ManagerLayout />,
+    children: [
+      {
+        path: "/",
+
         element: <Home />
       },
       {
-        path: "/manager",
+        path: "/dashboard",
         element: <ManagerDashboard />
       },
       {
         path: "/tasklist",
-        element: <ListTask/>
+        element: <ListTask />,
       },
       {
         path: "/kpi-list",
@@ -69,7 +72,12 @@ const routes = [
         path: "/worker-list",
         element: <ListWorker/>
       },
+      {
+        path: "/dashboard/detail-process",
+        element: <DetailProcess/>
+      },
     ]
+
   },
 ];
 

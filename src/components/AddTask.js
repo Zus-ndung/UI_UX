@@ -206,6 +206,7 @@ const CardProcess = () => {
           </Form>
         </Card.Body>
       </Card>
+
   );
 }
 
@@ -260,7 +261,6 @@ export const AddTask = (props) => {
                       {/* <Form.Control required type="text" placeholder="Nhập tên người thực hiện" /> */}
                       <Select closeMenuOnSelect={true} options={Employees} isMulti placeholder="Chọn người thực hiện" />
                     </Form.Group>
-
                   </Col>
                 </Row>
               </Col>

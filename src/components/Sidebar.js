@@ -177,7 +177,7 @@ export default (props = {}) => {
                 icon={faChalkboard}>
                 <NavItem
                   title="DashBoard"
-                  link="#"
+                  link="dashboard"
                   icon={faChartPie}
                 />
                 
