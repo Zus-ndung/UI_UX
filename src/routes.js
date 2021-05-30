@@ -14,16 +14,23 @@ import { faExclamation } from "@fortawesome/free-solid-svg-icons";
 import ListWorker from "./pages/manager/ListWorker";
 import ListKPI from "./pages/manager/ListKPI";
 import DetailProcess from "./pages/manager/DetailProcess";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Home from "./pages/manager/Home";
+
 
 const routes = [
   {
     path: "/",
-    element: <Navigate to="/auth/signin" />,
+    element: <Navigate to="/auth" />,
   },
   {
     path: "/auth/*",
     element: <AuthLayout />,
     children: [
+      {
+        path: "/",
+        element: <Dashboard />,
+      },
       {
         path: "/signin",
         element: <SignInPage />,
@@ -46,7 +53,12 @@ const routes = [
     children: [
       {
         path: "/",
-        element: <ManagerDashboard />,
+
+        element: <Home />
+      },
+      {
+        path: "/manager",
+        element: <ManagerDashboard />
       },
       {
         path: "/tasklist",
