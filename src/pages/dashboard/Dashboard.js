@@ -21,7 +21,7 @@ import Trung from "../../assets/img/avt/trung.jpg";
 import Dung from "../../assets/img/avt/dung.jpg";
 import Thao from "../../assets/img/avt/thao.jpg";
 import Vuong from "../../assets/img/avt/vuong.jpg";
-import pages from "../../data/pages";
+// import Iframe from 'react-iframe' 
 
 export default () => {
   const PagePreview = (props) => {
@@ -97,14 +97,14 @@ export default () => {
           </div>
         </Container>
       </Navbar>
-      <section className="section-header overflow-hidden pt-5 pt-lg-6 pb-9 pb-lg-12 bg-primary text-white" id="home">
+      <section className="section-header overflow-hidden pt-5 pt-lg-6 pb-9 pb-lg-7 bg-primary text-white" id="home">
         <Container>
           <Row>
             <Col xs={12} className="text-center">
               {/* <div className="react-big-icon d-none d-lg-block"><span className="fab fa-react"></span></div> */}
-              <h1 className="fw-bolder text-secondary" style={{fontFamily:"cursive"}}>Quản lý công việc</h1>
+              <h1 className="fw-bolder text-secondary" style={{fontFamily:"cursive", fontSize:"50px"}}>Quản lý công việc</h1>
               {/* <p className="text-muted fw-light mb-5 h5">HCI02</p> */}
-              <marquee scrolldelay="10" style={{fontSize:"20px"}}>
+              <marquee className="mt-6  " scrolldelay="10" style={{fontSize:"30px"}}>
               Quản lý công việc và đánh giá KPI là công cụ được sử dụng phổ biến trên thế giới,
               nhằm đảm bảo các công việc được thực hiện đúng kế hoạch đề ra,
               đảm bảo chất lượng, đồng thời giúp người giao việc có thể đánh giá hiệu suất công việc của người thực hiện.
@@ -118,36 +118,6 @@ export default () => {
           </figure>
         </Container>
       </section>
-      {/* <div className="section pt-0">
-        <Container className="mt-n10 mt-lg-n12 z-2">
-          <Row className="justify-content-center mt-5 mt-lg-6">
-            <Col xs={6} md={3} className="text-center mb-4">
-              <div className="icon icon-shape icon-lg bg-white shadow-lg border-light rounded-circle mb-4">
-              <Image src={Trung} className="text-secondary" style={{borderRadius: "50%"}} />
-              </div>
-              <h3 className="fw-bolder text-white">Anh Trung</h3>
-            </Col>
-            <Col xs={6} md={3} className="text-center mb-4">
-              <div className="icon icon-shape icon-lg bg-white shadow-lg border-light rounded-circle mb-4">
-              <Image src={Dung} className="text-secondary" style={{borderRadius: "50%"}} />
-              </div>
-              <h3 className="fw-bolder text-white">Văn Dũng</h3>
-            </Col>
-            <Col xs={6} md={3} className="text-center">
-              <div className="icon icon-shape icon-lg bg-white shadow-lg border-light rounded-circle mb-4">
-              <Image src={Thao} className="text-secondary" style={{borderRadius: "50%"}} />
-              </div>
-              <h3 className="fw-bolder text-white">Hồng Thảo</h3>
-            </Col>
-            <Col xs={6} md={3} className="text-center">
-              <div className="icon icon-shape icon-lg bg-white shadow-lg border-light rounded-circle mb-4">
-                <Image src={Vuong} className="text-secondary" style={{borderRadius: "50%"}} />
-              </div>
-              <h3 className="fw-bolder text-white">Quốc Vương</h3>
-            </Col>
-          </Row>
-        </Container>
-      </div> */}
       <section className="section section-md bg-soft pt-lg-3" id="features">
         <Container>
           <Row className="justify-content-between align-items-center mb-5 mb-lg-7">
@@ -213,23 +183,6 @@ export default () => {
           </Row>
         </Container>
       </section>
-      <section className="section section-sm pt-0" id="pages">
-        <Container>
-          <Row className="justify-content-center mb-5 mb-lg-6">
-            <Col xs={12} className="text-center">
-              <h2 className="px-lg-5">
-                10 hand-crafted pages
-              </h2>
-              <p className="lead px-lg-10">
-                Every page from Volt has been carefully built to provide all the necessary pages your startup will require
-              </p>
-            </Col>
-          </Row>
-          <Row className="mb-5">
-            {pages.map(page => <PagePreview key={`page-${page.id}`} {...page} />)}
-          </Row>
-        </Container>
-      </section>
       <section className="section section-lg bg-primary text-white">
         <Container>
         <Row className="justify-content-center mb-5 mb-lg-6">
@@ -282,6 +235,11 @@ export default () => {
               <a style={{fontSize:"14px"}} href="#">contact.HCI02@gmail.com </a>
             </span>
               </p>
+              {/* <div class="col-lg-7">
+                  <div class="map-responsive">
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.676323152793!2d105.84126381429739!3d21.005607993945596!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ac76ccab6dd7%3A0x55e92a5b07a97d03!2sHanoi%20University%20of%20Science%20%26%20Technology%20(HUST)!5e0!3m2!1sen!2sro!4v1604769117700!5m2!1sen!2sro" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                  </div>
+              </div> */}
             </Col>
           </Row>
           <Row className="d-flex align-items-center">
