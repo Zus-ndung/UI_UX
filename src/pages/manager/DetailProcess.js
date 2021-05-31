@@ -1,68 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
 import { Outlet } from "react-router-dom";
 import { Chat } from "react-chat-popup";
 import Sidebar from "../../components/Sidebar"
 import {
   Card,
-  Container,
-  Form,
-  Image,
   Row,
   Tab,
   Tabs,
   Col,
   ListGroup,
   Button,
-  Nav,
   Modal,
+  Table,
 } from "@themesberg/react-bootstrap";
 // import * as Icon from 'react-bootstrap-icons';
 import {Bar,Pie,Line} from "react-chartjs-2";
 import { CartDash } from "react-bootstrap-icons";
 import {DetailTask} from "../../components/DetailTask";
-import {trafficShares, trafficShares2} from "../../data/charts";
-import {CircleChartWidget} from "../../components/Widgets";
 import "./Styles/CircleChartWidget.css";
+import ProcessInfo from "../../data/processinfo";
+import transactions from "../../data/transactions";
 
-const OverSchedule = (prop={}) => {
-  const [show,setShow] = React.useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  return (
-    <>
-      <Card>
-        <Card.Body>
-          <ListGroup>
-            <ListGroup.Item action href="#" eventKey="ac1" onClick={handleShow}>Công việc 1 </ListGroup.Item>
-            <ListGroup.Item action href="#" eventKey="ac2" onClick={handleShow}>Công việc 2</ListGroup.Item>
-            <ListGroup.Item action href="#" eventKey="ac3" onClick={handleShow}>Công việc 3</ListGroup.Item>
-            <ListGroup.Item action href="#" eventKey="ac4" onClick={handleShow}>Công việc 4</ListGroup.Item>
-          </ListGroup>
-        </Card.Body>
-      </Card>
-      <Modal as={Modal.Dialog} centered show={show} onHide={handleClose} size="xl">
-        <Modal.Header>
-          <Modal.Title className="h6">Chi tiết công việc</Modal.Title>
-          <Button variant="close" aria-label="Close" onClick={handleClose} />
-        </Modal.Header>
-        <Modal.Body>
-          <DetailTask/>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Lưu
-      </Button>
-          <Button variant="link" className="text-gray ms-auto" onClick={handleClose}>
-            Hủy
-      </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-    
-  );
-};
-const ChartProcess = () => {
+const ChartProcess = (props) => {
   let Linelabels = ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7'];
+  let LineLabels2 = ['May tay áo','May cổ','May thân', 'Đính cúc','May lộn lại','Kiểm tra lại','Ủi và xếp'];
   return (
     <>
       <Card>
@@ -73,86 +34,57 @@ const ChartProcess = () => {
               <Pie
                 data={{
                   labels: [
-                    'Quá hạn',
                     'Đúng tiến độ',
-                    'Trễ tiến độ'
+                    'Chậm tiến độ'
                   ],
                   datasets: [{
                     label: 'My First Dataset',
-                    data: [300, 50, 100],
+                    data: [5, 2],
                     backgroundColor: [
-                      'rgb(255, 99, 132)',
-                      'rgb(54, 162, 235)',
-                      'rgb(255, 205, 86)'
+                      '#009900',
+                      '#FFB266',
                     ],
                     hoverOffset: 4
                   }]
                 }}
               ></Pie>
+              <h6 style={{textAlign:"center",marginTop:"10px"}}><b>Tỷ lệ tiến độ thực hiện</b></h6>
             </Col>
             <Col md={2}></Col>
             <Col md={5}>
               <div style={{height: "180px"}}>
               </div>
-              <Bar
-                data={{
-                  labels: ['Quá hạn','Trễ tiến độ','Đúng tiến độ'],
-                  datasets: [{
-                    label: 'Số lượng các công việc theo trạng thái',
-                    data: [65, 59, 40],
-                    backgroundColor: [
-                      'rgb(255, 99, 132)',
-                      'rgb(54, 162, 235)',
-                      'rgb(255, 205, 86)',
-                      // 'rgba(75, 192, 192, 0.2)',
-                      // 'rgba(54, 162, 235, 0.2)',
-                      // 'rgba(153, 102, 255, 0.2)',
-                      // 'rgba(201, 203, 207, 0.2)'
-                    ],
-                    borderColor: [
-                      'rgb(255, 99, 132)',
-                      'rgb(255, 159, 64)',
-                      'rgb(255, 205, 86)',
-                      // 'rgb(75, 192, 192)',
-                      // 'rgb(54, 162, 235)',
-                      // 'rgb(153, 102, 255)',
-                      // 'rgb(201, 203, 207)'
-                    ],
-                    borderWidth: 1,
-                    height: 500
-                  }]
-                }}
-                option={{
-                  // scales: {
-                  //   y: {
-                  //     beginAtZero: true
-                  //   }
-                  // }
-                }}
-              >
-
-              </Bar>
+              
             </Col>
           </Row>
           
         </Card.Body>
       </Card>
       <Card style={{marginTop: "30px"}}>
-        <Card.Header><h4>Thống kê số sản phẩm qua từng tháng</h4></Card.Header>
+        <Card.Header><h4>So sánh thời gian dự kiến ban đầu với thực tế</h4></Card.Header>
         <Card.Body>
           <Row>
             <Col md={1}></Col>
             <Col md={10}>
               <Line
                 data={{
-                  labels: Linelabels,
-                  datasets: [{
-                    label: 'Số lượng sản phẩm qua các tháng',
+                  labels: LineLabels2,
+                  datasets: [
+                    {
+                    label: 'Thời gian dự kiến',
                     data: [65, 59, 80, 81, 56, 55, 40],
                     fill: false,
                     borderColor: 'rgb(75, 192, 192)',
                     tension: 0.1
-                  }],
+                    },
+                    {
+                      label: 'Thời gian thực tế',
+                      data: [70, 65, 76, 79, 70, 55, 60],
+                      fill: false,
+                      borderColor: '#FF3333',
+                      tension: 0.1
+                      }
+                  ],
                 }}
               ></Line>
             </Col>
@@ -163,42 +95,86 @@ const ChartProcess = () => {
     </>
   );
 };
+const TableProcess = () => {
+  let process = ProcessInfo.getlist();
+  let steps = process[0].steps;
+  const [showDefault, setShowDefault] = useState(false);
+  const handleClose = () => setShowDefault(false);
+  const showModal = () => {
+    setShowDefault(true);
+  }
 
-const ProcessCircleChart = () => {
-  return 
+  let length = steps.filter(function(item){
+    return item.name;
+  }).length;
+  const itemsTable = [];
+  for (let index = 0; index < length; index++) {
+    const statusVariant = steps[index].status === "Đúng tiến độ" ? "success":"warning";
+    itemsTable.push(<tr style={{textAlign:"center"}} onClick={showModal}>
+      <td>{index+1}</td>
+      <td>{steps[index].name}</td>
+      <td>3</td>
+      <td>{steps[index].times} (s)</td>
+      <td>{70+index*3} (s)</td>
+      <td>{1200+index*3}</td>
+      <td><span className={`fw-normal text-${statusVariant}`}>{steps[index].status}</span></td>
+    </tr>)
+  }
+
+  
+  return (
+    <>
+      <Card border="light" className="bg-white shadow-sm mt-4">
+        <Card.Body>
+          <Table striped bordered hover responsive>
+            <thead>
+              <tr style={{textAlign:"center"}}>
+                <th>STT</th>
+                <th>Tên công việc</th>
+                <th>Số công nhân</th>
+                <th>Dự định</th>
+                <th>Thực tế</th>
+                <th>Đã hoàn thành</th>
+                <th>Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody>
+              {itemsTable}  
+            </tbody>
+          </Table>
+        </Card.Body>
+      </Card>
+      <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
+        <Modal.Header>
+            <Modal.Title className="h4">Chi tiết công việc</Modal.Title>
+            <Button variant="close" aria-label="Close" onClick={handleClose} />
+        </Modal.Header>
+        <Modal.Body>
+            <DetailTask transactions={transactions}></DetailTask>
+        </Modal.Body>
+        <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+                Lưu
+            </Button>
+            <Button variant="link" onClick={handleClose}>
+                Hủy
+            </Button>
+            <Button variant="warning" className="text-gray ms-auto" onClick={handleClose}>
+                Xóa
+            </Button>
+        </Modal.Footer>
+    </Modal>
+    </>
+  );
 }
 
 const DetailProcess = () => {
-  const [key, setKey] = React.useState("onSchedule");
   return (
     <React.Fragment>
-      <Row>
+      <Row style={{marginTop: "-45px"}}>
         <Col md={{span:9, offset:3}}>
           <h2>Chi tiết tiến độ của quy trình</h2>
-          <Card border="light" className="bg-white shadow-sm mb-4">
-            <Card.Body>
-              <Tabs
-                id="controlled-tab-example"
-                defaultActiveKey={key}
-                onSelect={(k) => setKey(k)}
-                varient="pills"
-              >
-                <Tab eventKey="overSchedule" title="Quá Hạn">
-                  <br />
-                  <br />
-                  <OverSchedule/>
-                </Tab>
-                <Tab eventKey="delaySchedule" title="Trễ tiến độ">
-                  <br/><br/>
-                </Tab>
-                <Tab eventKey="onSchedule" title="Đúng tiến độ">
-                  <br />
-                  <br />
-                  {/* <UserInfo /> */}
-                </Tab>
-              </Tabs>
-            </Card.Body>
-          </Card>
+          <TableProcess/>
           <ChartProcess/>
         </Col>
       </Row>

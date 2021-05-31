@@ -193,12 +193,10 @@ export default (props = {}) => {
                   icon={faFileAlt}
                 />
               </CollapsableNavItem>
-              <CollapsableNavItem
-                eventKey="Employee"
+              <NavItem
                 title="Quản lý nhân viên"
-                icon={faTable}>
-                <NavItem title="Danh sách nhân viên" link="worker-list" />
-              </CollapsableNavItem>
+                link="worker-list"
+                icon={faTable}></NavItem>
             </Nav>
           </div>
         </SimpleBar>

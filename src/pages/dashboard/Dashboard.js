@@ -44,19 +44,15 @@ import { Link } from "react-router-dom";
 
 // import { Routes } from "../routes";
 import Logo from "../../assets/img/logo1.png";
-import ThemesbergLogo from "../../assets/img/themesberg-logo.svg";
-import MapboxImg from "../../assets/img/mockup-map-presentation.png";
-import CalendarImg from "../../assets/img/mockup-calendar-presentation.png";
-import ReactMockupImg from "../../assets/img/react-mockup.png";
-import BS5Logo from "../../assets/img/technologies/bootstrap-5-logo.svg";
-import ReactLogo from "../../assets/img/technologies/react-logo.svg";
-import BS5IllustrationsImg from "../../assets/img/illustrations/bs5-illustrations.svg";
 import Trung from "../../assets/img/avt/trung.jpg";
-import Dung from "../../assets/img/avt/dung.jpg";
+import Dung from "../../assets/img/avt/dung.jpeg";
 import Thao from "../../assets/img/avt/thao.jpg";
 import Vuong from "../../assets/img/avt/vuong.jpg";
-import pages from "../../data/pages";
-
+import Calendar from "../../assets/img/pages/calendar.png";
+import CN from "../../assets/img/pages/CN.png";
+import DB from "../../assets/img/pages/db.png";
+import CV from "../../assets/img/pages/CV.png";
+import KPI from "../../assets/img/pages/KPI.png";
 export default () => {
   const PagePreview = (props) => {
     const { name, image, link } = props;
@@ -147,13 +143,10 @@ export default () => {
           <div className="d-flex align-items-center">
             <Navbar.Collapse id="navbar-default-primary">
               <Nav className="navbar-nav-hover align-items-lg-center">
-                <a href="#features" style={{ color: "white" }}>
-                  Features
-                </a>
+                {/* <a href="#features" style={{ color: "white" }}>
+                Chức năng
+                </a> */}
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="#pages" style={{ color: "white" }}>
-                  Pages
-                </a>
               </Nav>
             </Navbar.Collapse>
             <Button
@@ -166,25 +159,17 @@ export default () => {
           </div>
         </Container>
       </Navbar>
-      <section
-        className="section-header overflow-hidden pt-5 pt-lg-6 pb-9 pb-lg-12 bg-primary text-white"
-        id="home">
+      <section className="section-header overflow-hidden pt-5 pt-lg-6 pb-9 pb-lg-7 bg-primary text-white" id="home">
         <Container>
           <Row>
             <Col xs={12} className="text-center">
               {/* <div className="react-big-icon d-none d-lg-block"><span className="fab fa-react"></span></div> */}
-              <h1
-                className="fw-bolder text-secondary"
-                style={{ fontFamily: "cursive" }}>
-                Quản lý công việc
-              </h1>
+              <h1 className="fw-bolder text-secondary" style={{fontFamily:"cursive", fontSize:"50px"}}>Quản lý công việc</h1>
               {/* <p className="text-muted fw-light mb-5 h5">HCI02</p> */}
-              <marquee scrolldelay="10" style={{ fontSize: "20px" }}>
-                Quản lý công việc và đánh giá KPI là công cụ được sử dụng phổ
-                biến trên thế giới, nhằm đảm bảo các công việc được thực hiện
-                đúng kế hoạch đề ra, đảm bảo chất lượng, đồng thời giúp người
-                giao việc có thể đánh giá hiệu suất công việc của người thực
-                hiện.
+              <marquee className="mt-6  " scrolldelay="10" style={{fontSize:"30px"}}>
+              Quản lý công việc và đánh giá KPI là công cụ được sử dụng phổ biến trên thế giới,
+              nhằm đảm bảo các công việc được thực hiện đúng kế hoạch đề ra,
+              đảm bảo chất lượng, đồng thời giúp người giao việc có thể đánh giá hiệu suất công việc của người thực hiện.
               </marquee>
             </Col>
           </Row>
@@ -198,73 +183,27 @@ export default () => {
           </figure>
         </Container>
       </section>
-      {/* <div className="section pt-0">
-        <Container className="mt-n10 mt-lg-n12 z-2">
-          <Row className="justify-content-center mt-5 mt-lg-6">
-            <Col xs={6} md={3} className="text-center mb-4">
-              <div className="icon icon-shape icon-lg bg-white shadow-lg border-light rounded-circle mb-4">
-              <Image src={Trung} className="text-secondary" style={{borderRadius: "50%"}} />
-              </div>
-              <h3 className="fw-bolder text-white">Anh Trung</h3>
-            </Col>
-            <Col xs={6} md={3} className="text-center mb-4">
-              <div className="icon icon-shape icon-lg bg-white shadow-lg border-light rounded-circle mb-4">
-              <Image src={Dung} className="text-secondary" style={{borderRadius: "50%"}} />
-              </div>
-              <h3 className="fw-bolder text-white">Văn Dũng</h3>
-            </Col>
-            <Col xs={6} md={3} className="text-center">
-              <div className="icon icon-shape icon-lg bg-white shadow-lg border-light rounded-circle mb-4">
-              <Image src={Thao} className="text-secondary" style={{borderRadius: "50%"}} />
-              </div>
-              <h3 className="fw-bolder text-white">Hồng Thảo</h3>
-            </Col>
-            <Col xs={6} md={3} className="text-center">
-              <div className="icon icon-shape icon-lg bg-white shadow-lg border-light rounded-circle mb-4">
-                <Image src={Vuong} className="text-secondary" style={{borderRadius: "50%"}} />
-              </div>
-              <h3 className="fw-bolder text-white">Quốc Vương</h3>
-            </Col>
-          </Row>
-        </Container>
-      </div> */}
       <section className="section section-md bg-soft pt-lg-3" id="features">
         <Container>
           <Row className="justify-content-between align-items-center mb-5 mb-lg-7">
             <Col lg={5} className="order-lg-2 mb-5 mb-lg-0">
               <h2>Quản lý công việc</h2>
-              <p className="mb-3 lead fw-bold">
-                The most popular front-end library in the world
-              </p>
-              <p className="mb-4">
-                Volt React is an admin dashboard template that is built using
-                React.js components using react hooks and a data-driven
-                structure that can kick-start your app in no time.
-              </p>
+              {/* <p className="mb-3 lead fw-bold">The most popular front-end library in the world</p> */}
+              <p className="mb-4">Quản lý công việc và theo dõi tiến độ công việc của công nhân theo các quy trình</p>
             </Col>
             <Col lg={6} className="order-lg-1">
-              <Image src={ReactMockupImg} alt="Calendar Preview" />
+              <Image src={CV} alt="Calendar Preview" />
             </Col>
           </Row>
           <Row className="justify-content-between align-items-center mb-5 mb-lg-7">
             <Col lg={5}>
               <h2>Quản lý KPI</h2>
-              <p className="mb-3 lead fw-bold">
-                100+ premium UI elements based on Bootstrap 5
-              </p>
-              <p className="mb-4">
-                We've built over 100 React.js powered components to be used
-                throughout your application saving you time kickstarting your
-                project.
-              </p>
-              <p className="mb-4">
-                Check out the components and use our live React.js component
-                editor to try the code.
-              </p>
+              {/* <p className="mb-3 lead fw-bold">100+ premium UI elements based on Bootstrap 5</p> */}
+              <p className="mb-4">Theo dõi KPI và tiến độ làm việc của mỗi công nhân cũng như dây chuyền</p>
             </Col>
             <Col lg={6} className="rounded shadow pt-3">
               <Image
-                src={MapboxImg}
+                src={KPI}
                 alt="MapBox Leaflet.js Custom Integration Mockup"
               />
             </Col>
@@ -272,18 +211,12 @@ export default () => {
           <Row className="justify-content-between align-items-center mb-5 mb-lg-7">
             <Col lg={5} className="order-lg-2 mb-5 mb-lg-0">
               <h2 className="d-flex align-items-center">Quản lý công nhân</h2>
-              <p className="mb-3 lead fw-bold">
-                Markers and cards integration with Leaflet.js
-              </p>
-              <p className="mb-4">
-                You can use this map to add markers with custom cards and show
-                them on a map using our custom MapBox integration with
-                Leaflet.js
-              </p>
+              {/* <p className="mb-3 lead fw-bold">Markers and cards integration with Leaflet.js</p> */}
+              <p className="mb-4">Quản lý công nhân, theo dõi danh sách công nhân, thêm sửa xóa công nhân bằng nhiều hình thức, giúp người dùng dễ dàng thao tác</p>
             </Col>
             <Col lg={6} className="order-lg-1">
               <Image
-                src={MapboxImg}
+                src={CN}
                 alt="MapBox Leaflet.js Custom Integration Mockup"
               />
             </Col>
@@ -291,49 +224,30 @@ export default () => {
           <Row className="justify-content-between align-items-center mb-5 mb-lg-7">
             <Col lg={5}>
               <h2 className="d-flex align-items-center">Calendar</h2>
-              <p className="mb-3 lead fw-bold">
+              {/* <p className="mb-3 lead fw-bold">
                 Advanced FullCalendar.js integration
-              </p>
+              </p> */}
               <p className="mb-4">
-                We created a fully editable calendar where you can add, edit and
-                delete events for your admin dashboard.
+              Quản lý có thể note lịch làm việc, các cuộc họp ngay tại trang dashboard của manager
               </p>
             </Col>
             <Col lg={6}>
-              <Image src={CalendarImg} alt="Calendar Preview" />
+              <Image src={Calendar} alt="Calendar Preview" />
             </Col>
           </Row>
           <Row className="justify-content-between align-items-center">
             <Col lg={5} className="order-lg-2 mb-5 mb-lg-0">
               <h2>Trang công nhân</h2>
-              <p className="mb-3 lead fw-bold">Trang công nhân</p>
+              {/* <p className="mb-3 lead fw-bold">
+              Trang công nhân
+              </p> */}
               <p className="mb-4">
-                Volt React is built using the latest version of Bootstrap 5 and
-                we only used Vanilla Javascript for everything including the
-                plugins
+              Màn hình công nhân đơn giản dễ dàng thao tác, dễ dàng sử dụng. Báo cáo được cập nhập từng phút từng giờ.
               </p>
             </Col>
             <Col lg={6} className="col-lg-6 order-lg-1">
-              <Image src={BS5IllustrationsImg} alt="Front pages overview" />
+              <Image src={DB} alt="Front pages overview" />
             </Col>
-          </Row>
-        </Container>
-      </section>
-      <section className="section section-sm pt-0" id="pages">
-        <Container>
-          <Row className="justify-content-center mb-5 mb-lg-6">
-            <Col xs={12} className="text-center">
-              <h2 className="px-lg-5">10 hand-crafted pages</h2>
-              <p className="lead px-lg-10">
-                Every page from Volt has been carefully built to provide all the
-                necessary pages your startup will require
-              </p>
-            </Col>
-          </Row>
-          <Row className="mb-5">
-            {pages.map((page) => (
-              <PagePreview key={`page-${page.id}`} {...page} />
-            ))}
           </Row>
         </Container>
       </section>
@@ -341,10 +255,9 @@ export default () => {
         <Container>
           <Row className="justify-content-center mb-5 mb-lg-6">
             <Col xs={12} className="text-center">
-              <h2 className="px-lg-5">Thanh vien phat trien</h2>
+              <h2 className="px-lg-3 mb-4">Thành viên phát triển</h2>
               <p className="lead px-lg-8">
-                You get all React.js components fully customized. Besides, you
-                receive numerous plugins out of the box and ready to use.
+              Chúng tôi phát triển nên ứng dụng này với mục tiêu quản lý công việc và theo dõi KPI một cách dễ dàng, tiết kiệm thời gian, tăng năng suất làm việc tạo nên nhiều giá trị hơn.
               </p>
             </Col>
           </Row>
@@ -453,6 +366,22 @@ export default () => {
                 HCI02 là trang quản lý công việc và đánh giá KPI cho các doanh
                 nghiệp sản xuất kết hợp các thiết bị IOT
               </p>
+              <span className="d-flex">
+                  <FontAwesomeIcon icon={faMapMarker} /> &nbsp;&nbsp;&nbsp;
+                  <p style={{ fontSize: "14px" }}>
+                    Số 1 Đại Cồ việt, Hai Bà Trưng, Hà Nội, Việt Nam
+                  </p>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <FontAwesomeIcon icon={faPhone} /> &nbsp;&nbsp;&nbsp;
+                  <a style={{ fontSize: "14px" }} href="#">
+                    0123456789{" "}
+                  </a>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <FontAwesomeIcon icon={faEnvelope} /> &nbsp;&nbsp;&nbsp;
+                  <a style={{ fontSize: "14px" }} href="#">
+                    contact.HCI02@gmail.com{" "}
+                  </a>
+                </span>
             </Col>
             <Col xs={12} md={4} className="mb-5 mb-lg-0">
               <span className="h5 mb-3 d-block">

@@ -119,13 +119,13 @@ const ManagerDashboard = () => {
             <Card.Header><h4>Danh sách các quy trình đang thực hiện</h4></Card.Header>
             <Card.Body>
               <Row>
-                <Col md={4} onClick={routeTo}>
+                <Col md={5} onClick={routeTo}>
                     <CircleChartWidget 
                       title="May áo vest"
                       data={trafficShares}
                     />
                 </Col>
-                <Col md={4}>
+                <Col md={5}>
                   <CircleChartWidget 
                     title="May áo sơ mi"
                     data={trafficShares2}
