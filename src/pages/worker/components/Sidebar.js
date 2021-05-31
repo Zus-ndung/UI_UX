@@ -13,30 +13,10 @@ import {
   Modal,
   Spinner,
   InputGroup,
+  Tab,
 } from "@themesberg/react-bootstrap";
 import React from "react";
 import "./styles/sidebar.css";
-import Countdown, { zeroPad } from "react-countdown";
-import { Tab } from "bootstrap";
-import { useForm } from "react-hook-form";
-
-const Completionist = () => <span>You are good to go!</span>;
-
-// Renderer callback with condition
-const renderer = ({ hours, minutes, seconds, completed }) => {
-  if (completed) {
-    // Render a complete state
-    return <Completionist />;
-  } else {
-    // Render a countdown
-    return (
-      <Col xs={4} className="countdown-time">
-        {zeroPad(hours)} : {zeroPad(minutes)} : {zeroPad(seconds)}
-      </Col>
-    );
-  }
-};
-
 const IOT = () => {
   return (
     <>
