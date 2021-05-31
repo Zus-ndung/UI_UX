@@ -65,7 +65,7 @@ const routes = [
         element: <ListTask />,
       },
       {
-        path: "/kpi-list",
+        path: "/kpi-dashborad",
         element: <ListKPI/>
       },
       {

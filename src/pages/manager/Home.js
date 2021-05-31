@@ -47,7 +47,7 @@ openModal = (arg)=>{
             style={{width: "1000px"}}
           />
         </div>
-        <Modal centered show={this.state.showDefault} onHide={()=>{this.setState({showDefault: false})}} size="xl">
+        <Modal centered show={this.state.showDefault} onHide={()=>{this.setState({showDefault: false})}}>
           <InputGroup>
             <InputGroup.Text>
             </InputGroup.Text>

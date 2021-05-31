@@ -44,13 +44,6 @@ import { Link } from "react-router-dom";
 
 // import { Routes } from "../routes";
 import Logo from "../../assets/img/logo1.png";
-import ThemesbergLogo from "../../assets/img/themesberg-logo.svg";
-import MapboxImg from "../../assets/img/mockup-map-presentation.png";
-import CalendarImg from "../../assets/img/mockup-calendar-presentation.png";
-import ReactMockupImg from "../../assets/img/react-mockup.png";
-import BS5Logo from "../../assets/img/technologies/bootstrap-5-logo.svg";
-import ReactLogo from "../../assets/img/technologies/react-logo.svg";
-import BS5IllustrationsImg from "../../assets/img/illustrations/bs5-illustrations.svg";
 import Trung from "../../assets/img/avt/trung.jpg";
 import Dung from "../../assets/img/avt/dung.jpeg";
 import Thao from "../../assets/img/avt/thao.jpg";
@@ -150,13 +143,10 @@ export default () => {
           <div className="d-flex align-items-center">
             <Navbar.Collapse id="navbar-default-primary">
               <Nav className="navbar-nav-hover align-items-lg-center">
-                <a href="#features" style={{ color: "white" }}>
-                  Features
-                </a>
+                {/* <a href="#features" style={{ color: "white" }}>
+                Chức năng
+                </a> */}
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="#pages" style={{ color: "white" }}>
-                  Pages
-                </a>
               </Nav>
             </Navbar.Collapse>
             <Button
