@@ -102,7 +102,7 @@ const DashBoardComponent = (props = {}) => {
               </div>
               <div>
                 <span>Thưởng: </span>
-                <span>
+                <span>{bonus}% * 10000000 = 
                   {new Intl.NumberFormat("VN", {
                     maximumSignificantDigits: 3,
                   }).format((bonus / 100) * 10000000)}{" "}

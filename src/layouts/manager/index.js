@@ -1,4 +1,4 @@
-import { Container, Row } from "@themesberg/react-bootstrap";
+import { Container, Row, Col } from "@themesberg/react-bootstrap";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./header";
@@ -8,9 +8,7 @@ import Sidebar from "../../components/Sidebar";
 const WorkerLayout = () => {
   return (
     <React.Fragment>
-      <Row>
-        <Header />
-      </Row>
+      <Header />
       <Row>
         <Sidebar />
         <Outlet />
