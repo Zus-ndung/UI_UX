@@ -14,12 +14,12 @@ export const ListTasks = () => {
   }
   return (
     <>
-      <Row style={{marginTop: "-45px"}}>
+      <Row>
         <Col xs={12} md={3}></Col>
         <Col xs={12} md={9}>
           <div >
             <div className="d-block mb-md-0">
-              <h3>Thông tin danh sách các quy trình </h3>
+              <h2>Thông tin danh sách các quy trình </h2>
             </div>
           </div>
           <Card className="mt-4">

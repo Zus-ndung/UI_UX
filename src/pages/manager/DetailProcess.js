@@ -171,7 +171,7 @@ const TableProcess = () => {
 const DetailProcess = () => {
   return (
     <React.Fragment>
-      <Row style={{marginTop: "-45px"}}>
+      <Row>
         <Col md={{span:9, offset:3}}>
           <h2>Chi tiết tiến độ của quy trình</h2>
           <TableProcess/>

@@ -108,11 +108,10 @@ const ManagerDashboard = () => {
   const routeTo = () => {
     navigate("detail-process");
   }
-  const [key, setKey] = React.useState("onSchedule");
   return (
     <React.Fragment >
       <Row>
-        <Col md={{span:9, offset:3}} style={{marginTop: "-45px"}}>
+        <Col md={{span:9, offset:3}}>
           <h2 style={{marginBottom: "25px"}}>DashBoard Công việc</h2>
           
           <Card border="light" className="bg-white shadow-sm mb-4">
