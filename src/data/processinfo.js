@@ -2,11 +2,83 @@ export const ProcessInfo = {
     list: [
         {
             name: "Quy trình may áo sơ mi",
-            steps: ["May tay áo","May cổ áo","May thân áo","Đính cúc","May lộn lại áo","Kiểm tra hoang thiện", "Ủi và gấp xếp"],
+            steps: [
+                {
+                    name: "May tay áo",
+                    status: "Đúng tiến độ",
+                    times: 56,
+                },
+                {
+                    name: "May cổ áo",
+                    status: "Đúng tiến độ",
+                    times: 66,
+                },
+                {
+                    name: "May thân áo",
+                    status: "Chậm tiến độ",
+                    times: 31,
+                },
+                {
+                    name: "Đính cúc",
+                    status: "Chậm tiến độ",
+                    times: 51,
+                },
+                {
+                    name: "May lộn lại áo",
+                    status: "Đúng tiến độ",
+                    times: 55,
+                },
+                {
+                    name: "Kiểm tra hoang thiện",
+                    status: "Đúng tiến độ",
+                    times: 90,
+                },
+                {
+                    name:  "Ủi và gấp xếp",
+                    status: "Đúng tiến độ",
+                    times: 67,
+                },
+            ],
         },
         {
             name: "Quy trình may áo Vest",
-            steps: ["May tay áo","May cổ áo","May thân áo","Đính cúc","May lộn lại áo","Kiểm tra hoang thiện", "Ủi và gấp xếp"],
+            steps: [
+                {
+                    name: "May tay áo",
+                    status: "Đúng tiến độ",
+                    times: 56,
+                },
+                {
+                    name: "May cổ áo",
+                    status: "Đúng tiến độ",
+                    times: 66,
+                },
+                {
+                    name: "May thân áo",
+                    status: "Chậm tiến độ",
+                    times: 31,
+                },
+                {
+                    name: "Đính cúc",
+                    status: "Chậm tiến độ",
+                    times: 51,
+                },
+                {
+                    name: "May lộn lại áo",
+                    status: "Đúng tiến độ",
+                    times: 55,
+                },
+                {
+                    name: "Kiểm tra hoang thiện",
+                    status: "Đúng tiến độ",
+                    times: 90,
+                },
+                {
+                    name:  "Ủi và gấp xếp",
+                    status: "Đúng tiến độ",
+                    times: 67,
+                },
+            ],
         },
     ],
     getlist: function () {
@@ -15,16 +87,7 @@ export const ProcessInfo = {
             return (JSON.parse(data))
         } else {
             return (
-                [
-                    {
-                        name: "Quy trình may áo sơ mi",
-                        steps: ["May tay áo","May cổ áo","May thân áo","Đính cúc","May lộn lại áo","Kiểm tra hoang thiện", "Ủi và gấp xếp"],
-                    },
-                    {
-                        name: "Quy trình may áo Vest",
-                        steps: ["May tay áo","May cổ áo","May thân áo","Đính cúc","May lộn lại áo","Kiểm tra hoang thiện", "Ủi và gấp xếp"],
-                    },
-                ]
+                this.list
             )
         }
     },

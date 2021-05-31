@@ -2,12 +2,12 @@
 import { faCheckCircle, faHourglassHalf, faTabletAlt } from '@fortawesome/free-solid-svg-icons';
 
 const trafficShares = [
-    { id: 1, label: "Đã hoàn thành", value: 60, color: "secondary", icon: faCheckCircle },
-    { id: 2, label: "Chưa hoàn thành", value: 40, color: "primary", icon: faHourglassHalf },
+    { id: 1, label: "Đã hoàn thành", value: 60, color: "secondary", icon: faCheckCircle,total:1200 },
+    { id: 2, label: "Chưa hoàn thành", value: 40, color: "primary", icon: faHourglassHalf, total: 800 },
 ];
 const trafficShares2 = [
-    { id: 1, label: "Đã hoàn thành", value: 80, color: "secondary", icon: faCheckCircle },
-    { id: 2, label: "Chưa hoàn thành", value: 20, color: "primary", icon: faHourglassHalf },
+    { id: 1, label: "Đã hoàn thành", value: 80, color: "secondary", icon: faCheckCircle,total: 700 },
+    { id: 2, label: "Chưa hoàn thành", value: 20, color: "primary", icon: faHourglassHalf, total: 200 },
 ];
 const totalOrders = [
     { id: 1, label: "July", value: [1, 5, 2, 5, 4, 3], color: "primary" },
