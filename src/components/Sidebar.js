@@ -202,12 +202,11 @@ export default (props = {}) => {
                   icon={faFileAlt}
                 />
               </CollapsableNavItem>
-              <CollapsableNavItem
-                eventKey="Employee"
+              <NavItem
                 title="Quản lý nhân viên"
+                link="worker-list"
                 icon={faTable}>
-                <NavItem title="Danh sách nhân viên" link="worker-list"/>
-              </CollapsableNavItem>
+              </NavItem>
             </Nav>
           </div>
         </SimpleBar>
