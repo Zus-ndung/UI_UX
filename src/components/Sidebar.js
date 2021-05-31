@@ -188,8 +188,13 @@ export default (props = {}) => {
                 />
 
                 <NavItem
-                  title="Danh sách KPI"
+                  title="KPI của tổ"
                   link="kpi-list"
+                  icon={faFileAlt}
+                />
+                <NavItem
+                  title="KPI công nhân"
+                  link="kpi-list-worker"
                   icon={faFileAlt}
                 />
               </CollapsableNavItem>
