@@ -69,7 +69,6 @@ export const TasksTable = () => {
                                                     process.steps[desI] = temp;
                                                     ProcessInfo.savelist(processList);
                                                 }
-                                                console.log(param);
                                             }}
                                         >
                                             <Droppable droppableId="droppable-1"
@@ -101,7 +100,10 @@ export const TasksTable = () => {
                                                                                 <Row>
                                                                                     <Col md={9}>
                                                                                         <b>{index+1}.  </b>
-                                                                                        <b>{task}</b>
+                                                                                        <b>{task.name}</b>
+                                                                                    </Col>
+                                                                                    <Col md={{span: 1,offset:2}}>
+                                                                                        <b>{task.times}(s)</b>
                                                                                     </Col>
                                                                                 </Row>
                                                                             </ListGroup.Item>
@@ -122,23 +124,6 @@ export const TasksTable = () => {
                         </Card.Body>
                     );
                 })}
-                <Card.Footer className="px-3 border-0 d-lg-flex align-items-center justify-content-between">
-                    <Nav>
-                        <Pagination className="mb-2 mb-lg-0">
-                            <Pagination.Prev>
-                                Trước
-                            </Pagination.Prev>
-                            <Pagination.Item active>1</Pagination.Item>
-                            <Pagination.Item>2</Pagination.Item>
-                            <Pagination.Next>
-                                Tiếp
-                            </Pagination.Next>
-                        </Pagination>
-                    </Nav>
-                    {/* <small className="fw-bold">
-                        Hiển thị <b>{totalTransactions}</b> trong số <b>25</b> quy trình
-                    </small> */}
-                </Card.Footer>
             </Card>
             <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
                 <Modal.Header>
