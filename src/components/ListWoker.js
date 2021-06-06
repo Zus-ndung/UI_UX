@@ -95,7 +95,8 @@ export const ListWorkerTable = () => {
               as={Button}
               split
               variant="link"
-              className="text-dark m-0 p-0">
+              className="text-dark m-0 p-0"
+            >
               <span className="icon icon-sm">
                 <FontAwesomeIcon icon={faEllipsisH} className="icon-dark" />
               </span>
@@ -117,7 +118,8 @@ export const ListWorkerTable = () => {
       <div>
         <Card
           border="light"
-          className="table-wrapper table-responsive shadow-sm">
+          className="table-wrapper table-responsive shadow-sm"
+        >
           <Card.Body className="pt-0">
             <Table hover className="user-table align-items-center">
               <thead>
@@ -163,7 +165,8 @@ export const ListWorkerTable = () => {
         centered
         show={showDefault}
         onHide={handleClose}
-        size="xl">
+        size="xl"
+      >
         <Modal.Header>
           <Modal.Title className="h4">Thông tin chi tiết công nhân</Modal.Title>
           <Button variant="close" aria-label="Close" onClick={handleClose} />
@@ -178,7 +181,8 @@ export const ListWorkerTable = () => {
           <Button
             variant="link"
             className="text-gray ms-auto"
-            onClick={handleClose}>
+            onClick={handleClose}
+          >
             Hủy
           </Button>
         </Modal.Footer>
@@ -187,7 +191,8 @@ export const ListWorkerTable = () => {
         as={Modal.Dialog}
         centered
         show={showDefault2}
-        onHide={handleClose2}>
+        onHide={handleClose2}
+      >
         <Modal.Header>
           <Modal.Title className="h6">Xác nhận</Modal.Title>
           <Button variant="close" aria-label="Close" onClick={handleClose2} />
@@ -198,7 +203,8 @@ export const ListWorkerTable = () => {
               textAlign: "center",
               fontSize: "20px",
               fontWeight: "bold",
-            }}>
+            }}
+          >
             Bạn có chắc chắn xóa?
           </p>
         </Modal.Body>
@@ -208,13 +214,15 @@ export const ListWorkerTable = () => {
             onClick={() => {
               handleClose2();
               // notify();
-            }}>
+            }}
+          >
             Xóa
           </Button>
           <Button
             variant="link"
             className="text-gray ms-auto"
-            onClick={handleClose2}>
+            onClick={handleClose2}
+          >
             Hủy
           </Button>
         </Modal.Footer>

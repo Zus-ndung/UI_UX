@@ -137,7 +137,7 @@ const TableProcess = () => {
   const itemsTable = [];
   for (let index = 0; index < length; index++) {
     const statusVariant = steps[index].status === "Đúng tiến độ" ? "success":"warning";
-    itemsTable.push(<tr style={{textAlign:"center"}} onClick={showModal}>
+    itemsTable.push(<tr style={{textAlign:"center", cursor: "pointer"}} onClick={showModal}>
       <td>{index+1}</td>
       <td>{steps[index].name}</td>
       <td>3</td>

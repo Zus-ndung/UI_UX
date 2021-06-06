@@ -49,7 +49,8 @@ export default (props = {}) => {
         <Accordion.Item eventKey={eventKey}>
           <Accordion.Button
             as={Nav.Link}
-            className="d-flex justify-content-between align-items-center">
+            className="d-flex justify-content-between align-items-center"
+          >
             <span>
               <span className="sidebar-icon">
                 <FontAwesomeIcon icon={icon} />{" "}
@@ -108,7 +109,8 @@ export default (props = {}) => {
               pill
               bg={badgeBg}
               text={badgeColor}
-              className="badge-md notification-count ms-2">
+              className="badge-md notification-count ms-2"
+            >
               {badgeText}
             </Badge>
           ) : null}
@@ -123,20 +125,23 @@ export default (props = {}) => {
         expand={false}
         collapseOnSelect
         variant="dark"
-        className="navbar-theme-primary px-4 d-md-none">
+        className="navbar-theme-primary px-4 d-md-none"
+      >
         <Navbar.Brand className="me-lg-5" as={Link} to="#">
           <Image src={ReactHero} className="navbar-brand-light" />
         </Navbar.Brand>
         <Navbar.Toggle
           as={Button}
           aria-controls="main-navbar"
-          onClick={onCollapse}>
+          onClick={onCollapse}
+        >
           <span className="navbar-toggler-icon" />
         </Navbar.Toggle>
       </Navbar>
       <CSSTransition timeout={300} in={show} classNames="sidebar-transition">
         <SimpleBar
-          className={`collapse ${showClass} sidebar d-md-block bg-primary text-white`}>
+          className={`collapse ${showClass} sidebar d-md-block bg-primary text-white`}
+        >
           <div className="sidebar-inner px-4 pt-3">
             <Nav className="flex-column pt-3 pt-md-0">
               <h3 className="text-center" style={{ fontFamily: "cursive" }}>
@@ -161,7 +166,8 @@ export default (props = {}) => {
                     <small className="mx-3 mb-0">
                       <i
                         className="mx-1 fa fa-bell fa-xs"
-                        style={{ color: "#f39c12" }}></i>
+                        style={{ color: "#f39c12" }}
+                      ></i>
                       thông báo
                     </small>
                   </div>
@@ -187,11 +193,7 @@ export default (props = {}) => {
                   icon={faChartPie}
                 />
 
-                <NavItem
-                  title="KPI của tổ"
-                  link="kpi-list"
-                  icon={faFileAlt}
-                />
+                <NavItem title="KPI của tổ" link="kpi-list" icon={faFileAlt} />
                 <NavItem
                   title="KPI công nhân"
                   link="kpi-list-worker"
@@ -201,7 +203,8 @@ export default (props = {}) => {
               <NavItem
                 title="Quản lý nhân viên"
                 link="worker-list"
-                icon={faTable}></NavItem>
+                icon={faTable}
+              ></NavItem>
             </Nav>
           </div>
         </SimpleBar>

@@ -45,8 +45,8 @@ import {
   SalesValueWidgetPhone,
 } from "./Widgets";
 import { DetailTask } from "./DetailTask";
-import { DetailKPI } from "./DetailKPI";
-import { DetailWorker } from "./DetailWorker";
+import { DetailKPI} from "./DetailKPI";
+import { DetailWorker} from "./DetailWorker";
 const ValueChange = ({ value, suffix }) => {
   const valueIcon = value < 0 ? faAngleDown : faAngleUp;
   const valueTxtColor = value < 0 ? "text-danger" : "text-success";
@@ -260,6 +260,7 @@ export const RankingTable = () => {
 };
 
 export const ListTaskTable = () => {
+
   const [showDefault, setShowDefault] = useState(false);
   const [showDefault2, setShowDefault2] = useState(false);
   const handleClose = () => setShowDefault(false);
@@ -269,25 +270,21 @@ export const ListTaskTable = () => {
 
   const showModel2 = () => {
     setShowDefault2(true);
-  };
+  }
   const showModel = () => {
     setShowDefault(true);
-  };
+  }
   const TableRow = (props) => {
-    const { invoiceNumber, subscription, price, issueDate, dueDate, status } =
-      props;
-    const statusVariant =
-      status === "Đã hoàn thành"
-        ? "success"
-        : status === "Đang thực hiện"
-        ? "warning"
-        : status === "Quá hạn"
-        ? "danger"
-        : "primary";
+    const { invoiceNumber, subscription, price, issueDate, dueDate, status } = props;
+    const statusVariant = status === "Đã hoàn thành" ? "success"
+      : status === "Đang thực hiện" ? "warning"
+        : status === "Quá hạn" ? "danger" : "primary";
     return (
       <tr key="table-task-list">
         <td>
-          <span className="fw-normal">{invoiceNumber}</span>
+          <span className="fw-normal">
+            {invoiceNumber}
+          </span>
           {/* <Card.Link as={Link} to={Routes.Invoice.path} className="fw-normal">
             {invoiceNumber}
           </Card.Link> */}
@@ -302,7 +299,9 @@ export const ListTaskTable = () => {
           <span className="fw-normal">{dueDate}</span>
         </td>
         <td>
-          <span className="fw-normal">{parseFloat(price)}%</span>
+          <span className="fw-normal">
+            {parseFloat(price)}%
+          </span>
         </td>
         <td>
           <span className={`fw-normal text-${statusVariant}`}>{status}</span>
@@ -319,9 +318,8 @@ export const ListTaskTable = () => {
               </span>
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item onClick={showModel}>
-                <FontAwesomeIcon icon={faEye} className="me-2" />
-                Chi tiết
+              <Dropdown.Item onClick={showModel} >
+                <FontAwesomeIcon icon={faEye} className="me-2" />Chi tiết
               </Dropdown.Item>
               <Dropdown.Item className="text-danger" onClick={showModel2}>
                 <FontAwesomeIcon icon={faTrashAlt} className="me-2" /> Xóa
@@ -336,9 +334,7 @@ export const ListTaskTable = () => {
   return (
     <>
       <div>
-        <Card
-          border="light"
-          className="table-wrapper table-responsive shadow-sm">
+        <Card border="light" className="table-wrapper table-responsive shadow-sm">
           <Card.Body className="pt-0">
             <Table hover className="user-table align-items-center">
               <thead>
@@ -363,29 +359,31 @@ export const ListTaskTable = () => {
             <Card.Footer className="px-3 border-0 d-lg-flex align-items-center justify-content-between">
               <Nav>
                 <Pagination className="mb-2 mb-lg-0">
-                  <Pagination.Prev>Trước</Pagination.Prev>
+
+                  <Pagination.Prev>
+                    Trước
+              </Pagination.Prev>
 
                   <Pagination.Item active>1</Pagination.Item>
                   <Pagination.Item>2</Pagination.Item>
                   <Pagination.Item>3</Pagination.Item>
                   <Pagination.Item>4</Pagination.Item>
                   <Pagination.Item>5</Pagination.Item>
-                  <Pagination.Next>Tiếp</Pagination.Next>
+                  <Pagination.Next>
+                    Tiếp
+              </Pagination.Next>
+
                 </Pagination>
               </Nav>
               <small className="fw-bold">
                 Hiển thị <b>{totalTransactions}</b> trong số <b>25</b> công việc
-              </small>
+          </small>
             </Card.Footer>
           </Card.Body>
         </Card>
+
       </div>
-      <Modal
-        as={Modal.Dialog}
-        centered
-        show={showDefault}
-        onHide={handleClose}
-        size="xl">
+      <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
         <Modal.Header>
           <Modal.Title className="h4">Chi tiết công việc</Modal.Title>
           <Button variant="close" aria-label="Close" onClick={handleClose} />
@@ -397,48 +395,29 @@ export const ListTaskTable = () => {
           <Button variant="secondary" onClick={handleClose}>
             Lưu
           </Button>
-          <Button
-            variant="link"
-            className="text-gray ms-auto"
-            onClick={handleClose}>
+          <Button variant="link" className="text-gray ms-auto" onClick={handleClose}>
             Hủy
           </Button>
         </Modal.Footer>
       </Modal>
-      <Modal
-        as={Modal.Dialog}
-        centered
-        show={showDefault2}
-        onHide={handleClose2}>
+      <Modal as={Modal.Dialog} centered show={showDefault2} onHide={handleClose2}>
         <Modal.Header>
           <Modal.Title className="h6">Xác nhận</Modal.Title>
           <Button variant="close" aria-label="Close" onClick={handleClose2} />
         </Modal.Header>
         <Modal.Body>
-          <p
-            style={{
-              textAlign: "center",
-              fontSize: "20px",
-              fontWeight: "bold",
-            }}>
-            Bạn có chắc chắn xóa?
-          </p>
+          <p style={{ textAlign: "center", fontSize: "20px", fontWeight: "bold" }}>Bạn có chắc chắn xóa?</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={() => {
-              handleClose2();
-              // notify();
-            }}>
+          <Button variant="secondary" onClick={() => {
+            handleClose2();
+            // notify();
+          }}>
             Xóa
-          </Button>
-          <Button
-            variant="link"
-            className="text-gray ms-auto"
-            onClick={handleClose2}>
+                        </Button>
+          <Button variant="link" className="text-gray ms-auto" onClick={handleClose2}>
             Hủy
-          </Button>
+                        </Button>
         </Modal.Footer>
       </Modal>
     </>
@@ -446,6 +425,7 @@ export const ListTaskTable = () => {
 };
 
 export const ListKPITable = () => {
+
   const [showDefault, setShowDefault] = useState(false);
   const [showDefault2, setShowDefault2] = useState(false);
   const handleClose = () => setShowDefault(false);
@@ -455,17 +435,19 @@ export const ListKPITable = () => {
 
   const showModel2 = () => {
     setShowDefault2(true);
-  };
+  }
   const showModel = () => {
     setShowDefault(true);
-  };
+  }
   const TableRow = (props) => {
-    const { invoiceNumber, issueDate, status, name, ts } = props;
-    const statusVariant = status === "Đã kích hoạt" ? "success" : "warning";
+    const { invoiceNumber, issueDate, status, targetNumber,score } = props;
+    const statusVariant = status === "Đã kích hoạt" ? "success":"warning";
     return (
       <tr>
         <td>
-          <span className="fw-normal">{invoiceNumber}</span>
+          <span className="fw-normal">
+            {invoiceNumber}
+          </span>
         </td>
         <td>
           <span className={`fw-normal text-${statusVariant}`}>{status}</span>
@@ -474,10 +456,12 @@ export const ListKPITable = () => {
           <span className="fw-normal">{issueDate}</span>
         </td>
         <td>
-          <span className="fw-normal">{name}</span>
+          <span className="fw-normal">{targetNumber}</span>
         </td>
         <td>
-          <span className="fw-normal">{ts}</span>
+          <span className="fw-normal">
+            {score} 
+          </span>
         </td>
         <td>
           <Dropdown as={ButtonGroup}>
@@ -491,9 +475,8 @@ export const ListKPITable = () => {
               </span>
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item onClick={showModel}>
-                <FontAwesomeIcon icon={faEye} className="me-2" />
-                Chi tiết
+              <Dropdown.Item onClick={showModel} >
+                <FontAwesomeIcon icon={faEye} className="me-2" />Chi tiết
               </Dropdown.Item>
               <Dropdown.Item className="text-danger" onClick={showModel2}>
                 <FontAwesomeIcon icon={faTrashAlt} className="me-2" /> Xóa
@@ -508,18 +491,16 @@ export const ListKPITable = () => {
   return (
     <>
       <div>
-        <Card
-          border="light"
-          className="table-wrapper table-responsive shadow-sm">
+        <Card border="light" className="table-wrapper table-responsive shadow-sm">
           <Card.Body className="pt-0">
             <Table hover className="user-table align-items-center">
               <thead>
                 <tr>
-                  <th className="border-bottom">ID</th>
+                  <th className="border-bottom">#</th>
                   <th className="border-bottom">Trạng thái</th>
                   <th className="border-bottom">Thời gian</th>
-                  <th className="border-bottom">Tên</th>
-                  <th className="border-bottom">Trọng số</th>
+                  <th className="border-bottom">Số lượng mục tiêu</th>
+                  <th className="border-bottom">Điểm số</th>
                   <th className="border-bottom">Hành động</th>
                 </tr>
               </thead>
@@ -534,29 +515,31 @@ export const ListKPITable = () => {
             <Card.Footer className="px-3 border-0 d-lg-flex align-items-center justify-content-between">
               <Nav>
                 <Pagination className="mb-2 mb-lg-0">
-                  <Pagination.Prev>Trước</Pagination.Prev>
+
+                  <Pagination.Prev>
+                    Trước
+              </Pagination.Prev>
 
                   <Pagination.Item active>1</Pagination.Item>
                   <Pagination.Item>2</Pagination.Item>
                   <Pagination.Item>3</Pagination.Item>
                   <Pagination.Item>4</Pagination.Item>
                   <Pagination.Item>5</Pagination.Item>
-                  <Pagination.Next>Tiếp</Pagination.Next>
+                  <Pagination.Next>
+                    Tiếp
+              </Pagination.Next>
+
                 </Pagination>
               </Nav>
               <small className="fw-bold">
                 Hiển thị <b>{totalTransactions}</b> trong số <b>25</b> KPIs
-              </small>
+          </small>
             </Card.Footer>
           </Card.Body>
         </Card>
+
       </div>
-      <Modal
-        as={Modal.Dialog}
-        centered
-        show={showDefault}
-        onHide={handleClose}
-        size="xl">
+      <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
         <Modal.Header>
           <Modal.Title className="h4">Chi tiết KPI</Modal.Title>
           <Button variant="close" aria-label="Close" onClick={handleClose} />
@@ -568,55 +551,38 @@ export const ListKPITable = () => {
           <Button variant="secondary" onClick={handleClose}>
             Lưu
           </Button>
-          <Button
-            variant="link"
-            className="text-gray ms-auto"
-            onClick={handleClose}>
+          <Button variant="link" className="text-gray ms-auto" onClick={handleClose}>
             Hủy
           </Button>
         </Modal.Footer>
       </Modal>
-      <Modal
-        as={Modal.Dialog}
-        centered
-        show={showDefault2}
-        onHide={handleClose2}>
+      <Modal as={Modal.Dialog} centered show={showDefault2} onHide={handleClose2}>
         <Modal.Header>
           <Modal.Title className="h6">Xác nhận</Modal.Title>
           <Button variant="close" aria-label="Close" onClick={handleClose2} />
         </Modal.Header>
         <Modal.Body>
-          <p
-            style={{
-              textAlign: "center",
-              fontSize: "20px",
-              fontWeight: "bold",
-            }}>
-            Bạn có chắc chắn xóa?
-          </p>
+          <p style={{ textAlign: "center", fontSize: "20px", fontWeight: "bold" }}>Bạn có chắc chắn xóa?</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={() => {
-              handleClose2();
-              // notify();
-            }}>
+          <Button variant="secondary" onClick={() => {
+            handleClose2();
+            // notify();
+          }}>
             Xóa
-          </Button>
-          <Button
-            variant="link"
-            className="text-gray ms-auto"
-            onClick={handleClose2}>
+                        </Button>
+          <Button variant="link" className="text-gray ms-auto" onClick={handleClose2}>
             Hủy
-          </Button>
+                        </Button>
         </Modal.Footer>
       </Modal>
     </>
   );
 };
 
+
 export const ListWorkerTable = () => {
+
   const [showDefault, setShowDefault] = useState(false);
   const [showDefault2, setShowDefault2] = useState(false);
   const handleClose = () => setShowDefault(false);
@@ -626,17 +592,19 @@ export const ListWorkerTable = () => {
 
   const showModel2 = () => {
     setShowDefault2(true);
-  };
+  }
   const showModel = () => {
     setShowDefault(true);
-  };
+  }
   const TableRow = (props) => {
     const { invoiceNumber, name, birthday, phone, cccd } = props;
     // const statusVariant = status === "Đã kích hoạt" ? "success":"warning";
     return (
       <tr>
         <td>
-          <span className="fw-normal">{invoiceNumber}</span>
+          <span className="fw-normal">
+            {invoiceNumber}
+          </span>
         </td>
         <td>
           <span className={"fw-normal"}>{name}</span>
@@ -648,7 +616,9 @@ export const ListWorkerTable = () => {
           <span className="fw-normal">{phone}</span>
         </td>
         <td>
-          <span className="fw-normal">{cccd}</span>
+          <span className="fw-normal">
+            {cccd} 
+          </span>
         </td>
         <td>
           <Dropdown as={ButtonGroup}>
@@ -662,9 +632,8 @@ export const ListWorkerTable = () => {
               </span>
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item onClick={showModel}>
-                <FontAwesomeIcon icon={faEye} className="me-2" />
-                Chi tiết
+              <Dropdown.Item onClick={showModel} >
+                <FontAwesomeIcon icon={faEye} className="me-2" />Chi tiết
               </Dropdown.Item>
               <Dropdown.Item className="text-danger" onClick={showModel2}>
                 <FontAwesomeIcon icon={faTrashAlt} className="me-2" /> Xóa
@@ -679,9 +648,7 @@ export const ListWorkerTable = () => {
   return (
     <>
       <div>
-        <Card
-          border="light"
-          className="table-wrapper table-responsive shadow-sm">
+        <Card border="light" className="table-wrapper table-responsive shadow-sm">
           <Card.Body className="pt-0">
             <Table hover className="user-table align-items-center">
               <thead>
@@ -705,29 +672,31 @@ export const ListWorkerTable = () => {
             <Card.Footer className="px-3 border-0 d-lg-flex align-items-center justify-content-between">
               <Nav>
                 <Pagination className="mb-2 mb-lg-0">
-                  <Pagination.Prev>Trước</Pagination.Prev>
+
+                  <Pagination.Prev>
+                    Trước
+              </Pagination.Prev>
 
                   <Pagination.Item active>1</Pagination.Item>
                   <Pagination.Item>2</Pagination.Item>
                   <Pagination.Item>3</Pagination.Item>
                   <Pagination.Item>4</Pagination.Item>
                   <Pagination.Item>5</Pagination.Item>
-                  <Pagination.Next>Tiếp</Pagination.Next>
+                  <Pagination.Next>
+                    Tiếp
+              </Pagination.Next>
+
                 </Pagination>
               </Nav>
               <small className="fw-bold">
                 Hiển thị <b>{totalTransactions}</b> trong số <b>25</b> Worker
-              </small>
+          </small>
             </Card.Footer>
           </Card.Body>
         </Card>
+
       </div>
-      <Modal
-        as={Modal.Dialog}
-        centered
-        show={showDefault}
-        onHide={handleClose}
-        size="xl">
+      <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
         <Modal.Header>
           <Modal.Title className="h4">Thông tin chi tiết công nhân</Modal.Title>
           <Button variant="close" aria-label="Close" onClick={handleClose} />
@@ -739,43 +708,27 @@ export const ListWorkerTable = () => {
           <Button variant="secondary" onClick={handleClose}>
             Lưu
           </Button>
-          <Button
-            variant="primary"
-            className="text-white ms-auto"
-            onClick={handleClose}>
+          <Button variant="link" className="text-gray ms-auto" onClick={handleClose}>
             Hủy
           </Button>
         </Modal.Footer>
       </Modal>
-      <Modal
-        as={Modal.Dialog}
-        centered
-        show={showDefault2}
-        onHide={handleClose2}>
+      <Modal as={Modal.Dialog} centered show={showDefault2} onHide={handleClose2}>
         <Modal.Header>
           <Modal.Title className="h6">Xác nhận</Modal.Title>
           <Button variant="close" aria-label="Close" onClick={handleClose2} />
         </Modal.Header>
         <Modal.Body>
-          <p
-            style={{
-              textAlign: "center",
-              fontSize: "20px",
-              fontWeight: "bold",
-            }}>
-            Bạn có chắc chắn xóa?
-          </p>
+          <p style={{ textAlign: "center", fontSize: "20px", fontWeight: "bold" }}>Bạn có chắc chắn xóa?</p>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            variant="secondary"
-            onClick={() => {
-              handleClose2();
-              // notify();
-            }}>
+          <Button variant="secondary" onClick={() => {
+            handleClose2();
+            // notify();
+          }}>
             Xóa
           </Button>
-          <Button  variant="primary"  className="text-white ms-auto" onClick={handleClose2}>
+          <Button variant="link" className="text-gray ms-auto" onClick={handleClose2}>
             Hủy
           </Button>
         </Modal.Footer>
@@ -783,6 +736,7 @@ export const ListWorkerTable = () => {
     </>
   );
 };
+
 
 export const CommandsTable = () => {
   const TableRow = (props) => {
