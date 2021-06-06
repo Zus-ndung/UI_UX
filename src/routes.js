@@ -16,9 +16,7 @@ import ListKPI from "./pages/manager/ListKPI";
 import DetailProcess from "./pages/manager/DetailProcess";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Home from "./pages/manager/Home";
-import KpiList from "./pages/manager/KpiConponent";
-import KpiListWorker from "./pages/manager/KpiConponentWorker";
-import KpiWorker from "./pages/manager/KpiWorker";
+
 
 const routes = [
   {
@@ -56,46 +54,30 @@ const routes = [
       {
         path: "/",
 
-        element: <Home />,
+        element: <Home />
       },
       {
         path: "/dashboard",
-        element: <ManagerDashboard />,
+        element: <ManagerDashboard />
       },
       {
         path: "/tasklist",
         element: <ListTask />,
       },
       {
-        path: "/kpi-dashborad",
-        element: <ListKPI />,
-      },
-      {
         path: "/kpi-list",
-        element: <KpiList />,
-      },
-      {
-        path: "/kpi-list-worker",
-        children: [
-          {
-            path: "/",
-            element: <KpiListWorker />,
-          },
-          {
-            path: "/worker*",
-            element: <KpiWorker />,
-          },
-        ],
+        element: <ListKPI/>
       },
       {
         path: "/worker-list",
-        element: <ListWorker />,
+        element: <ListWorker/>
       },
       {
         path: "/dashboard/detail-process",
-        element: <DetailProcess />,
+        element: <DetailProcess/>
       },
-    ],
+    ]
+
   },
 ];
 

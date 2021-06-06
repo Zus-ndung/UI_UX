@@ -1,130 +1,16 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheck,
-  faCog,
-  faHome,
-  faSearch,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  Col,
-  Row,
-  Form,
-  Button,
-  ButtonGroup,
-  Breadcrumb,
-  InputGroup,
-  Dropdown,
-  Modal,
-  Container,
-  Card,
-} from "@themesberg/react-bootstrap";
+import { React, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal } from '@themesberg/react-bootstrap';
 import { ListKPITable } from "../../components/Tables";
-import { AddTask } from "../../components/AddTask";
-import SelectSearch from "react-select-search";
-import "./Styles/styles.css";
-import { Bar, Pie, Line, Doughnut } from "react-chartjs-2";
+import {AddTask} from "../../components/AddTask";
 
-const options = [
-  { name: "Tổ 1", value: 1 },
-  { name: "Tổ 2", value: 2 },
-  { name: "Tổ 3", value: 3 },
-  { name: "Tổ 4", value: 4 },
-  { name: "Tổ 5", value: 5 },
-];
-
-const Moths = [
-  { name: "Tháng 1", value: 1 },
-  { name: "Tháng 2", value: 2 },
-  { name: "Tháng 3", value: 3 },
-  { name: "Tháng 4", value: 4 },
-  { name: "Tháng 5", value: 5, selected: true },
-  { name: "Tháng 6", value: 6 },
-  { name: "Tháng 7", value: 7 },
-  { name: "Tháng 8", value: 8 },
-  { name: "Tháng 9", value: 9 },
-  { name: "Tháng 10", value: 10 },
-  { name: "Tháng 11", value: 11 },
-  { name: "Tháng 12", value: 12 },
-];
-
-const KPITT = (props = {}) => {
-  const { bg, text, number, icon } = props;
-  return (
-    <div
-      className="info-box"
-      style={{
-        display: "flex",
-        backgroundColor: "#ffffff",
-        borderRadius: "2px",
-      }}>
-      <span
-        className="info-box-icon"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: bg,
-          width: "90px",
-          height: "90px",
-          borderRadius: "2px",
-          color: "white",
-          fontSize: "30px",
-        }}>
-        <i className={icon}></i>
-      </span>
-      <div
-        className="info-box-content"
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          padding: "10px 0 0 10px",
-        }}>
-        <span className="info-box-text">{text}</span>
-        <p
-          className="info-box-number"
-          style={{
-            cursor: "pointer",
-            fontSize: "20px",
-            color: bg,
-          }}>
-          {number}
-        </p>
-      </div>
-    </div>
-  );
-};
-const datas = [
-  [80, 70, 120, 100, 85],
-  [74, 85, 100, 20, 30],
-  [40, 60, 20, 40, 10],
-  [90, 30, 40, 20, 15],
-  [80, 70, 120, 100, 85],
-  [74, 85, 100, 20, 30],
-  [40, 60, 20, 40, 10],
-  [90, 30, 40, 20, 15],
-  [80, 70, 120, 100, 85],
-  [74, 85, 100, 20, 30],
-  [40, 60, 20, 40, 10],
-  [90, 30, 40, 20, 15],
-];
-
-const data2s = [
-  [300, 50, 100],
-  [0, 50, 100],
-  [50, 50, 300],
-  [150, 0, 200],
-  [300, 50, 100],
-  [0, 50, 100],
-  [50, 50, 300],
-  [150, 0, 200],
-  [300, 50, 100],
-  [0, 50, 100],
-  [50, 50, 300],
-  [150, 0, 200],
-];
-const DashBoradKPI = (props = {}) => {
-  const [moth, setMoth] = React.useState(4);
+const ListKPI = () => {
+  const [showDefault, setShowDefault] = useState(false);
+  const handleClose = () => setShowDefault(false);
+  const showModelAddTask = () => {
+    setShowDefault(true);
+  }
   return (
     <>
       <Row>
@@ -275,104 +161,30 @@ const DashBoradKPI = (props = {}) => {
                     placeholder="Tháng"
                   />
                 </div>
-                <Row>
-                  <Col md={5}>
-                    <Pie
-                      data={{
-                        labels: ["Quá hạn", "Đúng tiến độ", "Trễ tiến độ"],
-                        datasets: [
-                          {
-                            label: "My First Dataset",
-                            data: data2s[moth],
-                            backgroundColor: [
-                              "rgb(255, 99, 132)",
-                              "rgb(54, 162, 235)",
-                              "rgb(255, 205, 86)",
-                            ],
-                            hoverOffset: 4,
-                          },
-                        ],
-                      }}></Pie>
-                  </Col>
-                  <Col md={2}></Col>
-                  <Col md={5}>
-                    <div style={{ height: "180px" }}></div>
-                    <Bar
-                      data={{
-                        labels: ["Quá hạn", "Trễ tiến độ", "Đúng tiến độ"],
-                        datasets: [
-                          {
-                            label: "Số lượng các công việc theo trạng thái",
-                            data: data2s[moth],
-                            backgroundColor: [
-                              "rgb(255, 99, 132)",
-                              "rgb(54, 162, 235)",
-                              "rgb(255, 205, 86)",
-                            ],
-                            borderColor: [
-                              "rgb(255, 99, 132)",
-                              "rgb(255, 159, 64)",
-                              "rgb(255, 205, 86)",
-                            ],
-                            borderWidth: 1,
-                            height: 500,
-                          },
-                        ],
-                      }}></Bar>
-                  </Col>
-                </Row>
-              </Card.Body>
             </Card>
           </Row>
-          <br />
-          <Row>
-            <Card>
-              <Card.Header>
-                Hiệu suất của tổ 5 qua các tháng (1/2021 - 5/2021)
-              </Card.Header>
-              <Card.Body>
-                <Line
-                  data={{
-                    labels: [
-                      "Tháng 1",
-                      "Tháng 2",
-                      "Tháng 3",
-                      "Tháng 4",
-                      "Tháng 5",
-                      "Tháng 6",
-                      "Tháng 7",
-                      "Tháng 8",
-                      "Tháng 9",
-                      "Tháng 10",
-                      "Tháng 11",
-                      "Tháng 12",
-                    ],
-                    datasets: [
-                      {
-                        data: [80, 81, 90, 89, 90],
-                        label: "Tổ 5",
-                        borderColor: "red",
-                        fill: true,
-                      },
-                    ],
-                  }}
-                  options={{
-                    title: {
-                      display: true,
-                      text: "World population per region (in millions)",
-                    },
-                    legend: {
-                      display: true,
-                      position: "bottom",
-                    },
-                  }}
-                />
-              </Card.Body>
-            </Card>
-          </Row>
+          <ListKPITable />
         </Col>
+        </Col> 
       </Row>
+      <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
+        <Modal.Header>
+          <Modal.Title className="h4">Thêm mới</Modal.Title>
+          <Button variant="close" aria-label="Close" onClick={handleClose} />
+        </Modal.Header>
+        <Modal.Body>
+          <AddTask/>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Lưu
+      </Button>
+          <Button variant="link" className="text-gray ms-auto" onClick={handleClose}>
+            Hủy
+      </Button>
+        </Modal.Footer>
+      </Modal>
     </>
   );
-};
-export default DashBoradKPI;
+}
+export default ListKPI;
