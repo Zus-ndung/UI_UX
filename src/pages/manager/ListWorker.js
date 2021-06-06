@@ -13,7 +13,7 @@ const ListKPI = () => {
   const inputRef = useRef();
   return (
     <>
-      <Row>
+      <Row style={{marginTop: "-45px"}}>
         <Col xs={12} md={3}></Col>
         <Col xs={12} md={9}>
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">

@@ -110,7 +110,7 @@ const ManagerDashboard = () => {
   }
   return (
     <React.Fragment >
-      <Row>
+      <Row style={{marginTop: "-45px"}}>
         <Col md={{span:9, offset:3}}>
           <h2 style={{marginBottom: "25px"}}>DashBoard Công việc</h2>
           

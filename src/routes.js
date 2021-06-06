@@ -19,6 +19,7 @@ import Home from "./pages/manager/Home";
 import KpiList from "./pages/manager/KpiConponent";
 import KpiListWorker from "./pages/manager/KpiConponentWorker";
 import KpiWorker from "./pages/manager/KpiWorker";
+import UnitKPI from "./pages/manager/KPI/UnitKPI";
 
 const routes = [
   {
@@ -73,6 +74,10 @@ const routes = [
       {
         path: "/kpi-list",
         element: <KpiList />,
+      },
+      {
+        path: "kpi-unit",
+        element: <UnitKPI/>,
       },
       {
         path: "/kpi-list-worker",

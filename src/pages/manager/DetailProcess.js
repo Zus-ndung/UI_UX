@@ -26,7 +26,7 @@ const ChartProcess = (props) => {
   let LineLabels2 = ['May tay áo','May cổ','May thân', 'Đính cúc','May lộn lại','Kiểm tra lại','Ủi và xếp'];
   return (
     <>
-      <Card>
+      <Card >
         <Card.Header><h4>Biểu đồ thống kê tình trạng công việc</h4></Card.Header>
         <Card.Body>
           <Row>
@@ -198,7 +198,7 @@ const TableProcess = () => {
 const DetailProcess = () => {
   return (
     <React.Fragment>
-      <Row>
+      <Row style={{marginTop: "-45px"}}>
         <Col md={{span:9, offset:3}}>
           <h2>Chi tiết tiến độ của quy trình</h2>
           <TableProcess/>

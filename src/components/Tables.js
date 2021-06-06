@@ -513,27 +513,6 @@ export const ListKPITable = () => {
               </tbody>
             </Table>
             <Card.Footer className="px-3 border-0 d-lg-flex align-items-center justify-content-between">
-              <Nav>
-                <Pagination className="mb-2 mb-lg-0">
-
-                  <Pagination.Prev>
-                    Trước
-              </Pagination.Prev>
-
-                  <Pagination.Item active>1</Pagination.Item>
-                  <Pagination.Item>2</Pagination.Item>
-                  <Pagination.Item>3</Pagination.Item>
-                  <Pagination.Item>4</Pagination.Item>
-                  <Pagination.Item>5</Pagination.Item>
-                  <Pagination.Next>
-                    Tiếp
-              </Pagination.Next>
-
-                </Pagination>
-              </Nav>
-              <small className="fw-bold">
-                Hiển thị <b>{totalTransactions}</b> trong số <b>25</b> KPIs
-          </small>
             </Card.Footer>
           </Card.Body>
         </Card>
@@ -570,10 +549,10 @@ export const ListKPITable = () => {
             // notify();
           }}>
             Xóa
-                        </Button>
+          </Button>
           <Button variant="link" className="text-gray ms-auto" onClick={handleClose2}>
             Hủy
-                        </Button>
+          </Button>
         </Modal.Footer>
       </Modal>
     </>

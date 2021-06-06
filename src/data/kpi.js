@@ -30,3 +30,27 @@ export default [
     score: 0,
   },
 ];
+
+export const UnitKPIData = [
+  {
+    invoiceNumber: 1,
+    status: "Đã kích hoạt",
+    issueDate: moment().subtract(6, "days").format("DD MMM YYYY"),
+    targetNumber: 2,
+    score: 0,
+  }
+];
+export const UnitKPITargets = [
+  {
+    id: '1',
+    name: "Thực hiện tốt các đơn hàng đã nhận",
+    descrip: "Thực hiện đúng chỉ tiêu về cả số lượng, thời gian, chất lượng",
+    key: 80,
+  },
+  {
+    id: '2',
+    name: "Đào tạo nhân viên",
+    descrip: "Có thêm 5 nhân viên được thăng cấp xếp hạng nhân viên",
+    key: 20,
+  },
+]

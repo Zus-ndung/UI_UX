@@ -14,7 +14,7 @@ export const ListTasks = () => {
   }
   return (
     <>
-      <Row>
+      <Row style={{marginTop: "-45px"}}>
         <Col xs={12} md={3}></Col>
         <Col xs={12} md={9}>
           <div >
