@@ -22,7 +22,7 @@ import ProcessInfo from "../../data/processinfo";
 import transactions from "../../data/transactions";
 
 const ChartProcess = (props) => {
-  let Linelabels = ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7'];
+  let Linelabels = ['Day 1','Day 2','Day 3','Day 4','Day 5','Day 6','Day 7'];
   let LineLabels2 = ['May tay áo','May cổ','May thân', 'Đính cúc','May lộn lại','Kiểm tra lại','Ủi và xếp'];
   return (
     <>
@@ -50,11 +50,38 @@ const ChartProcess = (props) => {
               ></Pie>
               <h6 style={{textAlign:"center",marginTop:"10px"}}><b>Tỷ lệ tiến độ thực hiện</b></h6>
             </Col>
-            <Col md={2}></Col>
-            <Col md={5}>
-              <div style={{height: "180px"}}>
-              </div>
-              
+            <Col md={7}>
+              <Bar
+                data={{
+                  labels: Linelabels,
+                  datasets: [{
+                    data: [50, 100, 130, 150, 190, 220, 250],
+                    backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
+                      'rgba(255, 159, 64, 0.2)',
+                      'rgba(255, 205, 86, 0.2)',
+                      'rgba(75, 192, 192, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
+                      'rgba(153, 102, 255, 0.2)',
+                      'rgba(201, 203, 207, 0.2)'
+                    ],
+                    borderColor: [
+                      'rgb(255, 99, 132)',
+                      'rgb(255, 159, 64)',
+                      'rgb(255, 205, 86)',
+                      'rgb(75, 192, 192)',
+                      'rgb(54, 162, 235)',
+                      'rgb(153, 102, 255)',
+                      'rgb(201, 203, 207)'
+                    ],
+                    borderWidth: 1,
+                    label: '',
+                  }],
+                }}
+                style={{marginTop: "100px"}}
+              >
+              </Bar>
+              <h6 style={{textAlign:"center",marginTop:"10px"}}><b>Số lượng sản phẩm qua từng ngày</b></h6>
             </Col>
           </Row>
           
@@ -156,12 +183,12 @@ const TableProcess = () => {
             <Button variant="secondary" onClick={handleClose}>
                 Lưu
             </Button>
-            <Button variant="link" onClick={handleClose}>
+            <Button variant="primary" className="text-white ms-auto" onClick={handleClose}>
                 Hủy
             </Button>
-            <Button variant="warning" className="text-gray ms-auto" onClick={handleClose}>
+            {/* <Button variant="warning"  onClick={handleClose}>
                 Xóa
-            </Button>
+            </Button> */}
         </Modal.Footer>
     </Modal>
     </>

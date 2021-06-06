@@ -90,11 +90,11 @@ export const AddWorker = (props) => {
                   </Row>
                 </Col>
               </Row>
-              <Row>
+              {/* <Row>
                 <Col md={2} className="mt-2">
                   <Button variant="success">Thêm mới</Button>
                 </Col>
-              </Row>
+              </Row> */}
             </Form>
             
           </Card.Body>

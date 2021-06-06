@@ -740,8 +740,8 @@ export const ListWorkerTable = () => {
             Lưu
           </Button>
           <Button
-            variant="link"
-            className="text-gray ms-auto"
+            variant="primary"
+            className="text-white ms-auto"
             onClick={handleClose}>
             Hủy
           </Button>
@@ -775,10 +775,7 @@ export const ListWorkerTable = () => {
             }}>
             Xóa
           </Button>
-          <Button
-            variant="link"
-            className="text-gray ms-auto"
-            onClick={handleClose2}>
+          <Button  variant="primary"  className="text-white ms-auto" onClick={handleClose2}>
             Hủy
           </Button>
         </Modal.Footer>
