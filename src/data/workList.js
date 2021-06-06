@@ -6,6 +6,8 @@ export const workList = [
     target: 1000,
     time: 4,
     done: false,
+    sll:30,
+    phl:20,
   },
   {
     id: 2,
@@ -14,6 +16,8 @@ export const workList = [
     target: 1000,
     time: 4,
     done: false,
+    sll:2,
+    phl:10,
   },
   {
     id: 3,
@@ -22,6 +26,8 @@ export const workList = [
     target: 1000,
     time: 4,
     done: false,
+    sll:10,
+    phl:20,
   },
   {
     id: 4,
@@ -30,6 +36,8 @@ export const workList = [
     target: 1000,
     time: 4,
     done: false,
+    sll:10,
+    phl:20,
   },
   {
     id: 5,
@@ -38,6 +46,8 @@ export const workList = [
     target: 2000,
     time: 4,
     done: true,
+    sll:20,
+    phl:0,
   },
 ];
 
@@ -48,6 +58,8 @@ export const ListWorkMonth = [
     ts: 0.3,
     target: 1000,
     dl: 1100,
+    sll:30,
+    phl:20,
   },
   {
     id: 2,
@@ -55,6 +67,8 @@ export const ListWorkMonth = [
     ts: 0.2,
     target: 1000,
     dl: 1100,
+    sll:30,
+    phl:20,
   },
   {
     id: 3,
@@ -62,6 +76,8 @@ export const ListWorkMonth = [
     ts: 0.4,
     target: 1000,
     dl: 1100,
+    sll:30,
+    phl:20,
   },
   {
     id: 4,
@@ -69,6 +85,8 @@ export const ListWorkMonth = [
     ts: 0.2,
     target: 1000,
     dl: 500,
+    sll:30,
+    phl:20,
   },
   {
     id: 5,
@@ -76,5 +94,7 @@ export const ListWorkMonth = [
     ts: 0.2,
     target: 2000,
     dl: 1000,
+    sll:30,
+    phl:20,
   },
 ];

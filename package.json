@@ -41,7 +41,6 @@
     "react-router-dom": "^6.0.0-alpha.2",
     "react-scripts": "4.0.3",
     "react-select": "^4.3.1",
-    "react-select-search": "^3.0.7",
     "react-table": "^7.7.0",
     "react-time-input": "^0.0.19",
     "react-toastify": "^7.0.4",
@@ -71,5 +70,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "**/**/node-gyp": "5.0.0"
   }
 }
