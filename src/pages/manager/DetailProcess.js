@@ -78,7 +78,7 @@ const ChartProcess = (props) => {
                     label: '',
                   }],
                 }}
-                style={{marginTop: "100px"}}
+                style={{marginTop: "110px"}}
               >
               </Bar>
               <h6 style={{textAlign:"center",marginTop:"10px"}}><b>Số lượng sản phẩm qua từng ngày</b></h6>
