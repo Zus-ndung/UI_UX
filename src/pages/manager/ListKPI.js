@@ -14,158 +14,50 @@ const ListKPI = () => {
   return (
     <>
       <Row>
-        <Col xs={3}></Col>
-        <Col xs={9}>
-          <Row>
-            <Col xs={12}>
-              <div
-                className="d-flex"
-                style={{ justifyContent: "space-between" }}>
-                <h4>Quản Lý KPI</h4>
-                <span></span>
-              </div>
-            </Col>
-            <Col xs={12}>
-              <Row>
-                <Col xs={5}>
-                  <div className="d-flex" style={{ alignItems: "baseline" }}>
-                    <span>
-                      <strong style={{ marginRight: "7px" }}>Đơn vị</strong>{" "}
-                    </span>{" "}
-                    <SelectSearch
-                      options={options}
-                      search
-                      value={5}
-                      placeholder="Chọn đơn vị"
-                    />
-                  </div>
-                </Col>
-                <Col xs={6}>
-                  <div className="d-flex" style={{ alignItems: "baseline" }}>
-                    <span>
-                      <strong style={{ marginRight: "7px" }}>Tháng</strong>{" "}
-                    </span>{" "}
-                    <SelectSearch
-                      options={Moths}
-                      value={moth}
-                      onChange={setMoth}
-                      placeholder="tháng"
-                    />
-                  </div>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col xs={3}>
-              <KPITT
-                bg={"#f39d2d"}
-                text={"Danh sách đơn vị"}
-                icon={"fa fa-university"}
-                number={5}
-              />
-            </Col>
-            <Col xs={3}>
-              <KPITT
-                bg={"#dd4b39"}
-                text={"Chưa khởi tạo"}
-                icon={"fa fa-exclamation-circle"}
-                number={1}
-              />
-            </Col>
-            <Col xs={3}>
-              <KPITT
-                bg={"#2fc0ef"}
-                text={"Đang thiết lập"}
-                icon={"fa fa-cogs"}
-                number={0}
-              />
-            </Col>
-            <Col xs={3}>
-              <KPITT
-                bg={"#4fa845"}
-                text={"Đã kích hoạt"}
-                icon={"fa fa-check-circle"}
-                number={5}
-              />
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Card>
-              <Card.Header>
-                <div style={{ display: "flex", alignItems: "baseline" }}>
-                  <h5 style={{ marginRight: "10px" }}>
-                    Biểu đồ thông kê giữa các tổ
-                  </h5>
+        <Col xs={12} md={3}></Col>
+        <Col xs={12} md={9}>
+          <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
+            <div className="d-block mb-4 mb-md-0">
+              <h3>Danh sách KPI</h3>
+            </div>
+          </div>
+          <div className="table-settings mb-4">
+            <Row className="justify-content-between align-items-center">
+              <Col md={6}>
+                <InputGroup>
+                  <InputGroup.Text>
+                    <FontAwesomeIcon icon={faSearch} />
+                  </InputGroup.Text>
+                  <Form.Control type="text" placeholder="Tìm kiếm" />
+                </InputGroup>
+              </Col>
+              <Col md={3}></Col>
+              <Col md={2} className="ps-md-0 text-end">
+                <div className="btn-toolbar mb-2 mb-md-0">
+                  <Dropdown as={ButtonGroup}>
+                    <Dropdown.Toggle split as={Button} variant="link" className="text-dark m-0 p-0">
+                      <span className="icon icon-sm icon-gray">
+                        <FontAwesomeIcon icon={faCog} />
+                      </span>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu className="dropdown-menu-xs dropdown-menu-right">
+                      <Dropdown.Item className="fw-bold text-dark">Show</Dropdown.Item>
+                      <Dropdown.Item className="d-flex fw-bold">
+                        10 <span className="icon icon-small ms-auto"><FontAwesomeIcon icon={faCheck} /></span>
+                      </Dropdown.Item>
+                      <Dropdown.Item className="fw-bold">20</Dropdown.Item>
+                      <Dropdown.Item className="fw-bold">30</Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                  <ButtonGroup style={{ marginLeft: 10 }}>
+                    <Button variant="outline-primary" size="sm" onClick={showModelAddTask}>Thêm Mới</Button>
+                  </ButtonGroup>
                 </div>
-              </Card.Header>
-              <Card.Body>
-                <div className="d-flex" style={{ alignItems: "baseline" }}>
-                  <span>
-                    <strong style={{ marginRight: "7px" }}>Tháng</strong>{" "}
-                  </span>{" "}
-                  <SelectSearch
-                    options={Moths}
-                    value={moth}
-                    onChange={setMoth}
-                    placeholder="Tháng"
-                  />
-                </div>
-                <Row>
-                  <Bar
-                    data={{
-                      labels: ["Tổ 1", "Tổ 2", "Tổ 3", "Tổ 4", "Tổ 5"],
-                      datasets: [
-                        {
-                          label: "Hiệu suất của tổ",
-                          backgroundColor: [
-                            "#3e95cd",
-                            "#8e5ea2",
-                            "#3cba9f",
-                            "#e8c3b9",
-                            "#c45850",
-                          ],
-                          data: datas[moth],
-                        },
-                      ],
-                    }}
-                    options={{
-                      legend: { display: true },
-                      title: {
-                        display: true,
-                        text: "Predicted world population (millions) in 2050",
-                      },
-                    }}
-                  />
-                </Row>
-              </Card.Body>
-            </Card>
-          </Row>
-          <br />
-          <Row>
-            <Card>
-              <Card.Header>
-                <h5>Thống kê kết quả KPI tổ 5</h5>
-              </Card.Header>
-              <Card.Body>
-                <div className="d-flex" style={{ alignItems: "baseline" }}>
-                  <span>
-                    <strong style={{ marginRight: "7px" }}>Tháng</strong>{" "}
-                  </span>{" "}
-                  <SelectSearch
-                    options={Moths}
-                    value={moth}
-                    onChange={setMoth}
-                    placeholder="Tháng"
-                  />
-                </div>
-            </Card>
-          </Row>
+              </Col>
+            </Row>
+          </div>
           <ListKPITable />
         </Col>
-        </Col> 
       </Row>
       <Modal as={Modal.Dialog} centered show={showDefault} onHide={handleClose} size="xl">
         <Modal.Header>
@@ -186,5 +78,5 @@ const ListKPI = () => {
       </Modal>
     </>
   );
-}
+};
 export default ListKPI;

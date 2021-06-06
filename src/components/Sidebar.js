@@ -192,7 +192,7 @@ export default (props = {}) => {
                 icon={faHandHoldingUsd}>
                 <NavItem
                   title="DashBoard"
-                  link="#"
+                  link=""
                   icon={faChartPie}
                 />
                 
