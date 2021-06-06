@@ -18,26 +18,30 @@ import { workList, ListWorkMonth } from "../../../data/workList";
 
 const TableComponent = (props = {}) => {
   return (
-    <Table striped bordered hover size="xl">
+    <Table striped bordered hover size="lg" responsive>
       <thead>
         <tr>
           <th>#</th>
           <th>Tên Công Việc</th>
           <th>Trọng số công việc</th>
-          <th>Số lương sản phẩm yêu cầu</th>
+          <th>Số lượng sản phẩm yêu cầu</th>
           <th>Số lượng đã làm</th>
+          <th>Số lượng sản phẩm làm lỗi</th>
+          <th>Số lượng sản phẩm phát hiện lỗi</th>
           <th>Hiệu xuất quay đổi</th>
         </tr>
       </thead>
       <tbody>
         {ListWorkMonth.map((item, index) => {
           return (
-            <tr>
+            <tr key={index}>
               <td>{item.id}</td>
               <td>{item.name}</td>
               <td>{item.ts}</td>
               <td>{item.target}</td>
               <td>{item.dl}</td>
+              <td>{item.sll}</td>
+              <td>{item.phl}</td>
               <td>
                 {Number.parseInt((item.dl / item.target) * item.ts * 100)} %
               </td>
@@ -102,7 +106,7 @@ const DashBoardComponent = (props = {}) => {
               </div>
               <div>
                 <span>Thưởng: </span>
-                <span>{bonus}% * 10000000 = 
+                <span>
                   {new Intl.NumberFormat("VN", {
                     maximumSignificantDigits: 3,
                   }).format((bonus / 100) * 10000000)}{" "}
@@ -210,7 +214,8 @@ export default function DashBoard(props = {}) {
           onSelect={(k) => {
             setKey(k);
             props.onClose();
-          }}>
+          }}
+        >
           <Tab eventKey="contact" title="Tổng quan">
             <br />
             <br />
