@@ -20,6 +20,12 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import ReactTable from "react-table";
 import { workList, ListWorkMonth } from "../data/workList";
 
+const convetTime = (mili) => {
+  const h = Number.parseInt(mili / 3600000);
+  const p = Number.parseInt((mili % 3600000) / 60000);
+  const s = Number.parseInt(((mili % 3600000) % 60000) / 1000);
+  return `${h}h:${p}p:${s}s`;
+};
 export const DetailWorker = (props) => {
   const [deadline, setDeadline] = useState("");
   const { invoiceNumber, subscription, price, issueDate, dueDate, status } =
@@ -138,10 +144,11 @@ const TableComponent = (props = {}) => {
         <tr>
           <th>#</th>
           <th>Tên Công Việc</th>
-          <th>Trọng số công việc</th>
+          <th>Trọng số</th>
           <th>Số lượng sản phẩm yêu cầu</th>
           <th>Số lượng đã làm</th>
-          <th>Hiệu xuất quay đổi</th>
+          <th>Đóng góp(%)</th>
+          <th>Thời gian</th>
         </tr>
       </thead>
       <tbody>
@@ -153,9 +160,8 @@ const TableComponent = (props = {}) => {
               <td>{item.ts}</td>
               <td>{item.target}</td>
               <td>{item.dl}</td>
-              <td>
-                {Number.parseInt((item.dl / item.target) * item.ts * 100)} %
-              </td>
+              <td>{item.dg}</td>
+              <td>{convetTime(item.time * 60 * 1000)}</td>
             </tr>
           );
         })}
@@ -195,7 +201,6 @@ export const DetailEditWorker = (props) => {
                     </Form.Group>
                   </Col>
                 </Row>
-
                 <Row>
                   <Col md={12} className="mb-3">
                     <Form.Group id="describe">
