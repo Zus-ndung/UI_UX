@@ -39,7 +39,13 @@ const FormInfo = () => {
                   <Col md={6}>
                     <Form.Group id="describe">
                       <Form.Label>Thời gian thực hiện</Form.Label>
-                      <Form.Control type="number" placeholder="Nhập thời gian (s)" required />
+                      <Form.Control type="number" placeholder="" value="51" required />
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group id="describe">
+                      <Form.Label>Trọng số</Form.Label>
+                      <Form.Control type="number" placeholder="" value="20" required />
                     </Form.Group>
                   </Col>
                 </Row>
@@ -250,6 +256,12 @@ export const AddTask = (props) => {
                       <Form.Control type="number" placeholder="Nhập thời gian (s)" required />
                     </Form.Group>
                   </Col>
+                  <Col md={6}>
+                    <Form.Group id="describe">
+                      <Form.Label>Trọng số</Form.Label>
+                      <Form.Control type="number" placeholder="Nhập trọng số" required />
+                    </Form.Group>
+                  </Col>
                 </Row>
               </Col>
               <Col xs={12} xl={6}>
@@ -279,16 +291,18 @@ export const AddTask = (props) => {
                   <th>STT</th>
                   <th>Tên công việc</th>
                   <th>Mô tả</th>
+                  <th>Trọng số</th>
                   <th>Hành động</th>
                 </tr>
               </thead>
               <tbody>
-                {listTaskOfProcess.map(({ id, name, descrip }, index) => {
+                {listTaskOfProcess.map(({ id, name, descrip,key }, index) => {
                   return (
                     <tr>
                       <td >{id}</td>
                       <td >{name}</td>
                       <td >{descrip}</td>
+                      <td>{key}</td>
                       <td>
                         <Button variant="info" onClick={handleShow}><PencilSquare /></Button>
                         <Button variant="danger" style={{ marginLeft: "2%" }}><TrashFill /></Button>

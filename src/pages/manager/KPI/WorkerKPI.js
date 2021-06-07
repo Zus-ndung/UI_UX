@@ -55,24 +55,12 @@ const WorkerKPI = () => {
                 </div>
               </Col>
               <Col md={3}></Col>
-              {/* <Col md={2} className="ps-md-0 text-end" style={{textAlign: "left"}}>
-                <ButtonGroup>
-                  <Button
-                    variant="outline-primary"
-                    size="sm"
-                    onClick={showModelAddTask}
-                    className="ml-10"
-                    >
-                    Thêm Mới
-                  </Button>
-                </ButtonGroup>
-              </Col> */}
             </Row>
           </div>
           <WorkerKPITable/>
         </Col>
       </Row>
-      <Modal
+      {/* <Modal
         as={Modal.Dialog}
         centered
         show={showDefault}
@@ -96,7 +84,7 @@ const WorkerKPI = () => {
             Hủy
           </Button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
     </>
   );
 };

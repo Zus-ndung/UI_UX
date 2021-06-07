@@ -96,3 +96,27 @@ export const UnitKPITargets = [
     key: 20,
   },
 ]
+export const WorkerKPITargets = [
+  {
+    id: '1',
+    name: "Thực hiện tốt các đơn hàng đã nhận",
+    descrip: "Thực hiện đúng chỉ tiêu về cả số lượng, thời gian, chất lượng",
+    key: 100,
+  },
+]
+export const ListTaskConnectedToKPIWorker = [
+  {
+    id: '1',
+    key: "10",
+    name: "May lộn thân áo",
+    donggop: "20",
+    tiendo: "30",
+  },
+  {
+    id: '1',
+    key: "10",
+    name: "May vạt áo",
+    donggop: "20",
+    tiendo: "40",
+  },
+]
