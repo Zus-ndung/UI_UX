@@ -194,7 +194,7 @@ export default (props = {}) => {
                 />
 
                 <NavItem title="Quản lý KPI đơn vị" link="kpi-unit" icon={faFileAlt} />
-                <NavItem title="Quản lý KPI cá nhân" link="kpi-list" icon={faFileAlt} />
+                <NavItem title="Quản lý KPI cá nhân" link="kpi-worker" icon={faFileAlt} />
               </CollapsableNavItem>
               <NavItem
                 title="Quản lý nhân viên"

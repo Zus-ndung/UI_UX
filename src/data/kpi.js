@@ -40,6 +40,48 @@ export const UnitKPIData = [
     score: 0,
   }
 ];
+export const WorkerKPIData = [
+  {
+    invoiceNumber: 1,
+    status: "Đã kích hoạt",
+    issueDate: moment().subtract(6, "days").format("DD MMM YYYY"),
+    name: "Nguyen Van A",
+    targetNumber: 1,
+    score: 0,
+  },
+  {
+    invoiceNumber: 2,
+    status: "Đã kích hoạt",
+    issueDate: moment().subtract(6, "days").format("DD MMM YYYY"),
+    name: "Nguyen Van B",
+    targetNumber: 1,
+    score: 0,
+  },
+  {
+    invoiceNumber: 2,
+    status: "Đã kích hoạt",
+    issueDate: moment().subtract(6, "days").format("DD MMM YYYY"),
+    name: "Nguyen Van C",
+    targetNumber: 1,
+    score: 0,
+  },
+  {
+    invoiceNumber: 3,
+    status: "Đã kích hoạt",
+    issueDate: moment().subtract(6, "days").format("DD MMM YYYY"),
+    name: "Nguyen Van D",
+    targetNumber: 1,
+    score: 0,
+  },
+  {
+    invoiceNumber: 5,
+    status: "Đã kích hoạt",
+    issueDate: moment().subtract(6, "days").format("DD MMM YYYY"),
+    name: "Nguyen Van E",
+    targetNumber: 1,
+    score: 0,
+  }
+];
 export const UnitKPITargets = [
   {
     id: '1',
