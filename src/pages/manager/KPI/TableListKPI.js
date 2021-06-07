@@ -21,6 +21,7 @@ import transactions from "../../../data/transactions";
 import kpi,{UnitKPIData,WorkerKPIData} from "../../../data/kpi";
 import { DetailKPI} from "../../../components/DetailKPI";
 import {AddKPIForm} from "./AddKPIForm";
+import {DetailForWorkKPI} from "./DetailForWorkKPI";
 
 export const UnitKPITable = () => {
 
@@ -255,8 +256,7 @@ export const WorkerKPITable = () => {
           <Button variant="close" aria-label="Close" onClick={handleClose} />
         </Modal.Header>
         <Modal.Body>
-          {/* <DetailKPI transactions={transactions}></DetailKPI> */}
-          <AddKPIForm/>
+          <DetailForWorkKPI/>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
