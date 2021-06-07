@@ -1,19 +1,19 @@
-import { React, useState } from "react";
+import { React, useState, useRef } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal } from '@themesberg/react-bootstrap';
 import {ListWorkerTable} from "../../components/Tables";
 import { AddWorker } from "../../components/AddWorker";
-
 const ListKPI = () => {
   const [showDefault, setShowDefault] = useState(false);
   const handleClose = () => setShowDefault(false);
   const showModelAddTask = () => {
     setShowDefault(true);
   }
+  const inputRef = useRef();
   return (
     <>
-      <Row>
+      <Row style={{marginTop: "-45px"}}>
         <Col xs={12} md={3}></Col>
         <Col xs={12} md={9}>
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center py-4">
@@ -31,13 +31,25 @@ const ListKPI = () => {
                   <Form.Control type="text" placeholder="Tìm kiếm" />
                 </InputGroup>
               </Col>
-              <Col md={3}></Col>
-              <Col md={2} className="ps-md-0 text-end">
+              <Col md={2}></Col>
+              <Col md={{span: 3,offset:1}} className="ps-md-0">
+                
                 <div className="btn-toolbar mb-2 mb-md-0">
-                  <Dropdown as={ButtonGroup}>
-                  </Dropdown>
+                  <span style={{width: "23%"}}></span>
                   <ButtonGroup style={{ marginLeft: 10 }}>
                     <Button variant="outline-primary" size="sm" onClick={showModelAddTask}>Thêm Mới</Button>
+                    {/* <UploadButton /> */}
+                    <input 
+                      type="file" style={{display:""}} 
+                      ref={inputRef}
+                      style={{display: "none"}}
+                    />
+                    <Button variant="outline-primary" size="sm"
+                     onClick={() => {
+                      inputRef.current.click();
+                      console.log(inputRef.current);
+                     }} 
+                    >Nhập từ file</Button>
                   </ButtonGroup>
                 </div>
               </Col>
@@ -54,14 +66,14 @@ const ListKPI = () => {
         <Modal.Body>
           <AddWorker/>
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Lưu
+        <Modal.Footer>
+          <Button variant="success" onClick={handleClose}>
+            Thêm mới
       </Button>
-          <Button variant="link" className="text-gray ms-auto" onClick={handleClose}>
+          <Button variant="primary" className="text-white ms-auto" onClick={handleClose}>
             Hủy
       </Button>
-        </Modal.Footer> */}
+        </Modal.Footer>
       </Modal>
     </>
   );

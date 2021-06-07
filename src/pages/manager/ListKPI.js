@@ -136,7 +136,6 @@ const DashBoradKPI = (props = {}) => {
                 className="d-flex"
                 style={{ justifyContent: "space-between" }}>
                 <h4>Quản Lý KPI</h4>
-                <span>xxx</span>
               </div>
             </Col>
             <Col xs={12}>

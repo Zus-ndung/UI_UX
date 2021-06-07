@@ -108,24 +108,24 @@ const ManagerDashboard = () => {
   const routeTo = () => {
     navigate("detail-process");
   }
-  const [key, setKey] = React.useState("onSchedule");
   return (
     <React.Fragment >
-      <Row>
-        <Col md={{span:9, offset:3}} style={{marginTop: "-45px"}}>
+      <Row style={{marginTop: "-45px"}}>
+        <Col md={{span:9, offset:3}}>
           <h2 style={{marginBottom: "25px"}}>DashBoard Công việc</h2>
           
           <Card border="light" className="bg-white shadow-sm mb-4">
             <Card.Header><h4>Danh sách các quy trình đang thực hiện</h4></Card.Header>
             <Card.Body>
               <Row>
-                <Col md={5} onClick={routeTo}>
+                <Col md={5} onClick={routeTo} style={{cursor: "pointer"}}>
                     <CircleChartWidget 
                       title="May áo vest"
                       data={trafficShares}
+                      
                     />
                 </Col>
-                <Col md={5}>
+                <Col md={5} style={{cursor: "pointer"}}>
                   <CircleChartWidget 
                     title="May áo sơ mi"
                     data={trafficShares2}

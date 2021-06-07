@@ -19,7 +19,7 @@ export const ListTasks = () => {
         <Col xs={12} md={9}>
           <div >
             <div className="d-block mb-md-0">
-              <h3>Thông tin danh sách các quy trình </h3>
+              <h2>Thông tin danh sách các quy trình </h2>
             </div>
           </div>
           <Card className="mt-4">
