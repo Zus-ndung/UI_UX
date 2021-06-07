@@ -651,9 +651,6 @@ export const ListWorkerTable = () => {
           <span className="fw-normal">{cccd}</span>
         </td>
         <td>
-          <span className="fw-normal">{dg}</span>
-        </td>
-        <td>
           <span className="fw-normal">{rank}</span>
         </td>
         <td>
@@ -699,7 +696,6 @@ export const ListWorkerTable = () => {
                   <th className="border-bottom">Ngày sinh</th>
                   <th className="border-bottom">Số điện thoại</th>
                   <th className="border-bottom">CCCD</th>
-                  <th className="border-bottom">Đóng góp(%)</th>
                   <th className="border-bottom">Xếp hạng</th>
                   <th className="border-bottom">Hành động</th>
                 </tr>
