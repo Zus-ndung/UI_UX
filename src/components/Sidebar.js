@@ -179,7 +179,6 @@ export default (props = {}) => {
               <NavItem title="Trang chủ" link="#" icon={faHome}></NavItem>
               <CollapsableNavItem title="Quản lý công việc" icon={faChalkboard}>
                 <NavItem title="DashBoard" link="dashboard" icon={faChartPie} />
-
                 <NavItem
                   title="Danh sách các quy trình"
                   link="tasklist"
@@ -193,8 +192,16 @@ export default (props = {}) => {
                   icon={faChartPie}
                 />
 
-                <NavItem title="Quản lý KPI đơn vị" link="kpi-unit" icon={faFileAlt} />
-                <NavItem title="Quản lý KPI cá nhân" link="kpi-worker" icon={faFileAlt} />
+                <NavItem
+                  title="Quản lý KPI đơn vị"
+                  link="kpi-unit"
+                  icon={faFileAlt}
+                />
+                <NavItem
+                  title="Quản lý KPI cá nhân"
+                  link="kpi-worker"
+                  icon={faFileAlt}
+                />
               </CollapsableNavItem>
               <NavItem
                 title="Quản lý nhân viên"
