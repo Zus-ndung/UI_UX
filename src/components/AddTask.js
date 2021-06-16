@@ -332,3 +332,92 @@ export const AddTask = (props) => {
     </>
   );
 };
+
+export const AddTaskEmpty = (props) => {
+  const [deadline, setDeadline] = useState("");
+  const { invoiceNumber, subscription, price, issueDate, dueDate, status } = props;
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  return (
+    <>
+      <CardProcess></CardProcess>
+      <Card border="light" className="bg-white shadow-sm mb-4">
+        <Card.Header ><h5>Chi tiết quy trình</h5></Card.Header>
+        <Card.Body>
+          <Form>
+            <Row>
+              <Col xs={12} xl={6}>
+                <h5 className="mb-4">Danh sách công việc</h5>
+                <Row>
+                  <Col md={12} className="mb-3">
+                    <Form.Group id="nameWork">
+                      <Form.Label>Tên công việc</Form.Label>
+                      <Form.Control required type="text" placeholder="Nhập tên công việc" row={2} />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row>
+                  <Col md={12} className="mb-3">
+                    <Form.Group id="describe">
+                      <Form.Label>Mô tả</Form.Label>
+                      <Form.Control as="textarea" placeholder="Nhập mô tả công việc" row={10} />
+                    </Form.Group>
+                  </Col>
+                </Row>
+                <Row className="mb-3">
+                  <Col md={6}>
+                    <Form.Group id="describe">
+                      <Form.Label>Thời gian thực hiện</Form.Label>
+                      <Form.Control type="number" placeholder="Nhập thời gian (s)" required />
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group id="describe">
+                      <Form.Label>Trọng số</Form.Label>
+                      <Form.Control type="number" placeholder="Nhập trọng số" required />
+                    </Form.Group>
+                  </Col>
+                </Row>
+              </Col>
+              <Col xs={12} xl={6}>
+                <h5 className="mb-4"></h5>
+                <Row style={{ marginTop: "50px" }}>
+                  <Col className="mb-3">
+                    <Form.Group id="firstName">
+                      <Form.Label>Người thực hiện</Form.Label>
+                      {/* <Form.Control required type="text" placeholder="Nhập tên người thực hiện" /> */}
+                      <Select closeMenuOnSelect={true} options={Employees} isMulti placeholder="Chọn người thực hiện" />
+                    </Form.Group>
+                  </Col>
+                </Row>
+              </Col>
+            </Row>
+            <Row>
+              <Col md={2} className="mt-2">
+                <Button variant="success">Thêm mới</Button>
+              </Col>
+            </Row>
+          </Form>
+          <Row className="mt-4">
+            <h5 className="mb-3">Các công việc đã tạo trong quy trình</h5>
+            <Table striped bordered hover size="sm">
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Tên công việc</th>
+                  <th>Mô tả</th>
+                  <th>Trọng số</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </Table>
+          </Row>
+        </Card.Body>
+      </Card>
+    </>
+  );
+};
