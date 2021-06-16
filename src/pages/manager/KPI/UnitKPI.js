@@ -12,12 +12,11 @@ import {
   Container,
   Card,
 } from "@themesberg/react-bootstrap";
-import {AddKPIForm} from "./AddKPIForm";
+import { AddKPIForm } from "./AddKPIForm";
 import SelectSearch from "react-select-search";
 import "../Styles/styles.css";
 import UnitKPITable from "./TableListKPI";
-
-
+import KpiLineChart from "./components/KpiLineChart";
 const options = [
   { name: "Tháng 1", value: 1 },
   { name: "Tháng 2", value: 2 },
@@ -28,12 +27,13 @@ const options = [
 const UnitKPI = () => {
   const [showDefault, setShowDefault] = useState(false);
   const handleClose = () => setShowDefault(false);
+  const [moth, setMoth] = React.useState(4);
   const showModelAddTask = () => {
     setShowDefault(true);
   };
   return (
     <>
-      <Row style={{marginTop: "-45px"}}>
+      <Row style={{ marginTop: "-45px" }}>
         <Col xs={12} md={3}></Col>
         <Col xs={12} md={9}>
           <div className="d-block mb-md-0">
@@ -42,34 +42,47 @@ const UnitKPI = () => {
           <br />
           <div className="table-settings mb-4">
             <Row className="justify-content-between align-items-center">
-            
               <Col md={2}>
                 <div className="d-flex" style={{ alignItems: "baseline" }}>
-                {/* <h6 style={{marginRight: "5%"}}>Tháng</h6> */}
+                  {/* <h6 style={{marginRight: "5%"}}>Tháng</h6> */}
                   <SelectSearch
                     options={options}
                     search
-                    value={5}
+                    value={moth}
                     placeholder="Chọn tháng"
+                    onChange={setMoth}
                   />
                 </div>
               </Col>
               <Col md={3}></Col>
-              <Col md={2} className="ps-md-0 text-end" style={{textAlign: "left"}}>
+              <Col
+                md={2}
+                className="ps-md-0 text-end"
+                style={{ textAlign: "left" }}
+              >
                 <ButtonGroup>
                   <Button
                     variant="outline-primary"
                     size="sm"
                     onClick={showModelAddTask}
                     className="ml-10"
-                    >
+                  >
                     Thêm Mới
                   </Button>
                 </ButtonGroup>
               </Col>
             </Row>
           </div>
-          <UnitKPITable/>
+          <UnitKPITable />
+          <br />
+          <Row>
+            <Card>
+              <Card.Header>Thống kê hiệu suất công nhân theo tháng</Card.Header>
+              <Card.Body>
+                <KpiLineChart thangs={moth} />
+              </Card.Body>
+            </Card>
+          </Row>
         </Col>
       </Row>
       <Modal
@@ -77,7 +90,8 @@ const UnitKPI = () => {
         centered
         show={showDefault}
         onHide={handleClose}
-        size="xl">
+        size="xl"
+      >
         <Modal.Header>
           <Modal.Title className="h4">Thêm mới</Modal.Title>
           <Button variant="close" aria-label="Close" onClick={handleClose} />
@@ -92,7 +106,8 @@ const UnitKPI = () => {
           <Button
             variant="link"
             className="text-gray ms-auto"
-            onClick={handleClose}>
+            onClick={handleClose}
+          >
             Hủy
           </Button>
         </Modal.Footer>

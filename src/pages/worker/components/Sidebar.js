@@ -397,9 +397,11 @@ const WorkingContentIOT = (props = {}) => {
     if (!pause) {
       if (product.status) {
         setStatusSuccess(true);
+        setG(4);
         setSuccess((success) => success + 1);
         setTimeout(() => {
           setStatusSuccess(false);
+          setG(0);
         }, 1000);
       } else {
         setStatusError(true);
@@ -421,17 +423,20 @@ const WorkingContentIOT = (props = {}) => {
       clearInterval(success);
     };
   }, []);
+  const [giay, setG] = React.useState(0);
   const [success, setSuccess] = React.useState(0);
   const [error, setError] = React.useState(0);
+  const [error1, setError1] = React.useState(0);
   const handleBaoCao = () => {
     const bo = {
       id: listBo.length + 1,
       sp: success,
       epi: error,
-      epo: 0,
+      epo: error1,
     };
     setSuccess(0);
     setError(0);
+    setError1(0);
     setListBo((listBo) => [...listBo, bo]);
   };
   return (
@@ -476,15 +481,15 @@ const WorkingContentIOT = (props = {}) => {
                 <Col xs={4}>
                   <Card>
                     <Card.Header>
-                      <strong>Sản phẩm lỗi</strong>
+                      <strong>Sản phẩm lỗi đầu vào</strong>
                     </Card.Header>
                     <Card.Body>{error}</Card.Body>
                   </Card>
                 </Col>
                 <Col xs={4}>
                   <Card>
-                    <Card.Header>Số lượng yêu cầu</Card.Header>
-                    <Card.Body>1000</Card.Body>
+                    <Card.Header>Sản phẩm làm lỗi</Card.Header>
+                    <Card.Body>{error1}</Card.Body>
                   </Card>
                 </Col>
               </Row>
@@ -519,12 +524,21 @@ const WorkingContentIOT = (props = {}) => {
                     variant="outline-primary"
                     size="lg"
                     onClick={() => {
+                      setError1((error1) => error1 + 1);
+                    }}
+                  >
+                    Sản phẩm làm lỗi
+                  </Button>{" "}
+                  <Button
+                    variant="outline-primary"
+                    size="lg"
+                    onClick={() => {
                       showTongKet(true);
                       onHide();
                     }}
                   >
                     Kết Thúc
-                  </Button>
+                  </Button>{" "}
                 </div>
               </ButtonGroup>
             </Card.Footer>
@@ -557,7 +571,7 @@ const WorkingContentIOT = (props = {}) => {
                   ></div>
                 </div>
               </div>
-              <br />
+              <span>Thời gian làm sản phẩm: {giay}s</span>
               <hr />
               <br />
               <h6>Thiết bị đếm sản phẩm lỗi</h6>
@@ -580,6 +594,30 @@ const WorkingContentIOT = (props = {}) => {
                     background: statusError ? "red" : "none",
                   }}
                 ></div>
+              </div>
+            </Card.Body>
+          </Card>
+          <br />
+          <Card>
+            <Card.Header>Tốc độ làm việc trung bình</Card.Header>
+            <Card.Body>
+              <div
+                className="d-flex"
+                style={{ justifyContent: "space-between" }}
+              >
+                <span>Công nhân quy trình tiếp theo</span>
+                <span style={{ color: "green" }}>
+                  {parseInt(Math.random() * 10)} phút/bó
+                </span>
+              </div>
+              <div
+                className="d-flex"
+                style={{ justifyContent: "space-between" }}
+              >
+                <span>Công nhân quy trình trước</span>
+                <span style={{ color: "green" }}>
+                  {parseInt(Math.random() * 10)} phút/bó
+                </span>
               </div>
             </Card.Body>
           </Card>
@@ -820,7 +858,7 @@ const WorkingContentTC = (props = {}) => {
       </Container>
       <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Sản phẩm dư</Modal.Title>
+          <Modal.Title>Sản phẩm</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group id="email" className="mb-4">

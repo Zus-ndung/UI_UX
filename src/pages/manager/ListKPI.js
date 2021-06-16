@@ -1,98 +1,94 @@
 import React, { useState } from "react";
-import {
-  Col,
-  Row,
-  Card,
-} from "@themesberg/react-bootstrap";
+import { Col, Row, Card } from "@themesberg/react-bootstrap";
 import SelectSearch from "react-select-search";
 import "./Styles/styles.css";
 import { Bar, Line } from "react-chartjs-2";
 
 const dataLineChart = [
- [
-  {data:[44,43,55,39,35,35,50]},
-  {data:[40,55,39,35,33,40,44]},
-  {data:[43,53,45,36,55,30,45]},
-  {data:[42,43,35,38,35,35,40]},
-  {data:[41,33,53,31,44,33,50]},
- ],
- [
-  {data:[42,43,35,38,35,35,40]},
-  {data:[43,53,45,36,55,30,45]},
-  {data:[44,43,55,39,35,35,50]},
-  {data:[41,33,53,31,44,33,50]},
-  {data:[40,55,39,35,33,40,44]},
- ],
- [
-  {data:[44,43,55,39,35,35,50]},
-  {data:[40,55,39,35,33,40,44]},
-  {data:[43,53,45,36,55,30,45]},
-  {data:[42,43,35,38,35,35,40]},
-  {data:[41,33,53,31,44,33,50]},
- ],
- [
-  {data:[42,43,35,38,35,35,40]},
-  {data:[43,53,45,36,55,30,45]},
-  {data:[44,43,55,39,35,35,50]},
-  {data:[41,33,53,31,44,33,50]},
-  {data:[40,55,39,35,33,40,44]},
- ],
- [
-  {data:[44,43,55,39,35,35,50]},
-  {data:[40,55,39,35,33,40,44]},
-  {data:[43,53,45,36,55,30,45]},
-  {data:[42,43,35,38,35,35,40]},
-  {data:[41,33,53,31,44,33,50]},
- ],
- [
-  {data:[42,43,35,38,35,35,40]},
-  {data:[43,53,45,36,55,30,45]},
-  {data:[44,43,55,39,35,35,50]},
-  {data:[41,33,53,31,44,33,50]},
-  {data:[40,55,39,35,33,40,44]},
- ],
- [
-  {data:[44,43,55,39,35,35,50]},
-  {data:[40,55,39,35,33,40,44]},
-  {data:[43,53,45,36,55,30,45]},
-  {data:[42,43,35,38,35,35,40]},
-  {data:[41,33,53,31,44,33,50]},
- ],
- [
-  {data:[42,43,35,38,35,35,40]},
-  {data:[43,53,45,36,55,30,45]},
-  {data:[44,43,55,39,35,35,50]},
-  {data:[41,33,53,31,44,33,50]},
-  {data:[40,55,39,35,33,40,44]},
- ],
- [
-  {data:[44,43,55,39,35,35,50]},
-  {data:[40,55,39,35,33,40,44]},
-  {data:[43,53,45,36,55,30,45]},
-  {data:[42,43,35,38,35,35,40]},
-  {data:[41,33,53,31,44,33,50]},
- ],
- [
-  {data:[42,43,35,38,35,35,40]},
-  {data:[43,53,45,36,55,30,45]},
-  {data:[44,43,55,39,35,35,50]},
-  {data:[41,33,53,31,44,33,50]},
-  {data:[40,55,39,35,33,40,44]},
- ],
- [
-  {data:[44,43,55,39,35,35,50]},
-  {data:[40,55,39,35,33,40,44]},
-  {data:[43,53,45,36,55,30,45]},
-  {data:[42,43,35,38,35,35,40]},
-  {data:[41,33,53,31,44,33,50]},
- ],
- [
-  {data:[42,43,35,38,35,35,40]},
-  {data:[43,53,45,36,55,30,45]},
-  {data:[44,43,55,39,35,35,50]},
-  {data:[41,33,53,31,44,33,50]},
-  {data:[40,55,39,35,33,40,44]},
- ],
+  [
+    { data: [44, 43, 55, 39, 35, 35, 50] },
+    { data: [40, 55, 39, 35, 33, 40, 44] },
+    { data: [43, 53, 45, 36, 55, 30, 45] },
+    { data: [42, 43, 35, 38, 35, 35, 40] },
+    { data: [41, 33, 53, 31, 44, 33, 50] },
+  ],
+  [
+    { data: [42, 43, 35, 38, 35, 35, 40] },
+    { data: [43, 53, 45, 36, 55, 30, 45] },
+    { data: [44, 43, 55, 39, 35, 35, 50] },
+    { data: [41, 33, 53, 31, 44, 33, 50] },
+    { data: [40, 55, 39, 35, 33, 40, 44] },
+  ],
+  [
+    { data: [44, 43, 55, 39, 35, 35, 50] },
+    { data: [40, 55, 39, 35, 33, 40, 44] },
+    { data: [43, 53, 45, 36, 55, 30, 45] },
+    { data: [42, 43, 35, 38, 35, 35, 40] },
+    { data: [41, 33, 53, 31, 44, 33, 50] },
+  ],
+  [
+    { data: [42, 43, 35, 38, 35, 35, 40] },
+    { data: [43, 53, 45, 36, 55, 30, 45] },
+    { data: [44, 43, 55, 39, 35, 35, 50] },
+    { data: [41, 33, 53, 31, 44, 33, 50] },
+    { data: [40, 55, 39, 35, 33, 40, 44] },
+  ],
+  [
+    { data: [44, 43, 55, 39, 35, 35, 50] },
+    { data: [40, 55, 39, 35, 33, 40, 44] },
+    { data: [43, 53, 45, 36, 55, 30, 45] },
+    { data: [42, 43, 35, 38, 35, 35, 40] },
+    { data: [41, 33, 53, 31, 44, 33, 50] },
+  ],
+  [
+    { data: [42, 43, 35, 38, 35, 35, 40] },
+    { data: [43, 53, 45, 36, 55, 30, 45] },
+    { data: [44, 43, 55, 39, 35, 35, 50] },
+    { data: [41, 33, 53, 31, 44, 33, 50] },
+    { data: [40, 55, 39, 35, 33, 40, 44] },
+  ],
+  [
+    { data: [44, 43, 55, 39, 35, 35, 50] },
+    { data: [40, 55, 39, 35, 33, 40, 44] },
+    { data: [43, 53, 45, 36, 55, 30, 45] },
+    { data: [42, 43, 35, 38, 35, 35, 40] },
+    { data: [41, 33, 53, 31, 44, 33, 50] },
+  ],
+  [
+    { data: [42, 43, 35, 38, 35, 35, 40] },
+    { data: [43, 53, 45, 36, 55, 30, 45] },
+    { data: [44, 43, 55, 39, 35, 35, 50] },
+    { data: [41, 33, 53, 31, 44, 33, 50] },
+    { data: [40, 55, 39, 35, 33, 40, 44] },
+  ],
+  [
+    { data: [44, 43, 55, 39, 35, 35, 50] },
+    { data: [40, 55, 39, 35, 33, 40, 44] },
+    { data: [43, 53, 45, 36, 55, 30, 45] },
+    { data: [42, 43, 35, 38, 35, 35, 40] },
+    { data: [41, 33, 53, 31, 44, 33, 50] },
+  ],
+  [
+    { data: [42, 43, 35, 38, 35, 35, 40] },
+    { data: [43, 53, 45, 36, 55, 30, 45] },
+    { data: [44, 43, 55, 39, 35, 35, 50] },
+    { data: [41, 33, 53, 31, 44, 33, 50] },
+    { data: [40, 55, 39, 35, 33, 40, 44] },
+  ],
+  [
+    { data: [44, 43, 55, 39, 35, 35, 50] },
+    { data: [40, 55, 39, 35, 33, 40, 44] },
+    { data: [43, 53, 45, 36, 55, 30, 45] },
+    { data: [42, 43, 35, 38, 35, 35, 40] },
+    { data: [41, 33, 53, 31, 44, 33, 50] },
+  ],
+  [
+    { data: [42, 43, 35, 38, 35, 35, 40] },
+    { data: [43, 53, 45, 36, 55, 30, 45] },
+    { data: [44, 43, 55, 39, 35, 35, 50] },
+    { data: [41, 33, 53, 31, 44, 33, 50] },
+    { data: [40, 55, 39, 35, 33, 40, 44] },
+  ],
 ];
 
 const options = [
@@ -127,7 +123,8 @@ const KPITT = (props = {}) => {
         display: "flex",
         backgroundColor: "#ffffff",
         borderRadius: "2px",
-      }}>
+      }}
+    >
       <span
         className="info-box-icon"
         style={{
@@ -140,7 +137,8 @@ const KPITT = (props = {}) => {
           borderRadius: "2px",
           color: "white",
           fontSize: "30px",
-        }}>
+        }}
+      >
         <i className={icon}></i>
       </span>
       <div
@@ -149,7 +147,8 @@ const KPITT = (props = {}) => {
           display: "flex",
           flexDirection: "column",
           padding: "10px 0 0 10px",
-        }}>
+        }}
+      >
         <span className="info-box-text">{text}</span>
         <p
           className="info-box-number"
@@ -157,7 +156,8 @@ const KPITT = (props = {}) => {
             cursor: "pointer",
             fontSize: "20px",
             color: bg,
-          }}>
+          }}
+        >
           {number}
         </p>
       </div>
@@ -195,19 +195,30 @@ const data2s = [
 ];
 const DashBoradKPI = (props = {}) => {
   const [moth, setMoth] = React.useState(4);
-  const [lineMonth,setLineMonth] = useState(6);
+  const [lineMonth, setLineMonth] = useState(6);
 
-  let Linelabels = ['Ngày 1','Ngày 2','Ngày 3','Ngày 4','Ngày 5','Ngày 6','Ngày 7'];
+  let Linelabels = [
+    "Ngày 1",
+    "Ngày 2",
+    "Ngày 3",
+    "Ngày 4",
+    "Ngày 5",
+    "Ngày 6",
+    "Ngày 7",
+  ];
   return (
     <>
-      <Row style={{marginTop: "-45px"}}>
+      <Row style={{ marginTop: "-45px" }}>
         <Col xs={3}></Col>
         <Col xs={9}>
           <Row>
             <Col xs={12}>
               <div
                 className="d-flex"
-                style={{ justifyContent: "space-between", marginBottom:"25px" }}
+                style={{
+                  justifyContent: "space-between",
+                  marginBottom: "25px",
+                }}
               >
                 <h3>Quản Lý KPI</h3>
               </div>
@@ -251,7 +262,14 @@ const DashBoradKPI = (props = {}) => {
                 </div>
               </Card.Header>
               <Card.Body>
-                <div className="d-flex" style={{ alignItems: "baseline" ,width:"16%", marginBottom: "20px"}}>
+                <div
+                  className="d-flex"
+                  style={{
+                    alignItems: "baseline",
+                    width: "16%",
+                    marginBottom: "20px",
+                  }}
+                >
                   <SelectSearch
                     options={Moths}
                     value={moth}
@@ -265,38 +283,28 @@ const DashBoradKPI = (props = {}) => {
                       datasets: [
                         {
                           label: "Tổ 1",
-                          backgroundColor: [
-                            "#FE642E",
-                          ],
+                          backgroundColor: ["#FE642E"],
                           data: [datas[moth][0]],
                         },
                         {
                           label: "Tổ 2",
-                          backgroundColor: [
-                            "#FACC2E",
-                          ],
+                          backgroundColor: ["#FACC2E"],
                           data: [datas[moth][1]],
                         },
                         {
                           label: "Tổ 3",
-                          backgroundColor: [
-                            "#013ADF",
-                          ],
+                          backgroundColor: ["#013ADF"],
                           data: [datas[moth][2]],
                         },
                         {
                           label: "Tổ 4",
-                          backgroundColor: [
-                            "#088A08",
-                          ],
+                          backgroundColor: ["#088A08"],
                           data: [datas[moth][3]],
                         },
                         {
                           label: "Tổ 5",
-                          backgroundColor: [
-                            "#00FFFF",
-                          ],
-                          data: [datas[moth][4]],
+                          backgroundColor: ["#00FFFF"],
+                          data: [datas[moth]],
                         },
                       ],
                     }}
@@ -312,14 +320,23 @@ const DashBoradKPI = (props = {}) => {
               </Card.Body>
             </Card>
           </Row>
-          <br/>
+          <br />
           <Row>
             <Card>
               <Card.Header>
-                <h5>Hiệu suất của các tổ cập nhật theo thời gian trong tháng</h5>
+                <h5>
+                  Hiệu suất của các tổ cập nhật theo thời gian trong tháng
+                </h5>
               </Card.Header>
               <Card.Body>
-                <div className="d-flex" style={{ alignItems: "baseline" ,width:"16%", marginBottom: "20px"}}>
+                <div
+                  className="d-flex"
+                  style={{
+                    alignItems: "baseline",
+                    width: "16%",
+                    marginBottom: "20px",
+                  }}
+                >
                   <SelectSearch
                     options={Moths}
                     value={lineMonth}
@@ -327,57 +344,57 @@ const DashBoradKPI = (props = {}) => {
                   />
                 </div>
                 <Line
-                data={{
-                  labels: Linelabels,
-                  datasets: [
-                    {
-                    label: 'Tổ 1',
-                    data: dataLineChart[lineMonth][0].data,
-                    fill: false,
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.25,
-                    pointBorderWidth: 0,
-                    pointBorderColor: 'rgb(75, 192, 192)',
-                    },
-                    {
-                      label: 'Tổ 2',
-                      data: dataLineChart[lineMonth][1].data,
-                      fill: false,
-                      borderColor: '#006666',
-                      pointBorderWidth: 0,
-                      pointBorderColor: 'rgb(75, 192, 192)',
-                      tension: 0.25
-                    },
-                    {
-                      label: 'Tổ 3',
-                      data: dataLineChart[lineMonth][2].data,
-                      fill: false,
-                      borderColor: '#FE642E',
-                      pointBorderWidth: 0,
-                      pointBorderColor: 'rgb(75, 192, 192)',
-                      tension: 0.25
-                    },
-                    {
-                      label: 'Tổ 4',
-                      data: dataLineChart[lineMonth][3].data,
-                      fill: false,
-                      borderColor: '#088A08',
-                      pointBorderWidth: 0,
-                      pointBorderColor: 'rgb(75, 192, 192)',
-                      tension: 0.25
-                    },
-                    {
-                      label: 'Tổ 5',
-                      data: dataLineChart[lineMonth][4].data,
-                      fill: false,
-                      borderColor: '#FACC2E',
-                      pointBorderWidth: 0,
-                      pointBorderColor: 'rgb(75, 192, 192)',
-                      tension: 0.25
-                    },
-                  ],
-                }}
-              ></Line>
+                  data={{
+                    labels: Linelabels,
+                    datasets: [
+                      {
+                        label: "Tổ 1",
+                        data: dataLineChart[lineMonth][0].data,
+                        fill: false,
+                        borderColor: "rgb(75, 192, 192)",
+                        tension: 0.25,
+                        pointBorderWidth: 0,
+                        pointBorderColor: "rgb(75, 192, 192)",
+                      },
+                      {
+                        label: "Tổ 2",
+                        data: dataLineChart[lineMonth][1].data,
+                        fill: false,
+                        borderColor: "#006666",
+                        pointBorderWidth: 0,
+                        pointBorderColor: "rgb(75, 192, 192)",
+                        tension: 0.25,
+                      },
+                      {
+                        label: "Tổ 3",
+                        data: dataLineChart[lineMonth][2].data,
+                        fill: false,
+                        borderColor: "#FE642E",
+                        pointBorderWidth: 0,
+                        pointBorderColor: "rgb(75, 192, 192)",
+                        tension: 0.25,
+                      },
+                      {
+                        label: "Tổ 4",
+                        data: dataLineChart[lineMonth][3].data,
+                        fill: false,
+                        borderColor: "#088A08",
+                        pointBorderWidth: 0,
+                        pointBorderColor: "rgb(75, 192, 192)",
+                        tension: 0.25,
+                      },
+                      {
+                        label: "Tổ 5",
+                        data: dataLineChart[lineMonth][4].data,
+                        fill: false,
+                        borderColor: "#FACC2E",
+                        pointBorderWidth: 0,
+                        pointBorderColor: "rgb(75, 192, 192)",
+                        tension: 0.25,
+                      },
+                    ],
+                  }}
+                ></Line>
               </Card.Body>
             </Card>
           </Row>

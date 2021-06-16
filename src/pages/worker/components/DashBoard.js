@@ -214,7 +214,8 @@ export default function DashBoard(props = {}) {
           onSelect={(k) => {
             setKey(k);
             props.onClose();
-          }}>
+          }}
+        >
           <Tab eventKey="contact" title="Tổng quan">
             <br />
             <br />
