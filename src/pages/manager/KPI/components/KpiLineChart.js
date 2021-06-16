@@ -2,13 +2,13 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 
 const CharComponent = (props = {}) => {
-  const thangs = 4;
+  const {thangs,unit} = props;
   const ngays = [31, 30, 28, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const [dataset, setDataset] = React.useState([]);
   const [Linelabels, setLinelLabel] = React.useState([]);
   React.useEffect(() => {
     createDataset();
-  }, [thangs]);
+  }, [thangs,unit]);
   const createDataset = () => {
     setLinelLabel([]);
     setDataset([]);

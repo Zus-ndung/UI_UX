@@ -68,22 +68,6 @@ const IOT = () => {
             </fieldset>
           </Row>
           <br />
-          {/* <Row>
-            <Col sm={8}>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Quantity</Form.Label>
-                <Form.Control type="text" disabled defaultValue={0} />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col sm={8}>
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label>Target</Form.Label>
-                <Form.Control type="text" disabled defaultValue={1000} />
-              </Form.Group>
-            </Col>
-          </Row> */}
         </Col>
         <Col xs={6}>
           <Row>
@@ -107,26 +91,11 @@ const IOT = () => {
           </Row>
           <br />
           <br />
-          {/* <Row>
-            <Col sm={8}>
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label>Error Product</Form.Label>
-                <Form.Control type="text" disabled defaultValue={0} />
-              </Form.Group>
-            </Col>
-          </Row> */}
         </Col>
       </Row>
       <Row>
         <h5>Sản xuất sản phẩm theo bó (20 sản phẩm / bó)</h5>
       </Row>
-      {/* <Row>
-        <Col>
-          <Card>
-            <Card.Header></Card.Header>
-          </Card>
-        </Col>
-      </Row> */}
     </>
   );
 };
@@ -134,26 +103,6 @@ const IOT = () => {
 const ThuCong = () => {
   return (
     <>
-      {/* <Form.FloatingLabel
-        controlId="floatingSelect"
-        label="Số lượng sản phẩm mặc định mỗi lần nhập"> */}
-      {/* <div>
-        <h4>Chọn số lượng sản phẩm nhập vào mỗi lần</h4>
-        <Form.Select aria-label="Số lượng sản phẩm mặc định mỗi lần nhập">
-          <option value="1">1 (Mặc định)</option>
-          <option value="2">5</option>
-          <option value="3">10</option>
-        </Form.Select>
-      </div>
-      <br />
-      <hr />
-      <br />
-      <div>
-        <h4>Số lượng sản phẩm lỗi nhập vào mỗi lần</h4>
-        <Form.Select aria-label="Số lượng sản phẩm lỗi mặc định mỗi lần nhập">
-          <option value="1">1 (Mặc định)</option>
-        </Form.Select>
-      </div> */}
       <Row>
         <h5>Sản xuất sản phẩm theo bó (20 sản phẩm / bó)</h5>
       </Row>
