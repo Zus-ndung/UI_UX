@@ -1,29 +1,99 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheck,
-  faCog,
-  faHome,
-  faSearch,
-} from "@fortawesome/free-solid-svg-icons";
 import {
   Col,
   Row,
-  Form,
-  Button,
-  ButtonGroup,
-  Breadcrumb,
-  InputGroup,
-  Dropdown,
-  Modal,
-  Container,
   Card,
 } from "@themesberg/react-bootstrap";
-import { ListKPITable } from "../../components/Tables";
-import { AddTask } from "../../components/AddTask";
 import SelectSearch from "react-select-search";
 import "./Styles/styles.css";
-import { Bar, Pie, Line, Doughnut } from "react-chartjs-2";
+import { Bar, Line } from "react-chartjs-2";
+
+const dataLineChart = [
+ [
+  {data:[44,43,55,39,35,35,50]},
+  {data:[40,55,39,35,33,40,44]},
+  {data:[43,53,45,36,55,30,45]},
+  {data:[42,43,35,38,35,35,40]},
+  {data:[41,33,53,31,44,33,50]},
+ ],
+ [
+  {data:[42,43,35,38,35,35,40]},
+  {data:[43,53,45,36,55,30,45]},
+  {data:[44,43,55,39,35,35,50]},
+  {data:[41,33,53,31,44,33,50]},
+  {data:[40,55,39,35,33,40,44]},
+ ],
+ [
+  {data:[44,43,55,39,35,35,50]},
+  {data:[40,55,39,35,33,40,44]},
+  {data:[43,53,45,36,55,30,45]},
+  {data:[42,43,35,38,35,35,40]},
+  {data:[41,33,53,31,44,33,50]},
+ ],
+ [
+  {data:[42,43,35,38,35,35,40]},
+  {data:[43,53,45,36,55,30,45]},
+  {data:[44,43,55,39,35,35,50]},
+  {data:[41,33,53,31,44,33,50]},
+  {data:[40,55,39,35,33,40,44]},
+ ],
+ [
+  {data:[44,43,55,39,35,35,50]},
+  {data:[40,55,39,35,33,40,44]},
+  {data:[43,53,45,36,55,30,45]},
+  {data:[42,43,35,38,35,35,40]},
+  {data:[41,33,53,31,44,33,50]},
+ ],
+ [
+  {data:[42,43,35,38,35,35,40]},
+  {data:[43,53,45,36,55,30,45]},
+  {data:[44,43,55,39,35,35,50]},
+  {data:[41,33,53,31,44,33,50]},
+  {data:[40,55,39,35,33,40,44]},
+ ],
+ [
+  {data:[44,43,55,39,35,35,50]},
+  {data:[40,55,39,35,33,40,44]},
+  {data:[43,53,45,36,55,30,45]},
+  {data:[42,43,35,38,35,35,40]},
+  {data:[41,33,53,31,44,33,50]},
+ ],
+ [
+  {data:[42,43,35,38,35,35,40]},
+  {data:[43,53,45,36,55,30,45]},
+  {data:[44,43,55,39,35,35,50]},
+  {data:[41,33,53,31,44,33,50]},
+  {data:[40,55,39,35,33,40,44]},
+ ],
+ [
+  {data:[44,43,55,39,35,35,50]},
+  {data:[40,55,39,35,33,40,44]},
+  {data:[43,53,45,36,55,30,45]},
+  {data:[42,43,35,38,35,35,40]},
+  {data:[41,33,53,31,44,33,50]},
+ ],
+ [
+  {data:[42,43,35,38,35,35,40]},
+  {data:[43,53,45,36,55,30,45]},
+  {data:[44,43,55,39,35,35,50]},
+  {data:[41,33,53,31,44,33,50]},
+  {data:[40,55,39,35,33,40,44]},
+ ],
+ [
+  {data:[44,43,55,39,35,35,50]},
+  {data:[40,55,39,35,33,40,44]},
+  {data:[43,53,45,36,55,30,45]},
+  {data:[42,43,35,38,35,35,40]},
+  {data:[41,33,53,31,44,33,50]},
+ ],
+ [
+  {data:[42,43,35,38,35,35,40]},
+  {data:[43,53,45,36,55,30,45]},
+  {data:[44,43,55,39,35,35,50]},
+  {data:[41,33,53,31,44,33,50]},
+  {data:[40,55,39,35,33,40,44]},
+ ],
+];
 
 const options = [
   { name: "Tổ 1", value: 1 },
@@ -125,53 +195,27 @@ const data2s = [
 ];
 const DashBoradKPI = (props = {}) => {
   const [moth, setMoth] = React.useState(4);
+  const [lineMonth,setLineMonth] = useState(6);
+
+  let Linelabels = ['Ngày 1','Ngày 2','Ngày 3','Ngày 4','Ngày 5','Ngày 6','Ngày 7'];
   return (
     <>
-      <Row>
+      <Row style={{marginTop: "-45px"}}>
         <Col xs={3}></Col>
         <Col xs={9}>
           <Row>
             <Col xs={12}>
               <div
                 className="d-flex"
-                style={{ justifyContent: "space-between" }}>
-                <h4>Quản Lý KPI</h4>
+                style={{ justifyContent: "space-between", marginBottom:"25px" }}
+              >
+                <h3>Quản Lý KPI</h3>
               </div>
-            </Col>
-            <Col xs={12}>
-              <Row>
-                <Col xs={5}>
-                  <div className="d-flex" style={{ alignItems: "baseline" }}>
-                    <span>
-                      <strong style={{ marginRight: "7px" }}>Đơn vị</strong>{" "}
-                    </span>{" "}
-                    <SelectSearch
-                      options={options}
-                      search
-                      value={5}
-                      placeholder="Chọn đơn vị"
-                    />
-                  </div>
-                </Col>
-                <Col xs={6}>
-                  <div className="d-flex" style={{ alignItems: "baseline" }}>
-                    <span>
-                      <strong style={{ marginRight: "7px" }}>Tháng</strong>{" "}
-                    </span>{" "}
-                    <SelectSearch
-                      options={Moths}
-                      value={moth}
-                      onChange={setMoth}
-                      placeholder="tháng"
-                    />
-                  </div>
-                </Col>
-              </Row>
             </Col>
           </Row>
           <br />
           <Row>
-            <Col xs={3}>
+            <Col xs={4}>
               <KPITT
                 bg={"#f39d2d"}
                 text={"Danh sách đơn vị"}
@@ -179,15 +223,7 @@ const DashBoradKPI = (props = {}) => {
                 number={5}
               />
             </Col>
-            <Col xs={3}>
-              <KPITT
-                bg={"#dd4b39"}
-                text={"Chưa khởi tạo"}
-                icon={"fa fa-exclamation-circle"}
-                number={1}
-              />
-            </Col>
-            <Col xs={3}>
+            <Col xs={4}>
               <KPITT
                 bg={"#2fc0ef"}
                 text={"Đang thiết lập"}
@@ -195,7 +231,7 @@ const DashBoradKPI = (props = {}) => {
                 number={0}
               />
             </Col>
-            <Col xs={3}>
+            <Col xs={4}>
               <KPITT
                 bg={"#4fa845"}
                 text={"Đã kích hoạt"}
@@ -210,37 +246,57 @@ const DashBoradKPI = (props = {}) => {
               <Card.Header>
                 <div style={{ display: "flex", alignItems: "baseline" }}>
                   <h5 style={{ marginRight: "10px" }}>
-                    Biểu đồ thông kê giữa các tổ
+                    Biểu đồ thông kê giữa các đơn vị
                   </h5>
                 </div>
               </Card.Header>
               <Card.Body>
-                <div className="d-flex" style={{ alignItems: "baseline" }}>
-                  <span>
-                    <strong style={{ marginRight: "7px" }}>Tháng</strong>{" "}
-                  </span>{" "}
+                <div className="d-flex" style={{ alignItems: "baseline" ,width:"16%", marginBottom: "20px"}}>
                   <SelectSearch
                     options={Moths}
                     value={moth}
                     onChange={setMoth}
-                    placeholder="Tháng"
                   />
                 </div>
                 <Row>
                   <Bar
                     data={{
-                      labels: ["Tổ 1", "Tổ 2", "Tổ 3", "Tổ 4", "Tổ 5"],
+                      labels: [""],
                       datasets: [
                         {
-                          label: "Hiệu suất của tổ",
+                          label: "Tổ 1",
                           backgroundColor: [
-                            "#3e95cd",
-                            "#8e5ea2",
-                            "#3cba9f",
-                            "#e8c3b9",
-                            "#c45850",
+                            "#FE642E",
                           ],
-                          data: datas[moth],
+                          data: [datas[moth][0]],
+                        },
+                        {
+                          label: "Tổ 2",
+                          backgroundColor: [
+                            "#FACC2E",
+                          ],
+                          data: [datas[moth][1]],
+                        },
+                        {
+                          label: "Tổ 3",
+                          backgroundColor: [
+                            "#013ADF",
+                          ],
+                          data: [datas[moth][2]],
+                        },
+                        {
+                          label: "Tổ 4",
+                          backgroundColor: [
+                            "#088A08",
+                          ],
+                          data: [datas[moth][3]],
+                        },
+                        {
+                          label: "Tổ 5",
+                          backgroundColor: [
+                            "#00FFFF",
+                          ],
+                          data: [datas[moth][4]],
                         },
                       ],
                     }}
@@ -256,116 +312,72 @@ const DashBoradKPI = (props = {}) => {
               </Card.Body>
             </Card>
           </Row>
-          <br />
+          <br/>
           <Row>
             <Card>
               <Card.Header>
-                <h5>Thống kê kết quả KPI tổ 5</h5>
+                <h5>Hiệu suất của các tổ cập nhật theo thời gian trong tháng</h5>
               </Card.Header>
               <Card.Body>
-                <div className="d-flex" style={{ alignItems: "baseline" }}>
-                  <span>
-                    <strong style={{ marginRight: "7px" }}>Tháng</strong>{" "}
-                  </span>{" "}
+                <div className="d-flex" style={{ alignItems: "baseline" ,width:"16%", marginBottom: "20px"}}>
                   <SelectSearch
                     options={Moths}
-                    value={moth}
-                    onChange={setMoth}
-                    placeholder="Tháng"
+                    value={lineMonth}
+                    onChange={setLineMonth}
                   />
                 </div>
-                <Row>
-                  <Col md={5}>
-                    <Pie
-                      data={{
-                        labels: ["Quá hạn", "Đúng tiến độ", "Trễ tiến độ"],
-                        datasets: [
-                          {
-                            label: "My First Dataset",
-                            data: data2s[moth],
-                            backgroundColor: [
-                              "rgb(255, 99, 132)",
-                              "rgb(54, 162, 235)",
-                              "rgb(255, 205, 86)",
-                            ],
-                            hoverOffset: 4,
-                          },
-                        ],
-                      }}></Pie>
-                  </Col>
-                  <Col md={2}></Col>
-                  <Col md={5}>
-                    <div style={{ height: "180px" }}></div>
-                    <Bar
-                      data={{
-                        labels: ["Quá hạn", "Trễ tiến độ", "Đúng tiến độ"],
-                        datasets: [
-                          {
-                            label: "Số lượng các công việc theo trạng thái",
-                            data: data2s[moth],
-                            backgroundColor: [
-                              "rgb(255, 99, 132)",
-                              "rgb(54, 162, 235)",
-                              "rgb(255, 205, 86)",
-                            ],
-                            borderColor: [
-                              "rgb(255, 99, 132)",
-                              "rgb(255, 159, 64)",
-                              "rgb(255, 205, 86)",
-                            ],
-                            borderWidth: 1,
-                            height: 500,
-                          },
-                        ],
-                      }}></Bar>
-                  </Col>
-                </Row>
-              </Card.Body>
-            </Card>
-          </Row>
-          <br />
-          <Row>
-            <Card>
-              <Card.Header>
-                Hiệu suất của tổ 5 qua các tháng (1/2021 - 5/2021)
-              </Card.Header>
-              <Card.Body>
                 <Line
-                  data={{
-                    labels: [
-                      "Tháng 1",
-                      "Tháng 2",
-                      "Tháng 3",
-                      "Tháng 4",
-                      "Tháng 5",
-                      "Tháng 6",
-                      "Tháng 7",
-                      "Tháng 8",
-                      "Tháng 9",
-                      "Tháng 10",
-                      "Tháng 11",
-                      "Tháng 12",
-                    ],
-                    datasets: [
-                      {
-                        data: [80, 81, 90, 89, 90],
-                        label: "Tổ 5",
-                        borderColor: "red",
-                        fill: true,
-                      },
-                    ],
-                  }}
-                  options={{
-                    title: {
-                      display: true,
-                      text: "World population per region (in millions)",
+                data={{
+                  labels: Linelabels,
+                  datasets: [
+                    {
+                    label: 'Tổ 1',
+                    data: dataLineChart[lineMonth][0].data,
+                    fill: false,
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.25,
+                    pointBorderWidth: 0,
+                    pointBorderColor: 'rgb(75, 192, 192)',
                     },
-                    legend: {
-                      display: true,
-                      position: "bottom",
+                    {
+                      label: 'Tổ 2',
+                      data: dataLineChart[lineMonth][1].data,
+                      fill: false,
+                      borderColor: '#006666',
+                      pointBorderWidth: 0,
+                      pointBorderColor: 'rgb(75, 192, 192)',
+                      tension: 0.25
                     },
-                  }}
-                />
+                    {
+                      label: 'Tổ 3',
+                      data: dataLineChart[lineMonth][2].data,
+                      fill: false,
+                      borderColor: '#FE642E',
+                      pointBorderWidth: 0,
+                      pointBorderColor: 'rgb(75, 192, 192)',
+                      tension: 0.25
+                    },
+                    {
+                      label: 'Tổ 4',
+                      data: dataLineChart[lineMonth][3].data,
+                      fill: false,
+                      borderColor: '#088A08',
+                      pointBorderWidth: 0,
+                      pointBorderColor: 'rgb(75, 192, 192)',
+                      tension: 0.25
+                    },
+                    {
+                      label: 'Tổ 5',
+                      data: dataLineChart[lineMonth][4].data,
+                      fill: false,
+                      borderColor: '#FACC2E',
+                      pointBorderWidth: 0,
+                      pointBorderColor: 'rgb(75, 192, 192)',
+                      tension: 0.25
+                    },
+                  ],
+                }}
+              ></Line>
               </Card.Body>
             </Card>
           </Row>

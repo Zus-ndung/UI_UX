@@ -82,16 +82,20 @@ const ChartProcess = () => {
                     data: [65, 59, 80, 81, 56, 55, 40],
                     fill: false,
                     borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
+                    tension: 0.25,
+                    pointBorderWidth: 0,
+                    pointBorderColor: 'rgb(75, 192, 192)',
                     },
                     {
                       label: 'May áo sơ mi',
                       data: [55, 90, 44, 33, 44, 66, 67],
                       fill: false,
                       borderColor: '#006666',
-                      tension: 0.1
+                      pointBorderWidth: 0,
+                      pointBorderColor: 'rgb(75, 192, 192)',
+                      tension: 0.25
                     },
-                ],
+                  ],
                 }}
               ></Line>
             </Col>
