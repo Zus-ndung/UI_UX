@@ -38,7 +38,6 @@ const ListKPI = () => {
                   <span style={{width: "23%"}}></span>
                   <ButtonGroup style={{ marginLeft: 10 }}>
                     <Button variant="outline-primary" size="sm" onClick={showModelAddTask}>Thêm Mới</Button>
-                    {/* <UploadButton /> */}
                     <input 
                       type="file" style={{display:""}} 
                       ref={inputRef}
