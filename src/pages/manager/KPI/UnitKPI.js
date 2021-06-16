@@ -12,11 +12,11 @@ import {
   Container,
   Card,
 } from "@themesberg/react-bootstrap";
-import {AddKPIForm} from "./AddKPIForm";
+import { AddKPIForm } from "./AddKPIForm";
 import SelectSearch from "react-select-search";
 import "../Styles/styles.css";
 import UnitKPITable from "./TableListKPI";
-
+import ApexChart from "./components/KpiLineChart";
 
 const options = [
   { name: "Tháng 1", value: 1 },
@@ -33,7 +33,7 @@ const UnitKPI = () => {
   };
   return (
     <>
-      <Row style={{marginTop: "-45px"}}>
+      <Row style={{ marginTop: "-45px" }}>
         <Col xs={12} md={3}></Col>
         <Col xs={12} md={9}>
           <div className="d-block mb-md-0">
@@ -42,10 +42,9 @@ const UnitKPI = () => {
           <br />
           <div className="table-settings mb-4">
             <Row className="justify-content-between align-items-center">
-            
               <Col md={2}>
                 <div className="d-flex" style={{ alignItems: "baseline" }}>
-                {/* <h6 style={{marginRight: "5%"}}>Tháng</h6> */}
+                  {/* <h6 style={{marginRight: "5%"}}>Tháng</h6> */}
                   <SelectSearch
                     options={options}
                     search
@@ -55,21 +54,25 @@ const UnitKPI = () => {
                 </div>
               </Col>
               <Col md={3}></Col>
-              <Col md={2} className="ps-md-0 text-end" style={{textAlign: "left"}}>
+              <Col
+                md={2}
+                className="ps-md-0 text-end"
+                style={{ textAlign: "left" }}
+              >
                 <ButtonGroup>
                   <Button
                     variant="outline-primary"
                     size="sm"
                     onClick={showModelAddTask}
                     className="ml-10"
-                    >
+                  >
                     Thêm Mới
                   </Button>
                 </ButtonGroup>
               </Col>
             </Row>
           </div>
-          <UnitKPITable/>
+          <UnitKPITable />
         </Col>
       </Row>
       <Modal
@@ -77,7 +80,8 @@ const UnitKPI = () => {
         centered
         show={showDefault}
         onHide={handleClose}
-        size="xl">
+        size="xl"
+      >
         <Modal.Header>
           <Modal.Title className="h4">Thêm mới</Modal.Title>
           <Button variant="close" aria-label="Close" onClick={handleClose} />
@@ -92,7 +96,8 @@ const UnitKPI = () => {
           <Button
             variant="link"
             className="text-gray ms-auto"
-            onClick={handleClose}>
+            onClick={handleClose}
+          >
             Hủy
           </Button>
         </Modal.Footer>
