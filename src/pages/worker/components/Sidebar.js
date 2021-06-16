@@ -384,6 +384,7 @@ const WorkingContentIOT = (props = {}) => {
   const [statusError, setStatusError] = React.useState(false);
   const [pause, setPause] = React.useState(false);
   const [listBo, setListBo] = React.useState([]);
+  const [status, setStatus] = React.useState(-1);
   const {
     successP,
     setSuccessP,
@@ -398,16 +399,20 @@ const WorkingContentIOT = (props = {}) => {
       if (product.status) {
         setStatusSuccess(true);
         setG(4);
+        setStatus(0);
         setSuccess((success) => success + 1);
         setTimeout(() => {
           setStatusSuccess(false);
           setG(0);
+          setStatus(-1);
         }, 1000);
       } else {
         setStatusError(true);
+        setStatus(1);
         setError((error) => error + 1);
         setTimeout(() => {
           setStatusError(false);
+          setStatus(-1);
         }, 1000);
       }
     }
@@ -473,7 +478,26 @@ const WorkingContentIOT = (props = {}) => {
                 <Col xs={4}>
                   <Card>
                     <Card.Header>
-                      <strong>Sản phẩm tốt</strong>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "baseline",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <div>Sản phẩm tốt</div>
+                        <div
+                          style={{
+                            width: "10px",
+                            height: "10px",
+                            borderRadius: "50%",
+                            border: "black 1px solid",
+                            background: status === 0 ? "green" : "none",
+                            display: "block",
+                          }}
+                        ></div>
+                      </div>
                     </Card.Header>
                     <Card.Body>{success}</Card.Body>
                   </Card>
@@ -481,14 +505,54 @@ const WorkingContentIOT = (props = {}) => {
                 <Col xs={4}>
                   <Card>
                     <Card.Header>
-                      <strong>Sản phẩm lỗi đầu vào</strong>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "baseline",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <div>Sản phẩm lỗi đầu vào</div>
+                        <div
+                          style={{
+                            width: "10px",
+                            height: "10px",
+                            borderRadius: "50%",
+                            border: "black 1px solid",
+                            background: status === 1 ? "red" : "none",
+                            display: "block",
+                          }}
+                        ></div>
+                      </div>
                     </Card.Header>
                     <Card.Body>{error}</Card.Body>
                   </Card>
                 </Col>
                 <Col xs={4}>
                   <Card>
-                    <Card.Header>Sản phẩm làm lỗi</Card.Header>
+                    <Card.Header>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "baseline",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <div>Sản phẩm làm lỗi</div>
+                        <div
+                          style={{
+                            width: "10px",
+                            height: "10px",
+                            borderRadius: "50%",
+                            border: "black 1px solid",
+                            background: status === 2 ? "yellow" : "none",
+                            display: "block",
+                          }}
+                        ></div>
+                      </div>
+                    </Card.Header>
                     <Card.Body>{error1}</Card.Body>
                   </Card>
                 </Col>
@@ -525,6 +589,10 @@ const WorkingContentIOT = (props = {}) => {
                     size="lg"
                     onClick={() => {
                       setError1((error1) => error1 + 1);
+                      setStatus(2);
+                      setTimeout(() => {
+                        setStatus(-1);
+                      }, 1000);
                     }}
                   >
                     Sản phẩm làm lỗi
@@ -654,12 +722,13 @@ const WorkingContentTC = (props = {}) => {
   const [listBo, setListBo] = React.useState([]);
   const [success, setSuccess] = React.useState("");
   const [error, setError] = React.useState("");
+  const [error1, setError1] = React.useState(0);
   const handleBaoCao = () => {
     const bo = {
       id: listBo.length + 1,
       sp: success,
       epi: error,
-      epo: 0,
+      epo: error1,
     };
     setSuccess(0);
     setError(0);
@@ -842,6 +911,30 @@ const WorkingContentTC = (props = {}) => {
             </Card>
             <br />
             <Card>
+              <Card.Header>Tốc độ làm việc trung bình</Card.Header>
+              <Card.Body>
+                <div
+                  className="d-flex"
+                  style={{ justifyContent: "space-between" }}
+                >
+                  <span>Công nhân quy trình tiếp theo</span>
+                  <span style={{ color: "green" }}>
+                    {parseInt(Math.random() * 10)} phút/bó
+                  </span>
+                </div>
+                <div
+                  className="d-flex"
+                  style={{ justifyContent: "space-between" }}
+                >
+                  <span>Công nhân quy trình trước</span>
+                  <span style={{ color: "green" }}>
+                    {parseInt(Math.random() * 10)} phút/bó
+                  </span>
+                </div>
+              </Card.Body>
+            </Card>
+            <br />
+            <Card>
               <Card.Header>Thời gian làm việc</Card.Header>
               <Card.Body>
                 <div
@@ -880,6 +973,17 @@ const WorkingContentTC = (props = {}) => {
                 required
                 value={error}
                 onChange={(event) => setError(event.target.value)}
+              />
+            </InputGroup>
+          </Form.Group>
+          <Form.Group id="email" className="mb-4">
+            <Form.Label>Số lượng sản phẩm làm lỗi</Form.Label>
+            <InputGroup>
+              <Form.Control
+                autoFocus
+                required
+                value={error1}
+                onChange={(event) => setError1(event.target.value)}
               />
             </InputGroup>
           </Form.Group>
