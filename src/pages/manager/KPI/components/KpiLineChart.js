@@ -1,88 +1,52 @@
 import React from "react";
-import ReactApexChart from "apexcharts";
-class ApexChart extends React.Component {
-  constructor(props) {
-    super(props);
+import { Line } from "react-chartjs-2";
 
-    this.state = {
-      series: [
-        {
-          data: data.slice(),
-        },
-      ],
-      options: {
-        chart: {
-          id: "realtime",
-          height: 350,
-          type: "line",
-          animations: {
-            enabled: true,
-            easing: "linear",
-            dynamicAnimation: {
-              speed: 1000,
-            },
-          },
-          toolbar: {
-            show: false,
-          },
-          zoom: {
-            enabled: false,
-          },
-        },
-        dataLabels: {
-          enabled: false,
-        },
-        stroke: {
-          curve: "smooth",
-        },
-        title: {
-          text: "Dynamic Updating Chart",
-          align: "left",
-        },
-        markers: {
-          size: 0,
-        },
-        xaxis: {
-          type: "datetime",
-          range: XAXISRANGE,
-        },
-        yaxis: {
-          max: 100,
-        },
-        legend: {
-          show: false,
-        },
-      },
-    };
-  }
+const CharComponent = (props = {}) => {
+  const thangs = 4;
+  const ngays = [31, 30, 28, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  const [dataset, setDataset] = React.useState([]);
+  const [Linelabels, setLinelLabel] = React.useState([]);
+  React.useEffect(() => {
+    createDataset();
+  }, [thangs]);
+  const createDataset = () => {
+    setLinelLabel([]);
+    setDataset([]);
+    for (let j = 0; j < ngays[thangs - 1]; j++) {
+      setLinelLabel((Linelabels) => [...Linelabels, j + 1]);
+    }
+    for (let i = 0; i < 5; i++) {
+      let label = `Công nhân ${i + 1}`;
+      const background = `#${Math.floor(Math.random() * 16777215).toString(
+        16
+      )}`;
+      const data = [];
+      for (let j = 0; j < ngays[thangs - 1]; j++) {
+        data.push(parseInt(Math.random() * 50 + 40));
+      }
 
-  componentDidMount() {
-    window.setInterval(() => {
-      getNewSeries(lastDate, {
-        min: 10,
-        max: 90,
-      });
+      const xxx = {
+        label,
+        borderColor: background,
+        fill: false,
+        data,
+        tension: 0.25,
+        pointBorderWidth: 0,
+        pointBorderColor: "rgb(75, 192, 192)",
+      };
 
-      ApexCharts.exec("realtime", "updateSeries", [
-        {
-          data: data,
-        },
-      ]);
-    }, 1000);
-  }
+      setDataset((dataset) => [...dataset, xxx]);
+    }
+  };
+  return (
+    <Line
+      aria-checked={false}
+      data={{
+        labels: Linelabels,
+        datasets: dataset,
+      }}
+    ></Line>
+  );
+};
 
-  render() {
-    return (
-      <div id="chart">
-        <ReactApexChart
-          options={this.state.options}
-          series={this.state.series}
-          type="line"
-          height={350}
-        />
-      </div>
-    );
-  }
-}
-
-export default ApexChart;
+export default CharComponent;

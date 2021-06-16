@@ -16,8 +16,7 @@ import { AddKPIForm } from "./AddKPIForm";
 import SelectSearch from "react-select-search";
 import "../Styles/styles.css";
 import UnitKPITable from "./TableListKPI";
-import ApexChart from "./components/KpiLineChart";
-
+import KpiLineChart from "./components/KpiLineChart";
 const options = [
   { name: "Tháng 1", value: 1 },
   { name: "Tháng 2", value: 2 },
@@ -28,6 +27,7 @@ const options = [
 const UnitKPI = () => {
   const [showDefault, setShowDefault] = useState(false);
   const handleClose = () => setShowDefault(false);
+  const [moth, setMoth] = React.useState(4);
   const showModelAddTask = () => {
     setShowDefault(true);
   };
@@ -48,8 +48,9 @@ const UnitKPI = () => {
                   <SelectSearch
                     options={options}
                     search
-                    value={5}
+                    value={moth}
                     placeholder="Chọn tháng"
+                    onChange={setMoth}
                   />
                 </div>
               </Col>
@@ -73,6 +74,15 @@ const UnitKPI = () => {
             </Row>
           </div>
           <UnitKPITable />
+          <br />
+          <Row>
+            <Card>
+              <Card.Header>Thống kê hiệu suất công nhân theo tháng</Card.Header>
+              <Card.Body>
+                <KpiLineChart thangs={moth} />
+              </Card.Body>
+            </Card>
+          </Row>
         </Col>
       </Row>
       <Modal
