@@ -17,12 +17,20 @@ import SelectSearch from "react-select-search";
 import "../Styles/styles.css";
 import UnitKPITable from "./TableListKPI";
 import KpiLineChart from "./components/KpiLineChart";
+
 const options = [
   { name: "Tháng 1", value: 1 },
   { name: "Tháng 2", value: 2 },
   { name: "Tháng 3", value: 3 },
   { name: "Tháng 4", value: 4 },
   { name: "Tháng 5", value: 5 },
+];
+const Units = [
+  { name: "Tổ 1", value: 1 },
+  { name: "Tổ 2", value: 2 },
+  { name: "Tổ 3", value: 3 },
+  { name: "Tổ 4", value: 4 },
+  { name: "Tổ 5", value: 5, selected: true },
 ];
 const UnitKPI = () => {
   const [showDefault, setShowDefault] = useState(false);
@@ -31,6 +39,7 @@ const UnitKPI = () => {
   const showModelAddTask = () => {
     setShowDefault(true);
   };
+  const [unit,setUnit] = useState(1);
   return (
     <>
       <Row style={{ marginTop: "-45px" }}>
@@ -76,10 +85,25 @@ const UnitKPI = () => {
           <UnitKPITable />
           <br />
           <Row>
-            <Card>
-              <Card.Header>Thống kê hiệu suất công nhân theo tháng</Card.Header>
+            <Card style={{width: "98%",marginLeft: "1%"}}>
+              <Card.Header> 
+                <h4>Thống kê hiệu suất công nhân theo tháng</h4>
+                <br/>
+                <Row>
+                  <Col md={2}>
+                    <div className="d-flex" style={{ alignItems: "baseline" }}>
+                      <SelectSearch
+                        options={Units}
+                        value={unit}
+                        onChange={setUnit}
+                      />
+                    </div>
+                  </Col>
+                </Row>
+                <br/>
+              </Card.Header>
               <Card.Body>
-                <KpiLineChart thangs={moth} />
+                <KpiLineChart thangs={moth} unit={unit}/>
               </Card.Body>
             </Card>
           </Row>
