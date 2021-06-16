@@ -1,8 +1,8 @@
 import { React, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faCog, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal, Card, Nav, Pagination } from '@themesberg/react-bootstrap';
-import {AddTask} from "../../components/AddTask";
+import { Col, Row, Form, Button, ButtonGroup, Breadcrumb, InputGroup, Dropdown, Modal, Card, Nav, Pagination,DropdownButton } from '@themesberg/react-bootstrap';
+import {AddTask,AddTaskEmpty} from "../../components/AddTask";
 import {TasksTable} from "../../components/Tables2";
 
 
@@ -11,6 +11,11 @@ export const ListTasks = () => {
   const handleClose = () => setShowDefault(false);
   const showModelAddTask = () => {
     setShowDefault(true);
+  }
+  const [showDefault2, setShowDefault2] = useState(false);
+  const handleClose2 = () => setShowDefault2(false);
+  const showModelAddTaskEmpty = () => {
+    setShowDefault2(true);
   }
   return (
     <>
@@ -34,27 +39,19 @@ export const ListTasks = () => {
                       <Form.Control type="text" placeholder="Tìm kiếm" />
                     </InputGroup>
                   </Col>
-                  <Col md={3}></Col>
-                  <Col md={2} className="ps-md-0 text-end">
+                  <Col md={2}></Col>
+                  <Col md={3} className="ps-md-0 text-end">
                     <div className="btn-toolbar mb-2 mb-md-0">
-                      <Dropdown as={ButtonGroup}>
-                        <Dropdown.Toggle split as={Button} variant="link" className="text-dark m-0 p-0">
-                          <span className="icon icon-sm icon-gray">
-                            <FontAwesomeIcon icon={faCog} />
-                          </span>
-                        </Dropdown.Toggle>
-                        <Dropdown.Menu className="dropdown-menu-xs dropdown-menu-right">
-                          <Dropdown.Item className="fw-bold text-dark">Show</Dropdown.Item>
-                          <Dropdown.Item className="d-flex fw-bold">
-                            10 <span className="icon icon-small ms-auto"><FontAwesomeIcon icon={faCheck} /></span>
-                          </Dropdown.Item>
-                          <Dropdown.Item className="fw-bold">20</Dropdown.Item>
-                          <Dropdown.Item className="fw-bold">30</Dropdown.Item>
-                        </Dropdown.Menu>
-                      </Dropdown>
                       <ButtonGroup style={{ marginLeft: 10 }}>
-                        <Button variant="outline-primary" size="sm" onClick={showModelAddTask}>Thêm Mới</Button>
+                        <Button variant="outline-primary" size="sm" onClick={showModelAddTaskEmpty}>Thêm Mới</Button>
+                        {/* <Button variant="outline-primary" size="sm" onClick={showModelAddTask}>Thêm theo mẫu</Button> */}
+                        <DropdownButton title="Thêm theo mẫu" as={ButtonGroup} variant="outline-primary">
+                          <Dropdown.Item onClick={showModelAddTask}><strong>Mẫu may sơ mi</strong></Dropdown.Item>
+                          <Dropdown.Item onClick={showModelAddTask}><strong>Mẫu may Vest</strong></Dropdown.Item>
+                          <Dropdown.Item onClick={showModelAddTask}><strong>Mẫu may áo phông</strong></Dropdown.Item>
+                        </DropdownButton>
                       </ButtonGroup>
+                      
                     </div>
                   </Col>
                 </Row>
@@ -93,6 +90,23 @@ export const ListTasks = () => {
             Lưu
       </Button>
           <Button variant="link" className="text-gray ms-auto" onClick={handleClose}>
+            Hủy
+      </Button>
+        </Modal.Footer>
+      </Modal>
+      <Modal as={Modal.Dialog} centered show={showDefault2} onHide={handleClose2} size="xl">
+        <Modal.Header>
+          <Modal.Title className="h4">Thêm mới quy trình</Modal.Title>
+          <Button variant="close" aria-label="Close" onClick={handleClose2} />
+        </Modal.Header>
+        <Modal.Body>
+          <AddTaskEmpty/>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose2}>
+            Lưu
+      </Button>
+          <Button variant="link" className="text-gray ms-auto" onClick={handleClose2}>
             Hủy
       </Button>
         </Modal.Footer>
