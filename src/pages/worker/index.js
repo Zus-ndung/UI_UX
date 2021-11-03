@@ -4,21 +4,24 @@ import DashBoard from "./components/DashBoard";
 import SideBar from "./components/Sidebar";
 
 export default function WorkerDashBorad(props = {}) {
+  const [show, setShow] = React.useState(false);
   return (
     <Container>
       <Row>
-        <Col xs={8} xl={8}>
-          <Container>
-            <DashBoard />
-          </Container>
-        </Col>
-        <Col xs={4} xl={4}>
-          <Card>
-            <Card.Body>
-              <SideBar />
-            </Card.Body>
-          </Card>
-        </Col>
+        {show ? (
+          <Col xs={12} xl={12}>
+            <SideBar />
+          </Col>
+        ) : (
+          <Col xs={12} xl={12}>
+            <Container>
+              <DashBoard
+                onShow={() => setShow(true)}
+                onClose={() => setShow(false)}
+              />
+            </Container>
+          </Col>
+        )}
       </Row>
     </Container>
   );

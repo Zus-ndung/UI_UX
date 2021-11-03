@@ -7,12 +7,8 @@ import { Chat } from "react-chat-popup";
 const WorkerLayout = () => {
   return (
     <React.Fragment>
-      <Row>
-        <Header />
-      </Row>
-      <Row>
-        <Outlet />
-      </Row>
+      <Header />
+      <Outlet />
       <Chat title="Report" subtitle="And my cool subtitle" />
     </React.Fragment>
   );
