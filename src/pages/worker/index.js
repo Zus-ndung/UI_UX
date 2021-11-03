@@ -3,7 +3,7 @@ import React from "react";
 import DashBoard from "./components/DashBoard";
 import SideBar from "./components/Sidebar";
 
-export default function WorkerDashBorad(props = {}) {
+export default function WorkerDashBorad() {
   const [show, setShow] = React.useState(false);
   return (
     <Container>
@@ -16,8 +16,8 @@ export default function WorkerDashBorad(props = {}) {
           <Col xs={12} xl={12}>
             <Container>
               <DashBoard
-                onShow={() => setShow(true)}
                 onClose={() => setShow(false)}
+                onShow={() => setShow(true)}
               />
             </Container>
           </Col>

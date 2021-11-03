@@ -1,0 +1,21 @@
+.select-component{
+  height: 43px;
+  width: 100%;
+  /* text-align: center; */
+}
+.demo-app {
+  font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
+  left: 100%;
+}
+
+.demo-app-top {
+  margin: 0 0 3em;
+}
+
+.demo-app-calendar {
+  margin: 0;
+  margin-left: 25%;
+  max-width: 1200px;
+}
+

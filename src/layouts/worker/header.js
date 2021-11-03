@@ -10,9 +10,14 @@ import {
   Container,
 } from "@themesberg/react-bootstrap";
 
+import { useNavigate } from "react-router-dom";
 import Profile3 from "../../assets/img/team/meo1.jpg";
 
 export default function Header(props = {}) {
+  const navigate = useNavigate();
+  const routeTo = () => {
+    navigate("../../auth/signin");
+  }
   return (
     <Navbar variant="dark" expanded className="ps-0 pe-5 pb-0">
       <Container fluid className="px-0">
@@ -38,7 +43,7 @@ export default function Header(props = {}) {
                   Hello, Bonnie Green
                 </Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item className="fw-bold">
+                <Dropdown.Item className="fw-bold" onClick={routeTo}>
                   <FontAwesomeIcon
                     icon={faSignOutAlt}
                     className="text-danger me-2"

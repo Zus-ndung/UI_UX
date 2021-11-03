@@ -85,7 +85,7 @@ export const CircleChart = (props) => {
   ]
 
   return (
-    <Chartist data={{ series }} options={{...options, plugins}} type="Pie" className="ct-golden-section" />
+    <Chartist data={{ series }} options={{...options, plugins}} type="Pie" className="" />
   );
 };
 

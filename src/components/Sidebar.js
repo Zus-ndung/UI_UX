@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBook,
+  faHome,
   faBoxOpen,
   faChalkboard,
   faChartPie,
@@ -24,7 +24,7 @@ import {
   Accordion,
   Navbar,
   Col,
-  Row
+  Row,
 } from "@themesberg/react-bootstrap";
 import { Link } from "react-router-dom";
 
@@ -35,7 +35,6 @@ import ProfilePicture from "../assets/img/team/profile-picture-3.jpg";
 export default (props = {}) => {
   const location = useLocation();
   const { pathname } = location;
-  console.log(pathname)
   const [show, setShow] = useState(false);
   const showClass = show ? "show" : "";
 
@@ -50,7 +49,8 @@ export default (props = {}) => {
         <Accordion.Item eventKey={eventKey}>
           <Accordion.Button
             as={Nav.Link}
-            className="d-flex justify-content-between align-items-center">
+            className="d-flex justify-content-between align-items-center"
+          >
             <span>
               <span className="sidebar-icon">
                 <FontAwesomeIcon icon={icon} />{" "}
@@ -109,7 +109,8 @@ export default (props = {}) => {
               pill
               bg={badgeBg}
               text={badgeColor}
-              className="badge-md notification-count ms-2">
+              className="badge-md notification-count ms-2"
+            >
               {badgeText}
             </Badge>
           ) : null}
@@ -124,90 +125,89 @@ export default (props = {}) => {
         expand={false}
         collapseOnSelect
         variant="dark"
-        className="navbar-theme-primary px-4 d-md-none">
-        <Navbar.Brand
-          className="me-lg-5"
-          as={Link}
-          to="#"
-          >
+        className="navbar-theme-primary px-4 d-md-none"
+      >
+        <Navbar.Brand className="me-lg-5" as={Link} to="#">
           <Image src={ReactHero} className="navbar-brand-light" />
         </Navbar.Brand>
         <Navbar.Toggle
           as={Button}
           aria-controls="main-navbar"
-          onClick={onCollapse}>
+          onClick={onCollapse}
+        >
           <span className="navbar-toggler-icon" />
         </Navbar.Toggle>
       </Navbar>
       <CSSTransition timeout={300} in={show} classNames="sidebar-transition">
         <SimpleBar
-          className={`collapse ${showClass} sidebar d-md-block bg-primary text-white`}>
+          className={`collapse ${showClass} sidebar d-md-block bg-primary text-white`}
+        >
           <div className="sidebar-inner px-4 pt-3">
-            <div className="user-card d-flex d-md-none align-items-center justify-content-between justify-content-md-center pb-4">
-              <div className="d-flex align-items-center">
-                <div className="user-avatar lg-avatar me-4">
-                  <Image
-                    src={ProfilePicture}
-                    className="card-img-top rounded-circle border-white"
-                  />
-                </div>
-                <div className="d-block">
-                  <h6>Hi, Jane</h6>
-                  <Button
-                    as={Link}
-                    to="#"
-                    variant="secondary"
-                    size="xs"
-                    className="text-dark">
-                    <FontAwesomeIcon icon={faSignOutAlt} className="me-2" />{" "}
-                    Sign Out
-                  </Button>
+            <Nav className="flex-column pt-3 pt-md-0">
+              <h3 className="text-center" style={{ fontFamily: "cursive" }}>
+                HCI02
+              </h3>
+              <hr />
+            </Nav>
+            <Nav className="flex-column pt-3 pt-md-0">
+              <div className="d-flex">
+                <Image
+                  src={ProfilePicture}
+                  className="user-avatar md-avatar rounded-circle"
+                  style={{ height: "3.0rem", width: "3.2rem" }}
+                />
+                <div>
+                  <h5 className="mx-3">Bonnie Green</h5>
+                  <div className="d-flex">
+                    <small className="mx-3 mb-0">
+                      <i className="mx-1 fa fa-circle fa-xs text-success"></i>
+                      hoạt động
+                    </small>
+                    <small className="mx-3 mb-0">
+                      <i
+                        className="mx-1 fa fa-bell fa-xs"
+                        style={{ color: "#f39c12" }}
+                      ></i>
+                      thông báo
+                    </small>
+                  </div>
                 </div>
               </div>
-              <Nav.Link
-                className="collapse-close d-md-none"
-                onClick={onCollapse}>
-                <FontAwesomeIcon icon={faTimes} />
-              </Nav.Link>
-            </div>
+              <hr />
+            </Nav>
             <Nav className="flex-column pt-3 pt-md-0">
-              <CollapsableNavItem
-                title="Quản lý công việc"
-                icon={faChalkboard}>
+              <NavItem title="Trang chủ" link="#" icon={faHome}></NavItem>
+              <CollapsableNavItem title="Quản lý công việc" icon={faChalkboard}>
+                <NavItem title="DashBoard" link="dashboard" icon={faChartPie} />
                 <NavItem
-                  title="DashBoard"
-                  link="#"
-                  icon={faChartPie}
-                />
-                
-                <NavItem
-                  title="Danh sách công việc"
+                  title="Danh sách các quy trình"
                   link="tasklist"
                   icon={faFileAlt}
                 />
               </CollapsableNavItem>
-              <CollapsableNavItem
-                title="Quản lý KPI"
-                icon={faHandHoldingUsd}>
+              <CollapsableNavItem title="Quản lý KPI" icon={faHandHoldingUsd}>
                 <NavItem
                   title="DashBoard"
-                  link="#"
+                  link="kpi-dashborad"
                   icon={faChartPie}
                 />
-                
+
                 <NavItem
-                  title="Danh sách KPI"
-                  link="kpi-list"
+                  title="Quản lý KPI đơn vị"
+                  link="kpi-unit"
+                  icon={faFileAlt}
+                />
+                <NavItem
+                  title="Quản lý KPI cá nhân"
+                  link="kpi-worker"
                   icon={faFileAlt}
                 />
               </CollapsableNavItem>
-              <CollapsableNavItem
-                eventKey="Employee"
+              <NavItem
                 title="Quản lý nhân viên"
-                icon={faTable}>
-                <NavItem title="Danh sách nhân viên" link="#"/>
-                {/* <NavItem title="" link="#"/> */}
-              </CollapsableNavItem>
+                link="worker-list"
+                icon={faTable}
+              ></NavItem>
             </Nav>
           </div>
         </SimpleBar>

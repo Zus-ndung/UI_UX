@@ -13,6 +13,7 @@ import {
   Modal,
   Spinner,
   InputGroup,
+  Table,
 } from "@themesberg/react-bootstrap";
 import React from "react";
 import "./styles/sidebar.css";
@@ -67,22 +68,6 @@ const IOT = () => {
             </fieldset>
           </Row>
           <br />
-          <Row>
-            <Col sm={8}>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Label>Quantity</Form.Label>
-                <Form.Control type="text" disabled defaultValue={0} />
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            <Col sm={8}>
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label>Target</Form.Label>
-                <Form.Control type="text" disabled defaultValue={1000} />
-              </Form.Group>
-            </Col>
-          </Row>
         </Col>
         <Col xs={6}>
           <Row>
@@ -106,15 +91,10 @@ const IOT = () => {
           </Row>
           <br />
           <br />
-          <Row>
-            <Col sm={8}>
-              <Form.Group controlId="formBasicPassword">
-                <Form.Label>Error Product</Form.Label>
-                <Form.Control type="text" disabled defaultValue={0} />
-              </Form.Group>
-            </Col>
-          </Row>
         </Col>
+      </Row>
+      <Row>
+        <h5>Sản xuất sản phẩm theo bó (20 sản phẩm / bó)</h5>
       </Row>
     </>
   );
@@ -123,27 +103,9 @@ const IOT = () => {
 const ThuCong = () => {
   return (
     <>
-      {/* <Form.FloatingLabel
-        controlId="floatingSelect"
-        label="Số lượng sản phẩm mặc định mỗi lần nhập"> */}
-      <div>
-        <h4>Chọn số lượng sản phẩm nhập vào mỗi lần</h4>
-        <Form.Select aria-label="Số lượng sản phẩm mặc định mỗi lần nhập">
-          <option value="1">1 (Mặc định)</option>
-          <option value="2">5</option>
-          <option value="3">10</option>
-        </Form.Select>
-      </div>
-      <br />
-      <hr />
-      <br />
-      <div>
-        <h4>Số lượng sản phẩm lỗi nhập vào mỗi lần</h4>
-        <Form.Select aria-label="Số lượng sản phẩm lỗi mặc định mỗi lần nhập">
-          <option value="1">1 (Mặc định)</option>
-        </Form.Select>
-      </div>
-      {/* </Form.FloatingLabel> */}
+      <Row>
+        <h5>Sản xuất sản phẩm theo bó (20 sản phẩm / bó)</h5>
+      </Row>
     </>
   );
 };
@@ -235,7 +197,8 @@ function MyVerticallyCenteredModal(props) {
       {...props}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
-      centered>
+      centered
+    >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Kiểm tra thiết bị 1
@@ -319,7 +282,8 @@ const TestDevise = (props = {}) => {
             <li className="mb-1">
               <div
                 className="d-flex"
-                style={{ justifyContent: "space-between" }}>
+                style={{ justifyContent: "space-between" }}
+              >
                 <span>Thiết bị 1</span>
                 <Button variant="outline-dark" size="sm" onClick={showModal}>
                   Kiểm tra
@@ -329,7 +293,8 @@ const TestDevise = (props = {}) => {
             <li>
               <div
                 className="d-flex"
-                style={{ justifyContent: "space-between" }}>
+                style={{ justifyContent: "space-between" }}
+              >
                 <span>Thiết bị 2</span>
                 <Button variant="outline-dark" size="sm" onClick={showModal}>
                   Kiểm tra
@@ -345,7 +310,8 @@ const TestDevise = (props = {}) => {
             <li>
               <div
                 className="d-flex"
-                style={{ justifyContent: "space-between" }}>
+                style={{ justifyContent: "space-between" }}
+              >
                 <span>Thiết bị 1</span>
                 <Button variant="outline-dark" size="sm" onClick={showModal}>
                   Kiểm tra
@@ -366,6 +332,8 @@ const WorkingContentIOT = (props = {}) => {
   const [statusSuccess, setStatusSuccess] = React.useState(false);
   const [statusError, setStatusError] = React.useState(false);
   const [pause, setPause] = React.useState(false);
+  const [listBo, setListBo] = React.useState([]);
+  const [status, setStatus] = React.useState(-1);
   const {
     successP,
     setSuccessP,
@@ -379,15 +347,21 @@ const WorkingContentIOT = (props = {}) => {
     if (!pause) {
       if (product.status) {
         setStatusSuccess(true);
-        setSuccessP((successP) => successP + 1);
+        setG(4);
+        setStatus(0);
+        setSuccess((success) => success + 1);
         setTimeout(() => {
           setStatusSuccess(false);
+          setG(0);
+          setStatus(-1);
         }, 1000);
       } else {
         setStatusError(true);
-        setErrorP((errorP) => errorP + 1);
+        setStatus(1);
+        setError((error) => error + 1);
         setTimeout(() => {
           setStatusError(false);
+          setStatus(-1);
         }, 1000);
       }
     }
@@ -403,7 +377,22 @@ const WorkingContentIOT = (props = {}) => {
       clearInterval(success);
     };
   }, []);
-
+  const [giay, setG] = React.useState(0);
+  const [success, setSuccess] = React.useState(0);
+  const [error, setError] = React.useState(0);
+  const [error1, setError1] = React.useState(0);
+  const handleBaoCao = () => {
+    const bo = {
+      id: listBo.length + 1,
+      sp: success,
+      epi: error,
+      epo: error1,
+    };
+    setSuccess(0);
+    setError(0);
+    setError1(0);
+    setListBo((listBo) => [...listBo, bo]);
+  };
   return (
     <Container>
       <Row>
@@ -412,26 +401,108 @@ const WorkingContentIOT = (props = {}) => {
             <Card.Header>Tiến độ</Card.Header>
             <Card.Body>
               <Row>
+                <Table striped bordered hover size="sm">
+                  <thead>
+                    <tr>
+                      <th>#ID bó</th>
+                      <th>Số sản phẩm tốt</th>
+                      <th>Số sản phẩm lỗi đầu vào</th>
+                      <th>Số sản phẩm làm lỗi</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {listBo.map((item, index) => (
+                      <tr key={index}>
+                        <td>{item.id}</td>
+                        <td>{item.sp}</td>
+                        <td>{item.epi}</td>
+                        <td>{item.epo}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Table>
+              </Row>
+              <br />
+              <Row>
                 <Col xs={4}>
                   <Card>
                     <Card.Header>
-                      <strong>Sản phẩm tốt</strong>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "baseline",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <div>Sản phẩm tốt</div>
+                        <div
+                          style={{
+                            width: "10px",
+                            height: "10px",
+                            borderRadius: "50%",
+                            border: "black 1px solid",
+                            background: status === 0 ? "green" : "none",
+                            display: "block",
+                          }}
+                        ></div>
+                      </div>
                     </Card.Header>
-                    <Card.Body>{successP}</Card.Body>
+                    <Card.Body>{success}</Card.Body>
                   </Card>
                 </Col>
                 <Col xs={4}>
                   <Card>
                     <Card.Header>
-                      <strong>Sản phẩm lỗi</strong>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "baseline",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <div>Sản phẩm lỗi đầu vào</div>
+                        <div
+                          style={{
+                            width: "10px",
+                            height: "10px",
+                            borderRadius: "50%",
+                            border: "black 1px solid",
+                            background: status === 1 ? "red" : "none",
+                            display: "block",
+                          }}
+                        ></div>
+                      </div>
                     </Card.Header>
-                    <Card.Body>{errorP}</Card.Body>
+                    <Card.Body>{error}</Card.Body>
                   </Card>
                 </Col>
                 <Col xs={4}>
                   <Card>
-                    <Card.Header>Số lượng yêu cầu</Card.Header>
-                    <Card.Body>1000</Card.Body>
+                    <Card.Header>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: "baseline",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <div>Sản phẩm làm lỗi</div>
+                        <div
+                          style={{
+                            width: "10px",
+                            height: "10px",
+                            borderRadius: "50%",
+                            border: "black 1px solid",
+                            background: status === 2 ? "yellow" : "none",
+                            display: "block",
+                          }}
+                        ></div>
+                      </div>
+                    </Card.Header>
+                    <Card.Body>{error1}</Card.Body>
                   </Card>
                 </Col>
               </Row>
@@ -441,10 +512,10 @@ const WorkingContentIOT = (props = {}) => {
                   <Card>
                     <Card.Header>
                       <strong>
-                        Thời gian trung bình hoàn thành 1 sản phẩm
+                        Thời gian trung bình hoàn thành 1 bó sản phẩm
                       </strong>
                     </Card.Header>
-                    <Card.Body>4 (giây/sản phẩm)</Card.Body>
+                    <Card.Body>10 (phút/bó sản phẩm)</Card.Body>
                   </Card>
                 </Col>
               </Row>
@@ -452,13 +523,28 @@ const WorkingContentIOT = (props = {}) => {
             <Card.Footer>
               <ButtonGroup
                 className="d-flex"
-                style={{ justifyContent: "center" }}>
+                style={{ justifyContent: "center" }}
+              >
                 <div className="mb-2">
                   <Button
                     variant="outline-primary"
                     size="lg"
-                    onClick={() => setPause(!pause)}>
-                    {pause ? "Tiếp Tục" : "Tạm Dừng"}
+                    onClick={() => handleBaoCao()}
+                  >
+                    {"Báo Cáo"}
+                  </Button>{" "}
+                  <Button
+                    variant="outline-primary"
+                    size="lg"
+                    onClick={() => {
+                      setError1((error1) => error1 + 1);
+                      setStatus(2);
+                      setTimeout(() => {
+                        setStatus(-1);
+                      }, 1000);
+                    }}
+                  >
+                    Sản phẩm làm lỗi
                   </Button>{" "}
                   <Button
                     variant="outline-primary"
@@ -466,9 +552,10 @@ const WorkingContentIOT = (props = {}) => {
                     onClick={() => {
                       showTongKet(true);
                       onHide();
-                    }}>
+                    }}
+                  >
                     Kết Thúc
-                  </Button>
+                  </Button>{" "}
                 </div>
               </ButtonGroup>
             </Card.Footer>
@@ -481,7 +568,8 @@ const WorkingContentIOT = (props = {}) => {
               <h6>Thiết bị đếm sản phẩm tốt</h6>
               <div
                 className="d-flex"
-                style={{ justifyContent: "space-between" }}>
+                style={{ justifyContent: "space-between" }}
+              >
                 <span>
                   Thiết bị 1
                   <strong style={{ color: "green" }}>
@@ -496,16 +584,18 @@ const WorkingContentIOT = (props = {}) => {
                       borderRadius: "50%",
                       border: "black 1px solid",
                       background: statusSuccess ? "green" : "none",
-                    }}></div>
+                    }}
+                  ></div>
                 </div>
               </div>
-              <br />
+              <span>Thời gian làm sản phẩm: {giay}s</span>
               <hr />
               <br />
               <h6>Thiết bị đếm sản phẩm lỗi</h6>
               <div
                 className="d-flex"
-                style={{ justifyContent: "space-between" }}>
+                style={{ justifyContent: "space-between" }}
+              >
                 <span>
                   Thiết bị 3{" "}
                   <strong style={{ color: "green" }}>
@@ -519,7 +609,32 @@ const WorkingContentIOT = (props = {}) => {
                     borderRadius: "50%",
                     border: "black 1px solid",
                     background: statusError ? "red" : "none",
-                  }}></div>
+                  }}
+                ></div>
+              </div>
+            </Card.Body>
+          </Card>
+          <br />
+          <Card>
+            <Card.Header>Tốc độ làm việc trung bình</Card.Header>
+            <Card.Body>
+              <div
+                className="d-flex"
+                style={{ justifyContent: "space-between" }}
+              >
+                <span>Công nhân quy trình tiếp theo</span>
+                <span style={{ color: "green" }}>
+                  {parseInt(Math.random() * 10)} phút/bó
+                </span>
+              </div>
+              <div
+                className="d-flex"
+                style={{ justifyContent: "space-between" }}
+              >
+                <span>Công nhân quy trình trước</span>
+                <span style={{ color: "green" }}>
+                  {parseInt(Math.random() * 10)} phút/bó
+                </span>
               </div>
             </Card.Body>
           </Card>
@@ -529,7 +644,8 @@ const WorkingContentIOT = (props = {}) => {
             <Card.Body>
               <div
                 className="d-flex"
-                style={{ justifyContent: "space-between" }}>
+                style={{ justifyContent: "space-between" }}
+              >
                 <span>Thời gian bắt đầu</span>
                 <span>{DateConvert(startTime)}</span>
               </div>
@@ -547,10 +663,26 @@ const WorkingContentTC = (props = {}) => {
   const [pause, setPause] = React.useState(false);
   const [show, setShow] = React.useState(false);
   const handleSubmit = () => {
-    setSuccessP(Number.parseInt(successP) + Number.parseInt(sl));
+    // setSuccessP(Number.parseInt(successP) + Number.parseInt(sl));
+    handleBaoCao();
     setShow(false);
   };
   const [sl, setSl] = React.useState("");
+  const [listBo, setListBo] = React.useState([]);
+  const [success, setSuccess] = React.useState("");
+  const [error, setError] = React.useState("");
+  const [error1, setError1] = React.useState(0);
+  const handleBaoCao = () => {
+    const bo = {
+      id: listBo.length + 1,
+      sp: success,
+      epi: error,
+      epo: error1,
+    };
+    setSuccess(0);
+    setError(0);
+    setListBo((listBo) => [...listBo, bo]);
+  };
   const {
     successP,
     setSuccessP,
@@ -568,7 +700,7 @@ const WorkingContentTC = (props = {}) => {
             <Card>
               <Card.Header>Tiến độ</Card.Header>
               <Card.Body>
-                <Row>
+                {/* <Row>
                   <Col xs={4}>
                     <Card>
                       <Card.Header>
@@ -591,6 +723,28 @@ const WorkingContentTC = (props = {}) => {
                       <Card.Body>1000</Card.Body>
                     </Card>
                   </Col>
+                </Row> */}
+                <Row>
+                  <Table striped bordered hover size="sm">
+                    <thead>
+                      <tr>
+                        <th>#ID bó</th>
+                        <th>Số sản phẩm tốt</th>
+                        <th>Số sản phẩm lỗi đầu vào</th>
+                        <th>Số sản phẩm làm lỗi</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {listBo.map((item, index) => (
+                        <tr key={index}>
+                          <td>{item.id}</td>
+                          <td>{item.sp}</td>
+                          <td>{item.epi}</td>
+                          <td>{item.epo}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </Table>
                 </Row>
                 <br />
                 <Row>
@@ -598,52 +752,57 @@ const WorkingContentTC = (props = {}) => {
                     <Card>
                       <Card.Header>
                         <strong>
-                          Thời gian trung bình hoàn thành 1 bó sản phẩm (5 sản
-                          phẩm)
+                          Thời gian trung bình hoàn thành 1 bó sản phẩm
                         </strong>
                       </Card.Header>
-                      <Card.Body>20 (giây/bó)</Card.Body>
+                      <Card.Body>10 (phút/bó sản phẩm)</Card.Body>
                     </Card>
                   </Col>
                 </Row>
                 <br />
-                <Row>
+                {/* <Row>
                   <ButtonGroup
                     className="d-flex"
-                    style={{ justifyContent: "center" }}>
+                    style={{ justifyContent: "center" }}
+                  >
                     <div className="mb-2">
                       <Button
                         variant="outline-primary"
                         size="lg"
-                        onClick={() => setSuccessP(successP + 5)}>
+                        onClick={() => setSuccessP(successP + 5)}
+                      >
                         1 bó sản phẩm tốt
                       </Button>{" "}
                       <Button
                         variant="outline-primary"
                         size="lg"
-                        onClick={() => setErrorP(errorP + 1)}>
+                        onClick={() => setErrorP(errorP + 1)}
+                      >
                         1 bó sản phẩm lỗi
                       </Button>{" "}
                       <Button
                         variant="outline-primary"
                         size="lg"
-                        onClick={() => setShow(true)}>
+                        onClick={() => setShow(true)}
+                      >
                         Số lượng dư
                       </Button>
                     </div>
                   </ButtonGroup>
-                </Row>
+                </Row> */}
               </Card.Body>
               <Card.Footer>
                 <ButtonGroup
                   className="d-flex"
-                  style={{ justifyContent: "center" }}>
+                  style={{ justifyContent: "center" }}
+                >
                   <div className="mb-2">
                     <Button
                       variant="outline-primary"
                       size="lg"
-                      onClick={() => setPause(!pause)}>
-                      {pause ? "Tiếp Tục" : "Tạm Dừng"}
+                      onClick={() => setShow(true)}
+                    >
+                      {"Báo Cáo"}
                     </Button>{" "}
                     <Button
                       variant="outline-primary"
@@ -651,7 +810,8 @@ const WorkingContentTC = (props = {}) => {
                       onClick={() => {
                         showTongKet(true);
                         onHide();
-                      }}>
+                      }}
+                    >
                       Kết Thúc
                     </Button>
                   </div>
@@ -665,32 +825,60 @@ const WorkingContentTC = (props = {}) => {
               <Card.Body>
                 <div
                   className="d-flex"
-                  style={{ justifyContent: "space-between" }}>
+                  style={{ justifyContent: "space-between" }}
+                >
                   <span>Số lượng sản phẩm tốt trong mỗi bó</span>
                   <div>
                     <div
                       style={{
                         color: "green",
-                      }}>
-                      5
+                      }}
+                    >
+                      20
                     </div>
                   </div>
                 </div>
                 <br />
                 <hr />
                 <br />
-                <div
+                {/* <div
                   className="d-flex"
-                  style={{ justifyContent: "space-between" }}>
+                  style={{ justifyContent: "space-between" }}
+                >
                   <span>
                     <h6>Số lượng sản phẩm lỗi trong mỗi bó</h6>
                   </span>
                   <div
                     style={{
                       color: "red",
-                    }}>
+                    }}
+                  >
                     1
                   </div>
+                </div> */}
+              </Card.Body>
+            </Card>
+            <br />
+            <Card>
+              <Card.Header>Tốc độ làm việc trung bình</Card.Header>
+              <Card.Body>
+                <div
+                  className="d-flex"
+                  style={{ justifyContent: "space-between" }}
+                >
+                  <span>Công nhân quy trình tiếp theo</span>
+                  <span style={{ color: "green" }}>
+                    {parseInt(Math.random() * 10)} phút/bó
+                  </span>
+                </div>
+                <div
+                  className="d-flex"
+                  style={{ justifyContent: "space-between" }}
+                >
+                  <span>Công nhân quy trình trước</span>
+                  <span style={{ color: "green" }}>
+                    {parseInt(Math.random() * 10)} phút/bó
+                  </span>
                 </div>
               </Card.Body>
             </Card>
@@ -700,7 +888,8 @@ const WorkingContentTC = (props = {}) => {
               <Card.Body>
                 <div
                   className="d-flex"
-                  style={{ justifyContent: "space-between" }}>
+                  style={{ justifyContent: "space-between" }}
+                >
                   <span>Thời gian bắt đầu</span>
                   <span>{DateConvert(startTime)}</span>
                 </div>
@@ -711,17 +900,39 @@ const WorkingContentTC = (props = {}) => {
       </Container>
       <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Sản phẩm dư</Modal.Title>
+          <Modal.Title>Sản phẩm</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form.Group id="email" className="mb-4">
-            <Form.Label>Số lượng sản phẩm dư</Form.Label>
+            <Form.Label>Số lượng sản tốt</Form.Label>
             <InputGroup>
               <Form.Control
                 autoFocus
                 required
-                value={sl}
-                onChange={(event) => setSl(event.target.value)}
+                value={success}
+                onChange={(event) => setSuccess(event.target.value)}
+              />
+            </InputGroup>
+          </Form.Group>
+          <Form.Group id="email" className="mb-4">
+            <Form.Label>Số lượng sản phẩm lỗi đầu vào</Form.Label>
+            <InputGroup>
+              <Form.Control
+                autoFocus
+                required
+                value={error}
+                onChange={(event) => setError(event.target.value)}
+              />
+            </InputGroup>
+          </Form.Group>
+          <Form.Group id="email" className="mb-4">
+            <Form.Label>Số lượng sản phẩm làm lỗi</Form.Label>
+            <InputGroup>
+              <Form.Control
+                autoFocus
+                required
+                value={error1}
+                onChange={(event) => setError1(event.target.value)}
               />
             </InputGroup>
           </Form.Group>
@@ -733,7 +944,8 @@ const WorkingContentTC = (props = {}) => {
           <Button
             variant="primary"
             type="submit"
-            onClick={() => handleSubmit()}>
+            onClick={() => handleSubmit()}
+          >
             Xác nhận
           </Button>
         </Modal.Footer>
@@ -757,23 +969,31 @@ const TongKet = (props = {}) => {
       </Modal.Header>
       <Modal.Body>
         <Row>
-          <Col xs={4}>
+          <Col xs={3}>
+            <Card>
+              <Card.Header>
+                <strong>Số bó sản phẩm</strong>
+              </Card.Header>
+              <Card.Body>{10}</Card.Body>
+            </Card>
+          </Col>
+          <Col xs={3}>
             <Card>
               <Card.Header>
                 <strong>Sản phẩm tốt</strong>
               </Card.Header>
-              <Card.Body>{successP}</Card.Body>
+              <Card.Body>{200}</Card.Body>
             </Card>
           </Col>
-          <Col xs={4}>
+          <Col xs={3}>
             <Card>
               <Card.Header>
-                <strong>Sản phẩm lỗi</strong>
+                <strong>Sản phẩm lỗi đầu vào</strong>
               </Card.Header>
-              <Card.Body>{errorP}</Card.Body>
+              <Card.Body>{10}</Card.Body>
             </Card>
           </Col>
-          <Col xs={4}>
+          <Col xs={3}>
             <Card>
               <Card.Header>Số lượng yêu cầu</Card.Header>
               <Card.Body>1000</Card.Body>
@@ -788,7 +1008,8 @@ const TongKet = (props = {}) => {
               <Card.Body>
                 <div
                   className="d-flex"
-                  style={{ justifyContent: "space-between" }}>
+                  style={{ justifyContent: "space-between" }}
+                >
                   <span>Thời gian bắt đầu</span>
                   <span>{DateConvert(startTime)}</span>
                 </div>
@@ -796,7 +1017,8 @@ const TongKet = (props = {}) => {
               <Card.Body>
                 <div
                   className="d-flex"
-                  style={{ justifyContent: "space-between" }}>
+                  style={{ justifyContent: "space-between" }}
+                >
                   <span>Thời gian kết thúc</span>
                   <span>{DateConvert(new Date())}</span>
                 </div>
@@ -804,7 +1026,8 @@ const TongKet = (props = {}) => {
               <Card.Body>
                 <div
                   className="d-flex"
-                  style={{ justifyContent: "space-between" }}>
+                  style={{ justifyContent: "space-between" }}
+                >
                   <span>Thời gian làm việc</span>
                   <span>{convetTime(new Date() - startTime)}</span>
                 </div>
@@ -820,21 +1043,24 @@ const TongKet = (props = {}) => {
               <Card.Body>
                 <div
                   className="d-flex"
-                  style={{ justifyContent: "space-between" }}>
-                  <span>Thời gian làm 1 sản phẩm</span>
-                  <span>4 (giây/sản phẩm)</span>
+                  style={{ justifyContent: "space-between" }}
+                >
+                  <span>Thời gian làm 1 bó sản phẩm</span>
+                  <span>10 (phút/bó sản phẩm)</span>
                 </div>
                 <div
                   className="d-flex"
-                  style={{ justifyContent: "space-between" }}>
+                  style={{ justifyContent: "space-between" }}
+                >
                   <span>
-                    Thời gian trung 1 sản phẩm <strong>yêu cầu</strong>
+                    Thời gian trung bình 1 bó sản phẩm <strong>yêu cầu</strong>
                   </span>
-                  <span>4 (giây/sản phẩm)</span>
+                  <span>10(phút/bó sản phẩm)</span>
                 </div>
                 <div
                   className="d-flex"
-                  style={{ justifyContent: "space-between" }}>
+                  style={{ justifyContent: "space-between" }}
+                >
                   <span>Đánh giá trung bình</span>
                   <span style={{ color: "green" }}>Đạt</span>
                 </div>
@@ -871,7 +1097,8 @@ export default function SideBar(props = {}) {
                   defaultActiveKey="1"
                   id="uncontrolled-tab-example"
                   className="mb-3"
-                  onSelect={(key) => setType(key)}>
+                  onSelect={(key) => setType(key)}
+                >
                   <Tab eventKey="1" title="Tự động ( mặc định ) ">
                     <IOT />
                   </Tab>
@@ -888,7 +1115,8 @@ export default function SideBar(props = {}) {
                       setShow(true);
                     }}
                     style={{ maxWidth: "50%" }}
-                    disabled={startState}>
+                    disabled={startState}
+                  >
                     {"Bắt đầu công việc"}
                   </Button>
                 </Row>

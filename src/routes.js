@@ -11,17 +11,30 @@ import ManagerDashboard from "./pages/manager/ManagerDashBoard";
 import ListTask from "./pages/manager/ListTask";
 import WorkerDashBorad from "./pages/worker";
 import { faExclamation } from "@fortawesome/free-solid-svg-icons";
+import ListWorker from "./pages/manager/ListWorker";
 import ListKPI from "./pages/manager/ListKPI";
+import DetailProcess from "./pages/manager/DetailProcess";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Home from "./pages/manager/Home";
+import KpiList from "./pages/manager/KpiConponent";
+import KpiListWorker from "./pages/manager/KpiConponentWorker";
+import KpiWorker from "./pages/manager/KpiWorker";
+import UnitKPI from "./pages/manager/KPI/UnitKPI";
+import WorkerKPI from "./pages/manager/KPI/WorkerKPI";
 
 const routes = [
   {
     path: "/",
-    element: <Navigate to="/auth/signin" />,
+    element: <Navigate to="/auth" />,
   },
   {
     path: "/auth/*",
     element: <AuthLayout />,
     children: [
+      {
+        path: "/",
+        element: <Dashboard />,
+      },
       {
         path: "/signin",
         element: <SignInPage />,
@@ -44,6 +57,11 @@ const routes = [
     children: [
       {
         path: "/",
+
+        element: <Home />,
+      },
+      {
+        path: "/dashboard",
         element: <ManagerDashboard />,
       },
       {
@@ -51,8 +69,41 @@ const routes = [
         element: <ListTask />,
       },
       {
-        path: "kpi-list",
+        path: "/kpi-dashborad",
         element: <ListKPI />,
+      },
+      {
+        path: "/kpi-list",
+        element: <KpiList />,
+      },
+      {
+        path: "kpi-unit",
+        element: <UnitKPI/>,
+      },
+      {
+        path: "kpi-worker",
+        element: <WorkerKPI/>,
+      },
+      {
+        path: "/kpi-list-worker",
+        children: [
+          {
+            path: "/",
+            element: <KpiListWorker />,
+          },
+          {
+            path: "/worker*",
+            element: <KpiWorker />,
+          },
+        ],
+      },
+      {
+        path: "/worker-list",
+        element: <ListWorker />,
+      },
+      {
+        path: "/dashboard/detail-process",
+        element: <DetailProcess />,
       },
     ],
   },
